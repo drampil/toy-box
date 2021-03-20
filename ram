@@ -1,0 +1,62 @@
+#!/bin/bash
+
+echo -e " ____      _    _   _ ____   ___  __  __      _    ____ _____ ____ ____  "
+echo -e "|  _ \    / \  | \ | |  _ \ / _ \|  \/  |    / \  / ___| ____/ ___/ ___| "
+echo -e "| |_) |  / _ \ |  \| | | | | | | | |\/| |   / _ \| |   |  _| \___ \___ \ "
+echo -e "|  _ <  / ___ \| |\  | |_| | |_| | |  | |  / ___ \ |___| |___ ___) |__) |"
+echo -e "|_| \_\/_/   \_\_| \_|____/ \___/|_|  |_| /_/   \_\____|_____|____/____/ "
+echo
+echo -e " __  __ _____ __  __  ___  ____  ___ _____ ____  "
+echo -e "|  \/  | ____|  \/  |/ _ \|  _ \|_ _| ____/ ___| "
+echo -e "| |\/| |  _| | |\/| | | | | |_) || ||  _| \___ \ "
+echo -e "| |  | | |___| |  | | |_| |  _ < | || |___ ___) |"
+echo -e "|_|  |_|_____|_|  |_|\___/|_| \_\___|_____|____/ "
+
+echo
+echo "For Beta Test Internal Use"
+echo
+read -p "Initiate Log Dump? [megac/javelin/hunter]: " opt
+
+if [[ $opt == megac ]]
+then
+        echo "LOG DUMP FOR MEGA cURL"
+        echo "====================="
+        cat megaclog.txt
+        echo
+        read -p "Purge Mega cURL logs? " opt2
+        if [[ $opt2 == yes ]]
+                then
+                        rm megaclog.txt
+                        echo "Logs destroyed."
+                else
+                        echo
+                fi
+
+elif [[ $opt == javelin ]]
+then
+        echo "LOG DUMP FOR JAVELIN"
+        echo "====================="
+        cat javelinlog.txt
+        read -p "Purge Javelin logs? " opt2
+        if [[ $opt2 == yes ]]
+                then
+                        rm javelinlog.txt
+                        echo "Logs destroyed."
+                else
+                        echo
+                fi
+
+elif [[ $opt == hunter ]]
+then
+        echo "LOG DUMP FOR HOST HUNTER"
+        echo "====================="
+        cat hunterlog.txt
+        read -p "Purge host_hunter logs? " opt2
+        if [[ $opt2 == yes ]]
+                then
+                        rm hunterlog.txt
+                        echo "Logs destroyed."
+                else
+                        echo
+                fi
+fi
