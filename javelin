@@ -1,0 +1,130 @@
+#!/bin/bash
+
+echo -e "    _                 _ _       "
+echo -e "   (_) __ ___   _____| (_)_ __  "
+echo -e "   | |/ _  \ \ / / _ \ | |  _ \ "
+echo -e "   | | (_| |\ V /  __/ | | | | |"
+echo -e "  _/ |\__ _| \_/ \___|_|_|_| |_|"
+echo -e " |__/                           "
+echo
+
+echo "Beta: 1.3"
+
+# data collection
+echo "Enter a URL to cURL"
+read url
+
+# select node
+echo "Select Exit Node - No Brackets"
+echo
+echo "United Kingdom [UK]"
+echo "Brazil [BR]"
+echo "Canada [CA]"
+echo "Venezuela [VE]"
+echo "Argentina [AR]"
+echo "Russia [RU]"
+echo "France [FR]"
+echo "Germany [DE]"
+echo "Poland [PL]"
+echo "Ukraine [UA]"
+echo "China [CN]"
+echo "Hong Kong [HK]"
+echo "Taiwan [TW]"
+echo "South Korea [KR]"
+echo "Japan [JP]"
+echo "Indonesia [ID]"
+echo "Thailand [TH]"
+echo
+read country
+echo
+
+# country if statements
+if [ $country == "UK" ] || [ $country == "uk" ]; then
+        curl -s 'https://www.proxynova.com/proxy-server-list/country-gb/' > country.txt
+        echo "Intiating cURL from United Kingdom"
+elif [ $country == "BR" ] || [ $country == "br" ]; then
+        curl -s 'https://www.proxynova.com/proxy-server-list/country-br/' > country.txt
+        echo "Initiating cURL from Brazil"
+elif [ $country == "CA" ] || [ $country == "ca" ]; then
+        curl -s 'https://www.proxynova.com/proxy-server-list/country-ca/' > country.txt
+        echo "Initiating cURL from Canada"
+elif [ $country == "VE" ] || [ $country == "ve" ]; then
+        curl -s 'https://www.proxynova.com/proxy-server-list/country-ve/' > country.txt
+        echo "Initiating cURL from Venezuela - straight to jail"
+elif [ $country == "AR" ] || [ $country == "ar" ]; then
+        curl -s 'https://www.proxynova.com/proxy-server-list/country-ar/' > country.txt
+        echo "Initiating cURL from Argentina"
+elif [ $country == "RU" ] || [ $country == "ru" ]; then
+        curl -s 'https://www.proxynova.com/proxy-server-list/country-ru/' > country.txt
+        echo "Initiating cURL from Russia"
+elif [ $country == "FR" ] || [ $country == "fr" ]; then
+        curl -s 'https://www.proxynova.com/proxy-server-list/country-fr/' > country.txt
+        echo "Initiating cURL from France"
+elif [ $country == "DE" ] || [ $country == "de" ]; then
+        curl -s 'https://www.proxynova.com/proxy-server-list/country-de/' > country.txt
+        echo "Initiating cURL from Germany"
+elif [ $country == "PL" ] || [ $country == "pl" ]; then
+        curl -s 'https://www.proxynova.com/proxy-server-list/country-pl/' > country.txt
+        echo "Initiating cURL from Poland"
+elif [ $country == "UA" ] || [ $country == "ua" ]; then
+        curl -s 'https://www.proxynova.com/proxy-server-list/country-ua/' > country.txt
+        echo "Initiating cURL from Ukraine"
+elif [ $country == "CN" ] || [ $country == "cn" ]; then
+        curl -s 'https://www.proxynova.com/proxy-server-list/country-cn/' > country.txt
+        echo "Initiating cURL from China"
+elif [ $country == "HK" ] || [ $country == "hk" ]; then
+        curl -s 'https://www.proxynova.com/proxy-server-list/country-hk/' > country.txt
+        echo "Initiating cURL from Hong Kong"
+elif [ $country == "TW" ] || [ $country == "tw" ]; then
+        curl -s 'https://www.proxynova.com/proxy-server-list/country-tw/' > country.txt
+        echo "Initiating cURL from Taiwan"
+elif [ $country == "KR" ] || [ $country == "kr" ]; then
+        curl -s 'https://www.proxynova.com/proxy-server-list/country-kr/' > country.txt
+        echo "Initiating cURL from South Korea"
+elif [ $country == "JP" ] || [ $country == "jp" ]; then
+        curl -s 'https://www.proxynova.com/proxy-server-list/country-jp/' > country.txt
+        echo "Initiating cURL from Japan"
+elif [ $country == "ID" ] || [ $country == "id" ]; then
+        curl -s 'https://www.proxynova.com/proxy-server-list/country-id/' > country.txt
+        echo "Initiating cURL from Indonesia"
+elif [ $country == "TH" ] || [ $country == "th" ]; then
+        curl -s 'https://www.proxynova.com/proxy-server-list/country-th/' > country.txt
+        echo "Initiating cURL from Thailand"
+else
+        echo "syntax failure"
+        ./prox
+
+fi
+
+echo
+
+# scrape
+echo "Website: Proxynova.com"
+echo "First avaliable IP"
+cat country.txt | grep document.write | head -1 | grep -oP "(?<=').*?(?=')"
+echo "First avaliable port"
+cat country.txt | sed -n '\|<td align="left">|,\|</td>|p' | head -7 | tail -1 > portsave.txt
+cat portsave.txt | sed -e 's/^[ \t]*//'
+echo
+ip=$(cat country.txt | grep document.write | head -1 | grep -oP "(?<=').*?(?=')")
+port=$(cat portsave.txt | sed -e 's/^[ \t]*//')
+
+# debug
+echo "debug panel for beta testers"
+echo " _____________________________________________________________________ "
+echo "| combining" $ip":"$port
+echo "| connection refused error is when javelin trips a paid proxy. Wait 15 "
+echo "| Proxy health may slow down cURL times...                             "
+echo "|_____________________________________________________________________ "
+# results
+echo "---Beta Script: Javelin---"
+echo "curl -ILks --proxy $ip:$port $url"
+curl --show-error -ILks --proxy $ip:$port $url
+curl --show-error -ILks --proxy $ip:$port $url >> javelinlog.txt
+
+# cleanup system
+rm country.txt
+rm portsave.txt
+
+
+
