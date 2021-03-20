@@ -1,0 +1,72 @@
+#!/bin/bash
+
+# log saves
+
+echo " _               _       _                 _            "
+echo "| |__   ___  ___| |_    | |__  _   _ _ __ | |_ ___ _ __ "
+echo "| '_ \ / _ \/ __| __|   | '_ \| | | | '_ \| __/ _ \ '__|"
+echo "| | | | (_) \__ \ |_    | | | | |_| | | | | ||  __/ |   "
+echo "|_| |_|\___/|___/\__|___|_| |_|\__,_|_| |_|\__\___|_|   "
+echo "                   |_____|                              "
+echo
+
+echo "Beta: 1.2"
+
+echo "This program is designed to track a domain that is ip/host jumping from AWS."
+echo "Blank lines are silenced errors"
+echo
+echo "Enter suspect url"
+read url
+echo
+echo "Enter iteration count"
+read count
+echo
+echo "Scan running please wait..."
+echo
+
+# break down the url
+echo $url | grep -oE -m1 '[-+[:alnum:]]+[.][[:alnum:]+_.-]+' | sed 's/www.//' | head -1 > ur$
+value=$(<urledit.txt)
+
+echo "---Beta Script: Host_Hunter---"
+
+# run the loop
+for ((i=1;i<=$count;i++)); do host $value > ipsave1.txt
+ip1=$(<ipsave1.txt)
+echo whois $ip1 | awk 'NR==1 {print $5}' > whois1.txt
+who1=$(echo whois $ip1 | awk 'NR==1 {print $5}')
+
+if [[ $who1 == "alias" ]]
+then
+        rm whois1.txt
+        cat ipsave1.txt | awk 'NR==2 {print $4}' > whois1.txt
+        cat ipsave1.txt | awk 'NR==2 {print $4}' >>  ipcounter1.txt
+else
+        echo whois $ip1 | awk 'NR==1 {print $5}' >>  ipcounter1.txt
+fi
+
+who=$(<whois1.txt)
+whois $who > stage1.txt 2>&1
+cat stage1.txt | grep -m 1 -e 'OrgName' -e 'orgname' | awk '{print $2}' > stage21.txt
+stage2=$(<stage21.txt)
+
+# show loop results
+
+echo -e  "Provider:" "$stage2"'\t'"IP Address: ""$who"'\t'"Time:" $(date +"%T") >> logs.txt
+echo -e "$stage2" >> hosts1.txt; done
+echo -e '\e[1mIP(s) detected from JHD\e[22m'
+cat ipcounter1.txt | sort -u
+echo
+cat logs.txt
+cat logs.txt >> hunterlog.txt
+echo
+
+# clean up system files
+rm -f urledit.txt
+rm -f ipsave1.txt
+rm -f whois1.txt
+rm -f stage1.txt
+rm -f stage21.txt
+rm -f logs.txt
+rm -f ipcounter1.txt
+rm -f hosts1.txt
