@@ -25,7 +25,7 @@ echo "Scan running please wait..."
 echo
 
 # break down the url
-echo $url | grep -oE -m1 '[-+[:alnum:]]+[.][[:alnum:]+_.-]+' | sed 's/www.//' | head -1 > ur$
+echo $url | grep -oE -m1 '[-+[:alnum:]]+[.][[:alnum:]+_.-]+' | sed 's/www.//' | head -1 > urledit.txt
 value=$(<urledit.txt)
 
 echo "---Beta Script: Host_Hunter---"
