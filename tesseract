@@ -9,6 +9,8 @@ echo -e "   | |  __/\__ \__ \  __/ | | (_| | (__| |_ "
 echo -e "   |_|\___||___/___/\___|_|  \__ _|\___|\__|"
 echo -e "                                            "
 # Standard Report
+echo "This version is from Github"
+echo
 echo -n "Enter reported URL or File Location: "; read url
 echo $url > cleaner.txt
 clean_url=$(cat cleaner.txt | sed 's/[h]xx[p]/http/gi; s/[][]//g;')
