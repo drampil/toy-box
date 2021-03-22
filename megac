@@ -6,11 +6,12 @@ echo -e " | |  | |  __/ (_| | (_| | | (__| |_| |  _ <| |___ "
 echo -e " |_|  |_|\___|\__, |\__,_|  \___|\___/|_| \_\_____|"
 echo -e "              |___/                                "
 echo
-echo "This version is from gitHub. - 1.9"
 echo "x-amz-apigw-id is the API Gateway"
 echo "x-amz-cf-id is CloudFront"
 echo
-echo "Please enter a single URL, enter one URL per line, or paste all URLs at the same time as a code block. Mega cURL will accept obfuscated URLs also. To initiate press enter twice."
+echo "Please enter a single URL, enter one URL per line, or paste all URLs at the same time as a code block."
+echo "Mega cURL will accept obfuscated URLs also."
+echo "To initiate press enter twice."
 echo "-----"
 array=()
 while IFS= read -r -p "" url; do
