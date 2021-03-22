@@ -10,7 +10,7 @@ echo "|_| |_|\___/|___/\__|___|_| |_|\__,_|_| |_|\__\___|_|   "
 echo "                   |_____|                              "
 echo
 
-echo "Beta: 1.2"
+echo "This version is from Github Beta: 1.2"
 
 echo "This program is designed to track a domain that is ip/host jumping from AWS."
 echo "Blank lines are silenced errors"
