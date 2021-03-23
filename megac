@@ -6,25 +6,34 @@ echo -e " | |  | |  __/ (_| | (_| | | (__| |_| |  _ <| |___ "
 echo -e " |_|  |_|\___|\__, |\__,_|  \___|\___/|_| \_\_____|"
 echo -e "              |___/                                "
 echo
-echo "x-amz-apigw-id is the API Gateway"
+echo "x-amz-apigw-id is the Gateway ID"
 echo "x-amz-cf-id is CloudFront"
 echo
 echo "Instructions"
-echo "> Please enter a single URL, enter one URL per line," 
+echo "> Please enter a single URL, enter one URL per line,"
 echo "> or paste all URLs at the same time as a code block."
-echo "> Mega cURL will accept obfuscated URLs also."
+echo "> Mega cURL will accept obfuscated URLs containing hxxp or [.]"
 echo "> To initiate press enter twice."
-echo "-----"
+echo "---"
+
 array=()
 while IFS= read -r -p "" url; do
     [[ $url ]] || break
     array+=("$url")
 done
+
 grab=$(printf ' %s\n' "${array[@]}")
-echo "---Mega cURL---"
+printf "%`tput cols`s"|tr ' ' '-';
+echo
 echo
 for i in $(echo $grab | sed 's/[h]xx[p]/http/gi; s/[][]//g;'); do echo ">" "$i";
-echo "$(curl -I -s -L -k --show-error $i | grep 'HTTP\|Location\|location\|x-amz-apigw-id\|CloudFront\|x-amz-cf-id:\|AmazonS3')"
+echo "$(curl -I -s -L -k \
+--show-error \
+$i \
+| grep 'HTTP\|Location\|location\|x-amz-apigw-id\|CloudFront\|x-amz-cf-id:\|AmazonS3' \
+| grep -v 'onion-location\|via')"
 echo; done
-echo "---Formatted Stack---"
+
+printf "%`tput cols`s"|tr ' ' '-';
 echo
+echo "Done!"
