@@ -9,7 +9,6 @@ echo -e "   | |  __/\__ \__ \  __/ | | (_| | (__| |_ "
 echo -e "   |_|\___||___/___/\___|_|  \__ _|\___|\__|"
 echo -e "                                            "
 # Standard Report
-echo "This version is from Github"
 echo
 echo -n "Enter reported URL or File Location: "; read url
 echo $url > cleaner.txt
@@ -18,10 +17,6 @@ echo $clean_url | grep -oE -m1 '[-+[:alnum:]]+[.][[:alnum:]+_.-]+' | sed 's/www.
 domain=$(<urledit.txt)
 echo $clean_url > fang.txt
 fang=$(cat fang.txt | sed 's/[h]tt[p]/hxxp/gi; s/[.]/\[.]/g';)
-echo
-echo ">>>>>>>>>>"
-echo "BEGIN SCAN"
-echo ">>>>>>>>>>"
 echo
 echo "URLSCAN.IO"
 curl -s -X POST "https://urlscan.io/api/v1/scan/" \
@@ -55,7 +50,9 @@ cat whois.txt | grep -m 1 -e 'OrgName' | awk '{print $2}'
 echo
 echo "cURL Series"
 echo "Improved cURL"
-curl -I -s -L -k -m 5 --show-error '{'"$clean_url"'}' | grep 'HTTP\|Location\|location\|x-amz-apigw-id\|CloudFront\|x-amz-cf-id:\|AmazonS3'
+curl -I -s -L -k -m 5 --show-error '{'"$clean_url"'}' \
+| grep 'HTTP\|Location\|location\|x-amz-apigw-id\|CloudFront\|x-amz-cf-id:\|AmazonS3'\
+| grep -v 'onion-location\|via'
 echo
 curl -ILks -o /dev/null -w %{url_effective} $clean_url > landingpage.txt
 cat landingpage.txt | grep -oE -m1 '[-+[:alnum:]]+[.][[:alnum:]+_.-]+' | sed 's/www.//' | head -1 > landingip.txt
@@ -72,7 +69,9 @@ money=$(curl -ILks -o /dev/null -w %{url_effective} $clean_url)
 echo $money "["$secure"]" "-" $dollar
 echo
 echo "Firefox User-Agent"
-curl -s -I -L -A -H "user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101 Firefox/78.0" $clean_url | grep 'HTTP\|Location\|location'
+curl -s -I -L -A -H "user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101 Firefox/78.0" $clean_url \
+| grep 'HTTP\|Location\|location' \
+| grep -v 'onion-location\|via'
 echo
 echo "TOR Network Behavior"
 curl -s 'https://www.proxynova.com/proxy-server-list/country-br/' > country.txt
@@ -80,7 +79,9 @@ cat country.txt | sed -n '\|<td align="left">|,\|</td>|p' | head -7 | tail -1 > 
 ip=$(cat country.txt | grep document.write | head -1 | grep -oP "(?<=').*?(?=')")
 port=$(cat portsave.txt | sed -e 's/^[ \t]*//')
 echo "curl --show-error -m 5 -ILks --proxy" $ip":"$port $url
-curl --show-error -m 5 -ILks --proxy $ip:$port $url
+curl --show-error -m 5 -ILks --proxy $ip:$port $url \
+| grep 'HTTP\|Location\|location\|x-amz-apigw-id\|CloudFront\|x-amz-cf-id:\|AmazonS3' \
+| grep -v 'onion-location\|via'
 echo
 echo "Jump Host Detect"
 for ((i=1;i<=5;i++)); do host $domain > ipsave1.txt
@@ -114,7 +115,8 @@ cat logs.txt
 echo
 status=$(curl -Is $clean_url | grep 'HTTP' | awk '{print $2}' | tail -1)
 echo "HTTP Status Definition"
-curl -Is $clean_url | grep 'HTTP\|Location\|location'
+curl -Is $clean_url | grep 'HTTP\|Location\|location' \
+| grep -v 'onion-location\|via'
 echo
 if [[ $status == 100 ]]
 then
