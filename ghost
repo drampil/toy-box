@@ -1,0 +1,32 @@
+#!/bin/bash
+
+echo -e "           _           _                 _               _   "
+echo -e " __      _| |__   ___ (_)___        __ _| |__   ___  ___| |_ "
+echo -e " \ \ /\ / /  _ \ / _ \| / __|_____ / _  |  _ \ / _ \/ __| __|"
+echo -e "  \ V  V /| | | | (_) | \__ \_____| (_| | | | | (_) \__ \ |_ "
+echo -e "   \_/\_/ |_| |_|\___/|_|___/      \__, |_| |_|\___/|___/\__|"
+echo -e "                                   |___/                     "
+
+
+echo
+echo "IPs one per line"
+echo "> To initiate press enter twice."
+echo "---"
+
+array=()
+while IFS= read -r -p "" url; do
+    [[ $url ]] || break
+    array+=("$url")
+done
+
+grab=$(printf ' %s\n' "${array[@]}")
+printf "%`tput cols`s"|tr ' ' '-';
+echo
+echo
+for i in $(echo $grab); do echo "$i";
+echo "$(whois $i | grep -m 1 'OrgName' | awk {'print $2'})"
+echo; done
+
+printf "%`tput cols`s"|tr ' ' '-';
+echo
+echo "Done!"
