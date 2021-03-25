@@ -24,7 +24,7 @@ printf "%`tput cols`s"|tr ' ' '-';
 echo
 echo
 for i in $(echo $grab); do echo "$i";
-echo "$(whois $i | grep -m 1 'OrgName' | awk {'print $2'})"
+echo "$(whois $i | grep -m 1 'OrgName\|org-name\|mnt-by\|person' | awk {'print $2'})"
 echo; done
 
 printf "%`tput cols`s"|tr ' ' '-';
