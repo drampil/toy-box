@@ -8,10 +8,10 @@ echo -e "  _/ |\__ _| \_/ \___|_|_|_| |_|"
 echo -e " |__/                           "
 echo
 
-echo "This version is from Github. Beta: 1.3"
+echo "Beta: 1.7"
 
 # data collection
-echo "Enter a URL to cURL"
+echo "Enter a geolocked URL to cURL"
 read url
 
 # select node
@@ -110,21 +110,16 @@ ip=$(cat country.txt | grep document.write | head -1 | grep -oP "(?<=').*?(?=')"
 port=$(cat portsave.txt | sed -e 's/^[ \t]*//')
 
 # debug
-echo "debug panel for beta testers"
-echo " _____________________________________________________________________ "
-echo "| combining" $ip":"$port
-echo "| connection refused error is when javelin trips a paid proxy. Wait 15 "
-echo "| Proxy health may slow down cURL times...                             "
-echo "|_____________________________________________________________________ "
+echo "Initializing... Please wait until the script says Complete!"
+echo
 # results
 echo "---Beta Script: Javelin---"
+echo
 echo "curl -ILks --proxy $ip:$port $url"
 curl --show-error -ILks --proxy $ip:$port $url
-curl --show-error -ILks --proxy $ip:$port $url >> javelinlog.txt
+echo "Complete!"
+echo
 
 # cleanup system
 rm country.txt
 rm portsave.txt
-
-
-
