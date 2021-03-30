@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "Welcome to Snapshot"
+echo "Enter URL below"
+
+read url
+
+curl -L -s -k $url | sed 's/<script>.*<\/script>//g;/<script>/,/<\/script>/{/<script>/!{/<\/script>/!d}};s/<script>.*//g;s/.*<\/script>//g' > 1.txt
+
+cat 1.txt | sed 's/<[^>]*>//g;' > 2.txt
+
+cat 2.txt | sed '/^[[:space:]]*$/d;'
+
+rm 2.txt
+rm 2.txt
