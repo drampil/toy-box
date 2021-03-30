@@ -1,0 +1,29 @@
+#!/bin/bash
+
+echo -e "  __        ___    ____  ____   _  _____ _   _ "
+echo -e "  \ \      / / \  |  _ \|  _ \ / \|_   _| | | |"
+echo -e "   \ \ /\ / / _ \ | |_) | |_) / _ \ | | | |_| |"
+echo -e "    \ V  V / ___ \|  _ <|  __/ ___ \| | |  _  |"
+echo -e "     \_/\_/_/   \_\_| \_\_| /_/   \_\_| |_| |_|"
+echo
+echo "Sometimes domains will trigger Forbidden errors with cURL, but are live via browser. Test it here."
+echo "If this fails test with javelin."
+echo
+echo "Beta: 1.3"
+
+echo "Enter URL that requires browser spoof access"
+
+read url
+
+echo "Beta Script: Warpath"
+echo
+echo "Firefox via Windows"
+echo "curl -IL -A  \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101 Firefox/78.0\" $url"
+curl -ILs -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101 Firefox/78.0" $url | grep 'HTTP\|Location\|location'
+echo
+echo "---"
+echo
+echo "Safari via Mobile"
+echo "curl -IL -A \"Mozilla/5.0 (iPhone; CPU iPhone OS 14_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1 Mobile/15E148 Safari/604.1\" $url"
+curl -ILs -A "Mozilla/5.0 (iPhone; CPU iPhone OS 14_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1 Mobile/15E148 Safari/604.1" $url | grep 'HTTP\|Location\|location'
+
