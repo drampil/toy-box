@@ -1,0 +1,56 @@
+#!/bin/bash
+echo -e "      _   _                       "
+echo -e "  ___| |_(_)_ __   __ _  ___ _ __ "
+echo -e " / __| __| |  _ \ / _  |/ _ \  __|"
+echo -e " \__ \ |_| | | | | (_| |  __/ |   "
+echo -e " |___/\__|_|_| |_|\__, |\___|_|   "
+echo -e "                  |___/           "
+echo
+
+echo "beta: 1.1"
+
+echo "Enter block of imgur URLs then hit enter twice:"
+
+array=()
+while IFS= read -r -p "" url; do
+    [[ $url ]] || break
+    array+=("$url")
+done
+
+grab=$(printf ' %s\n' "${array[@]}")
+
+echo "---Formatted Stack---"
+echo
+for i in $(echo $grab); do echo  "$i" ;
+echo "$(curl -s $i > locker.txt
+cat locker.txt | grep -Eo "[^\"'=[:space:]]+\.(jpe?g|png|gif)" | tail -1 > keyfob2.txt
+key=$(<keyfob2.txt)
+echo "$key" >> keyrecord.txt
+if [[ $key == *s.imgur* ]]
+then
+        echo "No File Detected"
+        echo "---"
+        echo $i >> deadurls.txt
+else
+        echo "Match Detected"
+        echo $key
+        echo $i >> liveurls.txt
+        echo "---"
+fi
+
+)"; done
+
+echo
+echo "Beta Script: Stinger"
+echo "---Live File at these URLs---"
+cat liveurls.txt 2>/dev/null
+echo
+echo "---No Files at these URL---"
+cat deadurls.txt 2>/dev/null
+echo
+
+rm locker.txt 2>/dev/null
+rm keyfob2.txt 2>/dev/null
+rm keyrecord.txt 2>/dev/null
+rm liveurls.txt 2>/dev/null
+rm deadurls.txt 2>/dev/null
