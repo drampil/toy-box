@@ -52,7 +52,7 @@ echo "cURL Series"
 echo "Improved cURL"
 curl -I -s -L -k -m 5 --show-error '{'"$clean_url"'}' \
 | grep 'HTTP\|Location\|location\|x-amz-apigw-id\|CloudFront\|x-amz-cf-id:\|AmazonS3'\
-| grep -v 'onion-location\|via'
+| grep -v 'onion-location\|via\|Set-Cookie'
 echo
 curl -ILks -o /dev/null -w %{url_effective} $clean_url > landingpage.txt
 cat landingpage.txt | grep -oE -m1 '[-+[:alnum:]]+[.][[:alnum:]+_.-]+' | sed 's/www.//' | head -1 > landingip.txt
@@ -71,7 +71,7 @@ echo
 echo "Firefox User-Agent"
 curl -s -I -L -A -H "user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101 Firefox/78.0" $clean_url \
 | grep 'HTTP\|Location\|location' \
-| grep -v 'onion-location\|via'
+| grep -v 'onion-location\|via\|Set-Cookie'
 echo
 echo "TOR Network Behavior"
 curl -s 'https://www.proxynova.com/proxy-server-list/country-br/' > country.txt
@@ -81,7 +81,7 @@ port=$(cat portsave.txt | sed -e 's/^[ \t]*//')
 echo "curl --show-error -m 5 -ILks --proxy" $ip":"$port $url
 curl --show-error -m 5 -ILks --proxy $ip:$port $url \
 | grep 'HTTP\|Location\|location\|x-amz-apigw-id\|CloudFront\|x-amz-cf-id:\|AmazonS3' \
-| grep -v 'onion-location\|via'
+| grep -v 'onion-location\|via\|Set-Cookie'
 echo
 echo "Jump Host Detect"
 for ((i=1;i<=5;i++)); do host $domain > ipsave1.txt
@@ -113,10 +113,13 @@ cat ipcounter1.txt | sort -u
 echo
 cat logs.txt
 echo
-status=$(curl -Is $clean_url | grep 'HTTP' | awk '{print $2}' | tail -1)
+status=$(curl -Is $clean_url | grep 'HTTP' | grep -v 'Set-Cookie' | awk '{print $2}' | tail -1)
+
+echo $status
+
 echo "HTTP Status Definition"
 curl -Is $clean_url | grep 'HTTP\|Location\|location' \
-| grep -v 'onion-location\|via'
+| grep -v 'onion-location\|via\|Set-Cookie'
 echo
 if [[ $status == 100 ]]
 then
