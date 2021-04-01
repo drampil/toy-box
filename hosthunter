@@ -51,7 +51,7 @@ stage2=$(<stage21.txt)
 # show loop results
 echo -e  "Provider:" "$stage2"'\t'"IP Address: ""$who"'\t'"Time:" $(date +"%T") >> logs.txt
 echo -e "$stage2" >> hosts1.txt; done
-echo -e '\e[1mIP(s) detected from JHD\e[22m'
+echo -e "IP(s) detected from JHD"
 cat ipcounter1.txt | sort -u
 echo
 cat logs.txt
@@ -92,7 +92,7 @@ stage2=$(<stage21.txt)
 # show loop results
 echo -e  "Provider:" "$stage2"'\t'"IP Address: ""$who"'\t'"Time:" $(date +"%T") >> logs.txt
 echo -e "$stage2" >> hosts1.txt; done
-echo -e '\e[1mIP(s) detected from JHD\e[22m'
+echo -e "IP(s) detected from JHD"
 cat ipcounter1.txt | sort -u
 echo
 cat logs.txt
@@ -134,7 +134,7 @@ stage2=$(<stage21.txt)
 # show loop results
 echo -e  "Provider:" "$stage2"'\t'"IP Address: ""$who"'\t'"Time:" $(date +"%T") >> logs.txt
 echo -e "$stage2" >> hosts1.txt; done
-echo -e '\e[1mIP(s) detected from JHD\e[22m'
+echo -e "IP(s) detected from JHD"
 cat ipcounter1.txt | sort -u
 echo
 cat logs.txt
