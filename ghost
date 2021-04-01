@@ -1,15 +1,15 @@
 #!/bin/bash
 
-echo -e "           _           _                 _               _   "
-echo -e " __      _| |__   ___ (_)___        __ _| |__   ___  ___| |_ "
-echo -e " \ \ /\ / /  _ \ / _ \| / __|_____ / _  |  _ \ / _ \/ __| __|"
-echo -e "  \ V  V /| | | | (_) | \__ \_____| (_| | | | | (_) \__ \ |_ "
-echo -e "   \_/\_/ |_| |_|\___/|_|___/      \__, |_| |_|\___/|___/\__|"
-echo -e "                                   |___/                     "
-
+echo -e "       _               _   "
+echo -e "  __ _| |__   ___  ___| |_ "
+echo -e " / _  |  _ \ / _ \/ __| __|"
+echo -e "| (_| | | | | (_) \__ \ |_ "
+echo -e " \__, |_| |_|\___/|___/\__|"
+echo -e " |___/                     "
 
 echo
-echo "IPs one per line"
+echo "Check the hosts of an IP address list."
+echo "one entry per line"
 echo "> To initiate press enter twice."
 echo "---"
 
