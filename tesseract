@@ -1,6 +1,7 @@
 #!/bin/bash
 
-#update test
+# Public Release Version 1
+# urlscan api key linked to drampil@
 
 echo -e "  _____                                 _   "
 echo -e " |_   _|__  ___ ___  ___ _ __ __ _  ___| |_ "
@@ -8,7 +9,11 @@ echo -e "   | |/ _ \/ __/ __|/ _ \  __/ _  |/ __| __|"
 echo -e "   | |  __/\__ \__ \  __/ | | (_| | (__| |_ "
 echo -e "   |_|\___||___/___/\___|_|  \__ _|\___|\__|"
 echo -e "                                            "
+
 # Standard Report
+echo "Please keep in mind that the information generated within this report is for utility purposes."
+echo "Pick and choose the notes you need, don't copy the entire output of this report as most of it"
+echo "may not be needed for your situation."
 echo
 echo -n "Enter reported URL or File Location: "; read url
 echo $url > cleaner.txt
@@ -18,10 +23,10 @@ domain=$(<urledit.txt)
 echo $clean_url > fang.txt
 fang=$(cat fang.txt | sed 's/[h]tt[p]/hxxp/gi; s/[.]/\[.]/g';)
 echo
-echo "URLSCAN.IO"
+echo "urlscan.io API request"
 curl -s -X POST "https://urlscan.io/api/v1/scan/" \
       -H "Content-Type: application/json" \
-      -H "API-Key: 3b8253c2-7fa7-40cc-9ce5-cafbb89d11be" \
+      -H "API-Key: 90cb4aac-e7cf-4ce6-a646-8fd01074f9c5" \
       -d "{ \
         \"url\": \"$clean_url\", \"visibility\": \"public\", \
         \"tags\": [\"demotag1\", \"demotag2\"] \
@@ -48,8 +53,7 @@ ip=$(<ipsave.txt)
 whois $ip > whois.txt
 cat whois.txt | grep -m 1 -e 'OrgName' | awk '{print $2}'
 echo
-echo "cURL Series"
-echo "Improved cURL"
+echo "cURL -ILSk"
 curl -I -s -L -k -m 5 --show-error '{'"$clean_url"'}' \
 | grep 'HTTP\|Location\|location\|x-amz-apigw-id\|CloudFront\|x-amz-cf-id:\|AmazonS3'\
 | grep -v 'onion-location\|via\|Set-Cookie'
@@ -64,26 +68,16 @@ cat ip2.txt | head -n 1 | awk '{print $4}' > ip3.txt
 ip2=$(<ip3.txt)
 whois $ip2 > whois2.txt
 dollar=$(cat whois2.txt | grep -m 1 -e 'OrgName' | awk '{print $2}')
-echo "Landing Zone Information"
+echo "Redirect Landing Page Information"
 money=$(curl -ILks -o /dev/null -w %{url_effective} $clean_url)
 echo $money "["$secure"]" "-" $dollar
 echo
-echo "Firefox User-Agent"
+echo "cURL + modified User-Agent"
 curl -s -I -L -A -H "user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101 Firefox/78.0" $clean_url \
 | grep 'HTTP\|Location\|location' \
 | grep -v 'onion-location\|via\|Set-Cookie'
-echo
-echo "TOR Network Behavior"
-curl -s 'https://www.proxynova.com/proxy-server-list/country-br/' > country.txt
-cat country.txt | sed -n '\|<td align="left">|,\|</td>|p' | head -7 | tail -1 > portsave.txt
-ip=$(cat country.txt | grep document.write | head -1 | grep -oP "(?<=').*?(?=')")
-port=$(cat portsave.txt | sed -e 's/^[ \t]*//')
-echo "curl --show-error -m 5 -ILks --proxy" $ip":"$port $url
-curl --show-error -m 5 -ILks --proxy $ip:$port $url \
-| grep 'HTTP\|Location\|location\|x-amz-apigw-id\|CloudFront\|x-amz-cf-id:\|AmazonS3' \
-| grep -v 'onion-location\|via\|Set-Cookie'
-echo
-echo "Jump Host Detect"
+
+# JHD
 for ((i=1;i<=5;i++)); do host $domain > ipsave1.txt
 
 ip1=$(<ipsave1.txt)
@@ -108,16 +102,15 @@ stage2=$(<stage21.txt)
 echo -e  "Provider:" "$stage2"'\t'"IP Address: ""$who"'\t'"Time:" $(date +"%T") >> logs.txt
 echo -e "$stage2" >> hosts1.txt; done
 echo
-echo -e '\e[1mIP(s) detected from JHD\e[22m'
+echo "Jump Host Detect"
 cat ipcounter1.txt | sort -u
 echo
 cat logs.txt
 echo
 status=$(curl -Is $clean_url | grep 'HTTP' | grep -v 'Set-Cookie' | awk '{print $2}' | tail -1)
 
-echo $status
-
-echo "HTTP Status Definition"
+# Dictionary
+echo "HTTP Status Explanation"
 curl -Is $clean_url | grep 'HTTP\|Location\|location' \
 | grep -v 'onion-location\|via\|Set-Cookie'
 echo
@@ -370,12 +363,6 @@ else
         echo "HTTP CODE NOT UNDERSTOOD"
 fi
 
-
-
-
-
-
-
 echo
 rm logs.txt
 rm hosts1.txt
@@ -394,7 +381,5 @@ rm landingip.txt
 rm landingcatch.txt
 rm whois2.txt
 rm ip2.txt
-rm country.txt
-rm portsave.txt
 rm ip3.txt
 rm whois.txt
