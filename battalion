@@ -1,0 +1,34 @@
+#!/bin/bash
+
+echo -e " _           _   _        _ _             "
+echo -e "| |__   __ _| |_| |_ __ _| (_) ___  _ __  "
+echo -e "|  _ \ / _  | __| __/ _  | | |/ _ \|  _ \ "
+echo -e "| |_) | (_| | |_| || (_| | | | (_) | | | |"
+echo -e "|_.__/ \__,_|\__|\__\__,_|_|_|\___/|_| |_|"
+echo
+echo
+
+
+echo "Enter an IP..."
+read ip
+echo
+echo
+where=$(whois $ip | grep -w 'NetName:' | awk '{print $2}' | tail -1)
+type=$(host $ip | awk 'NF>1{print $NF}' | head -c 3)
+
+if [[ $type == ec2 ]]
+then
+echo "Resource is an EC2/ELB/Lightsail/NAT"
+elif [[ $type == ser ]]
+then
+echo "Resource is a possible CloudFront distro"
+elif [[ $type == s3- ]]
+then
+echo "Resource is a possible S3 object"
+else
+echo "I guess it's not AWS?"
+fi
+
+echo "$ip is located on" $where
+echo
+./backup
