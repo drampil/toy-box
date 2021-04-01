@@ -8,8 +8,6 @@ echo -e "  _/ |\__ _| \_/ \___|_|_|_| |_|"
 echo -e " |__/                           "
 echo
 
-echo "Beta: 1.7"
-
 # data collection
 echo "Enter a geolocked URL to cURL"
 read url
