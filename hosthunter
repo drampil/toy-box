@@ -10,6 +10,7 @@ echo
 
 
 echo "This program is designed to track domains that are moving between hosts rapidly"
+echo "If you would like to report an error ping drampil on slack."
 echo
 echo "Enter URL"
 read url
