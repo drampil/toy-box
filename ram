@@ -13,7 +13,7 @@ echo -e "| |  | | |___| |  | | |_| |  _ < | || |___ ___) |"
 echo -e "|_|  |_|_____|_|  |_|\___/|_| \_\___|_____|____/ "
 
 echo
-echo "This version is from Github. For Beta Test Internal Use"
+echo "This version is from Github. For Beta Test Internal Use with beta scripts."
 echo
 read -p "Initiate Log Dump? [megac/javelin/hunter]: " opt
 
