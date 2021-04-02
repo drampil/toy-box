@@ -8,6 +8,7 @@ echo -e "              |___/                                "
 echo
 echo "x-amz-apigw-id is the Gateway ID"
 echo "x-amz-cf-id is CloudFront"
+echo "If you would like to report an error ping drampil on slack."
 echo
 echo "Instructions"
 echo "> Please enter a single URL, enter one URL per line,"
