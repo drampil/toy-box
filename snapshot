@@ -1,6 +1,8 @@
 #!/bin/bash
 
-echo "Welcome to Snapshot"
+echo "If you would like to report an error ping drampil on slack."
+echo
+echo "Welcome to Snapshot - This attempts to parse the html from a website on a low level"
 echo "Enter URL below"
 
 read url
