@@ -7,6 +7,8 @@ echo -e "    \ V  V / ___ \|  _ <|  __/ ___ \| | |  _  |"
 echo -e "     \_/\_/_/   \_\_| \_\_| /_/   \_\_| |_| |_|"
 echo
 echo "Sometimes domains will trigger Forbidden errors with cURL, but are live via browser. Test it here."
+echo "If you would like to report an error ping drampil on slack."
+echo
 echo "If this fails test with javelin."
 echo
 echo "Beta: 1.3"
