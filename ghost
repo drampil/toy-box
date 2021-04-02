@@ -8,6 +8,8 @@ echo -e " \__, |_| |_|\___/|___/\__|"
 echo -e " |___/                     "
 
 echo
+echo "If you would like to report an error ping drampil on slack."
+echo
 echo "Check the hosts of an IP address list."
 echo "one entry per line"
 echo "> To initiate press enter twice."
