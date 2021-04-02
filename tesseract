@@ -14,6 +14,7 @@ echo -e "                                            "
 echo "Please keep in mind that the information generated within this report is for utility purposes."
 echo "Pick and choose the notes you need, don't copy the entire output of this report as most of it"
 echo "may not be needed for your situation."
+echo "If you would like to report an error ping drampil on slack."
 echo
 echo -n "Enter reported URL or File Location: "; read url
 echo $url > cleaner.txt
