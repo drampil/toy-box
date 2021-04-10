@@ -6,18 +6,16 @@ echo -e "   \ \ /\ / / _ \ | |_) | |_) / _ \ | | | |_| |"
 echo -e "    \ V  V / ___ \|  _ <|  __/ ___ \| | |  _  |"
 echo -e "     \_/\_/_/   \_\_| \_\_| /_/   \_\_| |_| |_|"
 echo
-echo "Sometimes domains will trigger Forbidden errors with cURL, but are live via browser. Test it here."
+echo "Sometimes domains will trigger 403 Forbidden errors with cURL"
+echo "Some reporters will specify if a website is locked to a webs browser or mobile browser."
 echo "If you would like to report an error ping drampil on slack."
 echo
-echo "If this fails test with javelin."
 echo
-echo "Beta: 1.3"
 
 echo "Enter URL that requires browser spoof access"
 
 read url
 
-echo "Beta Script: Warpath"
 echo
 echo "Firefox via Windows"
 echo "curl -IL -A  \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101 Firefox/78.0\" $url"
