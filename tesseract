@@ -9,7 +9,7 @@ echo -e "   | |/ _ \/ __/ __|/ _ \  __/ _  |/ __| __|"
 echo -e "   | |  __/\__ \__ \  __/ | | (_| | (__| |_ "
 echo -e "   |_|\___||___/___/\___|_|  \__ _|\___|\__|"
 echo -e "                                            "
-echo "download quiet test"
+echo
 # Standard Report
 echo "Please keep in mind that the information generated within this report is for utility purposes."
 echo "Pick and choose the notes you need, don't copy the entire output of this report as most of it"
