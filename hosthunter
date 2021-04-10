@@ -25,7 +25,6 @@ echo
 echo $url | grep -oE -m1 '[-+[:alnum:]]+[.][[:alnum:]+_.-]+' | sed 's/www.//' | head -1 > urledit.txt
 value=$(<urledit.txt)
 
-echo "---Beta Script: Host_Hunter---"
 
 echo
 echo "First Run"
