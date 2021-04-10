@@ -7,7 +7,7 @@ echo -e "    \ V  V / ___ \|  _ <|  __/ ___ \| | |  _  |"
 echo -e "     \_/\_/_/   \_\_| \_\_| /_/   \_\_| |_| |_|"
 echo
 echo "Sometimes domains will trigger 403 Forbidden errors with cURL"
-echo "Some reporters will specify if a website is locked to a webs browser or mobile browser."
+echo "Some reporters will specify if a website is locked to a web browser or mobile browser."
 echo "If you would like to report an error ping drampil on slack."
 echo
 echo
