@@ -9,7 +9,7 @@ echo "                   |_____|                              "
 echo
 
 
-echo "This program is designed to track domains that are moving between hosts rapidly"
+echo "This program is designed to track domains that are moving between hosts rapidly, or hosted on more than one platform"
 echo "If you would like to report an error ping drampil on slack."
 echo
 echo "Enter URL"
