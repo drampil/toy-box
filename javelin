@@ -9,6 +9,7 @@ echo -e " |__/                           "
 echo
 
 echo "If you would like to report an error ping drampil on slack."
+echo "After you begin please wait until the script says Complete"
 # data collection
 echo "Enter a geolocked URL to cURL"
 read url
