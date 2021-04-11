@@ -114,7 +114,7 @@ echo "Initializing... Please wait until the script says Complete!"
 printf "%`tput cols`s"|tr ' ' '-';
 echo
 # results
-echo "---Beta Script: Javelin---"
+echo "---Results---"
 echo
 echo "curl -ILks --proxy $ip:$port $url"
 curl --show-error -ILks --proxy $ip:$port $url
