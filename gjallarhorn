@@ -10,7 +10,7 @@ echo
 echo "beta: 2.2"
 
 echo
-echo "Gjallarhorn is an imgur crawler"
+echo "Gjallarhorn is an triller crawler"
 echo "This program will check each site for the first file detected then check to see if the file is online or not."
 echo "The summary will contain the list of live urls with objects and a list without the objects."
 echo
