@@ -8,8 +8,6 @@ echo -e " \__, |_| |_|\___/|___/\__|"
 echo -e " |___/                     "
 
 echo
-echo "If you would like to report an error ping drampil on slack."
-echo
 echo "Check the hosts of an IP address list."
 echo "one entry per line"
 echo "> To initiate press enter twice."
@@ -27,8 +25,16 @@ echo
 echo
 for i in $(echo $grab); do echo "$i";
 echo "$(whois $i | grep -m 1 'OrgName\|org-name\|mnt-by\|person' | awk {'print $2'})"
+adder=$(whois $i | grep -m 1 'Amazon' | awk {'print $2'})
+echo $i "-" $adder >> ipadder.txt
 echo; done
 
 printf "%`tput cols`s"|tr ' ' '-';
 echo
 echo "Done!"
+echo
+
+echo "IP's that Resolve to Amazon"
+cat ipadder.txt | grep 'Amazon' | awk {'print $1'}
+rm ipadder.txt
+echo
