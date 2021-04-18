@@ -6,6 +6,8 @@ echo -e " | |  | |  __/ (_| | (_| | | (__| |_| |  _ <| |___ "
 echo -e " |_|  |_|\___|\__, |\__,_|  \___|\___/|_| \_\_____|"
 echo -e "              |___/                                "
 echo
+echo "Experimental Edition - please test for deobfuscation worthyness"
+echo
 echo "x-amz-apigw-id is the Gateway ID"
 echo "x-amz-cf-id is CloudFront"
 echo "If you would like to report an error ping drampil on slack."
@@ -13,7 +15,7 @@ echo
 echo "Instructions"
 echo "> Please enter a single URL, enter one URL per line,"
 echo "> or paste all URLs at the same time as a code block."
-echo "> Mega cURL will accept obfuscated URLs containing hxxp or [.]"
+echo "> Mega cURL will accept obfuscated URLs containing hxxp or [.] / [dot]"
 echo "> To initiate press enter twice."
 echo "---"
 
