@@ -6,7 +6,7 @@ echo -e " | |  | |  __/ (_| | (_| | | (__| |_| |  _ <| |___ "
 echo -e " |_|  |_|\___|\__, |\__,_|  \___|\___/|_| \_\_____|"
 echo -e "              |___/                                "
 echo
-echo "Experimental Edition - please test for deobfuscation worthyness"
+echo "Experimental Edition - please test for deobfuscation worthiness"
 echo
 echo "x-amz-apigw-id is the Gateway ID"
 echo "x-amz-cf-id is CloudFront"
