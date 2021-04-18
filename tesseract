@@ -22,7 +22,7 @@ clean_url=$(cat cleaner.txt | sed 's/[h]xx[p]/http/gi; s/[][]//g;')
 echo $clean_url | grep -oE -m1 '[-+[:alnum:]]+[.][[:alnum:]+_.-]+' | sed 's/www.//' | head -1 > urledit.txt
 domain=$(<urledit.txt)
 echo $clean_url > fang.txt
-fang=$(cat fang.txt | sed 's/[h]tt[p]/hxxp/gi; s/[.]/\[.]/g';)
+fang=$(cat fang.txt | sed 's/[h]tt[p]/hxxp/gi; s/[.]/\[.]/g' | awk '{gsub(/\[.\]/,".");}1' | awk '{gsub(/\[dot\]/,".");}1';)
 echo
 echo "urlscan.io API request"
 curl -s -X POST "https://urlscan.io/api/v1/scan/" \
