@@ -1,10 +1,10 @@
 #!/bin/bash
 
-echo -e "  __        ___    ____  ____   _  _____ _   _ "
-echo -e "  \ \      / / \  |  _ \|  _ \ / \|_   _| | | |"
-echo -e "   \ \ /\ / / _ \ | |_) | |_) / _ \ | | | |_| |"
-echo -e "    \ V  V / ___ \|  _ <|  __/ ___ \| | |  _  |"
-echo -e "     \_/\_/_/   \_\_| \_\_| /_/   \_\_| |_| |_|"
+echo -e  ' \t' "  __        ___    ____  ____   _  _____ _   _ "
+echo -e  ' \t' "  \ \      / / \  |  _ \|  _ \ / \|_   _| | | |"
+echo -e  ' \t' "   \ \ /\ / / _ \ | |_) | |_) / _ \ | | | |_| |"
+echo -e  ' \t' "    \ V  V / ___ \|  _ <|  __/ ___ \| | |  _  |"
+echo -e  ' \t' "     \_/\_/_/   \_\_| \_\_| /_/   \_\_| |_| |_|"
 echo
 echo "Sometimes domains will trigger 403 Forbidden errors with cURL"
 echo "Some reporters will specify if a website is locked to a web browser or mobile browser."
