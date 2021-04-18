@@ -13,7 +13,7 @@ echo
 echo "Instructions"
 echo "> Please enter a single URL, enter one URL per line,"
 echo "> or paste all URLs at the same time as a code block."
-echo "> Mega cURL will accept obfuscated URLs containing hxxp or [.]"
+echo "> Mega cURL will accept obfuscated URLs containing hxxp or [.]/[dot]"
 echo "> To initiate press enter twice."
 echo "---"
 
