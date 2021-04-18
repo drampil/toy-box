@@ -1,11 +1,11 @@
 #!/bin/bash
 
-echo -e "    _                 _ _       "
-echo -e "   (_) __ ___   _____| (_)_ __  "
-echo -e "   | |/ _  \ \ / / _ \ | |  _ \ "
-echo -e "   | | (_| |\ V /  __/ | | | | |"
-echo -e "  _/ |\__ _| \_/ \___|_|_|_| |_|"
-echo -e " |__/                           "
+echo -e  ' \t' "    _                 _ _       "
+echo -e  ' \t' "   (_) __ ___   _____| (_)_ __  "
+echo -e  ' \t' "   | |/ _  \ \ / / _ \ | |  _ \ "
+echo -e  ' \t' "   | | (_| |\ V /  __/ | | | | |"
+echo -e  ' \t' "  _/ |\__ _| \_/ \___|_|_|_| |_|"
+echo -e  ' \t' " |__/                           "
 echo
 
 echo "If you would like to report an error ping drampil on slack."
