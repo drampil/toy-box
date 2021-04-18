@@ -1,11 +1,11 @@
 #!/bin/bash
 
-echo -e "       _               _   "
-echo -e "  __ _| |__   ___  ___| |_ "
-echo -e " / _  |  _ \ / _ \/ __| __|"
-echo -e "| (_| | | | | (_) \__ \ |_ "
-echo -e " \__, |_| |_|\___/|___/\__|"
-echo -e " |___/                     "
+echo -e  ' \t' "       _               _   "
+echo -e  ' \t' "  __ _| |__   ___  ___| |_ "
+echo -e  ' \t' " / _  |  _ \ / _ \/ __| __|"
+echo -e  ' \t' "| (_| | | | | (_) \__ \ |_ "
+echo -e  ' \t' " \__, |_| |_|\___/|___/\__|"
+echo -e  ' \t' " |___/                     "
 
 echo
 echo "Check the hosts of an IP address list."
