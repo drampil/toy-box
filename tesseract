@@ -18,7 +18,7 @@ echo "If you would like to report an error ping drampil on slack."
 echo
 echo -n "Enter reported URL or File Location: "; read url
 echo $url > cleaner.txt
-clean_url=$(cat cleaner.txt | sed 's/[h]xx[p]/http/gi; s/[][]//g;'| awk '{gsub(/\[.\]/,".");}1' | awk '{gsub(/\[dot\]/,".");}1';)
+clean_url=$(cat cleaner.txt | sed 's/[h]xx[p]/http/gi; | awk '{gsub(/\[.\]/,".");}1' | awk '{gsub(/\[dot\]/,".");}1';)
 echo $clean_url | grep -oE -m1 '[-+[:alnum:]]+[.][[:alnum:]+_.-]+' | sed 's/www.//' | head -1 > urledit.txt
 domain=$(<urledit.txt)
 echo $clean_url > fang.txt
