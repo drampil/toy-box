@@ -29,7 +29,9 @@ grab=$(printf ' %s\n' "${array[@]}")
 printf "%`tput cols`s"|tr ' ' '-';
 echo
 echo
-for i in $(echo $grab | sed 's/[h]xx[p]/http/gi;' | awk '{gsub(/\[.\]/,".");}1' | awk '{gsub(/\[dot\]/,".");}1'); do echo ">" "$i";
+for i in $(echo $grab | sed 's/[h]xx[p]/http/gi;' \
+| awk '{gsub(/\[.\]/,".");}1' |\ 
+awk '{gsub(/\[dot\]/,".");}1'); do echo ">" "$i";
 echo "$(curl -I -s -L -k \
 --show-error \
 $i \
