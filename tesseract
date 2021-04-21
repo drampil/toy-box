@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Public Release Version 1
+# Public Release Version 1.1
 # urlscan api key linked to drampil@
 
 echo -e  ' \t' "  _____                                 _   "
@@ -34,6 +34,23 @@ curl -s -X POST "https://urlscan.io/api/v1/scan/" \
       }" > urlscan.txt
 cat urlscan.txt | grep 'result' | grep -v 'api' | awk '{print $2}' | sed 's/"//g' | sed 's/,//g'
 rm urlscan.txt
+echo
+echo "Checking infastructure for Word Press"
+curl -Ls $clean_url | grep -o 'wp-content' | head -1 > wpcheck.txt
+wp=$(< wpcheck.txt)
+check="wp-content"
+
+if [[ $wp == $check ]]; then
+        echo "This is a word press site"
+else
+        echo "This is NOT a word press site"
+fi
+rm wpcheck.txt
+echo
+echo "Root Registrar Test"
+regi=$(echo $clean_url | awk -F/ '{n=split($3, a, "."); printf("%s.%s", a[n-1], a[n])}')
+whois $regi | grep 'Registrar:' | awk '{print $2}'
+
 echo
 echo "Base Level Domain:"
 echo $domain
