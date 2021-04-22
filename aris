@@ -22,11 +22,11 @@ echo
 for i in $(echo $grab); do echo "$i" >> grabtime.txt; done
 
 time=$(cat grabtime.txt | grep -A1 'timestamp' | grep -v 'timestamp' | sed 's/\"//g;')
-region=$(cat grabtime.txt | grep -A1 'region' | grep -v 'region' | sed 's/\"//g;')
-account=$(cat grabtime.txt | grep -A1 'ownerAccountId' | grep -v 'ownerAccountId' | sed 's/\"//g;')
+region=$(cat grabtime.txt | grep -A1 'region' | grep -v 'region' | sed 's/\"//g; s/,*$//g;')
+account=$(cat grabtime.txt | grep -A1 'ownerAccountId' | grep -v 'ownerAccountId' | sed 's/\"//g; s/,*$//g;')
 type=$(cat grabtime.txt | grep -A1 'type' | grep -v 'type' | sed 's/\"//g;')
-instance=$(cat grabtime.txt | grep -A1 'instanceName' | grep -v 'instanceName' | sed 's/\"//g;')
-function=$(cat grabtime.txt | grep -A1 'functionName' | grep -v 'functionName' | sed 's/\"//g;')
+instance=$(cat grabtime.txt | grep -A1 'instanceName' | grep -v 'instanceName' | sed 's/\"//g; s/,*$//g;')
+function=$(cat grabtime.txt | grep -A1 'functionName' | grep -v 'functionName' | sed 's/\"//g; s/,*$//g;')
 newdate=$(echo "@"$time)
 
 date -d $newdate
