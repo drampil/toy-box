@@ -1,0 +1,36 @@
+#!/bin/bash
+
+echo -e  ' \t' "    _    ____  ___ ____     ____ _     _____    _    _   _ _____ ____   "
+echo -e  ' \t' "   / \  |  _ \|_ _/ ___|   / ___| |   | ____|  / \  | \ | | ____|  _ \  "
+echo -e  ' \t' "  / _ \ | |_) || |\___ \  | |   | |   |  _|   / _ \ |  \| |  _| | |_) | "
+echo -e  ' \t' " / ___ \|  _ < | | ___) | | |___| |___| |___ / ___ \| |\  | |___|  _ <  "
+echo -e  ' \t' "/_/   \_\_| \_\___|____/   \____|_____|_____/_/   \_\_| \_|_____|_| \_\ "
+echo
+echo "Enter The JSON block below"
+echo
+array=()
+while IFS= read -r -p "" url; do
+    [[ $url ]] || break
+    array+=("$url")
+done
+
+grab=$(printf ' %s\n' "${array[@]}")
+printf "%`tput cols`s"|tr ' ' '-';
+echo
+echo
+
+for i in $(echo $grab); do echo "$i" >> grabtime.txt; done
+time=$(cat grabtime.txt | grep -A1 'timestamp' | grep -v 'timestamp' | sed 's/\"//g;')
+newdate=$(echo "@"$time)
+echo "Epoch to UTC Conversion"
+date -d $newdate
+echo
+for i in $(echo $grab | sed 's/[][]//; s/,//g; s/\"//g; s/[{}]//g; s/^[[:space:]]*//g;'); do echo "$i" >> explore.txt; done
+
+cat explore.txt | grep -v -w 'attributes\|resourceInfo\|ArnPartition\|resourceId\|type\|timestamp\|region\|arn\|aws\|arnPartition:'
+
+rm explore.txt
+rm grabtime.txt
+printf "%`tput cols`s"|tr ' ' '-';
+echo
+echo "Done!"
