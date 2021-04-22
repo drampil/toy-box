@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Public Release Version 1.1
-# urlscan api key linked to drampil@
+# urlscan api key removed this version
 
 echo -e  ' \t' "  _____                                 _   "
 echo -e  ' \t' " |_   _|__  ___ ___  ___ _ __ __ _  ___| |_ "
