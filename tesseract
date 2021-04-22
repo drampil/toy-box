@@ -24,17 +24,6 @@ domain=$(<urledit.txt)
 echo $clean_url > fang.txt
 fang=$(cat fang.txt | sed 's/[h]tt[p]/hxxp/gi; s/[.]/\[.]/g;')
 echo
-echo "urlscan.io API request"
-curl -s -X POST "https://urlscan.io/api/v1/scan/" \
-      -H "Content-Type: application/json" \
-      -H "API-Key: 90cb4aac-e7cf-4ce6-a646-8fd01074f9c5" \
-      -d "{ \
-        \"url\": \"$clean_url\", \"visibility\": \"public\", \
-        \"tags\": [\"demotag1\", \"demotag2\"] \
-      }" > urlscan.txt
-cat urlscan.txt | grep 'result' | grep -v 'api' | awk '{print $2}' | sed 's/"//g' | sed 's/,//g'
-rm urlscan.txt
-echo
 echo "Checking infastructure for Word Press"
 curl -Ls $clean_url | grep -o 'wp-content' | head -1 > wpcheck.txt
 wp=$(< wpcheck.txt)
