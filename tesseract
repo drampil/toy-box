@@ -47,7 +47,7 @@ else
 fi
 rm wpcheck.txt
 echo
-echo "Root Registrar Test"
+echo "Root Registrar Check"
 regi=$(echo $clean_url | awk -F/ '{n=split($3, a, "."); printf("%s.%s", a[n-1], a[n])}')
 whois $regi | grep 'Registrar:' | awk '{print $2}'
 
