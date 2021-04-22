@@ -35,7 +35,7 @@ echo "AWS Account ID:" $account
 echo "Instance Name:" $instance
 echo "Function Name:" $function
 echo "Type:" $type
-
+echo
 rm grabtime.txt
 printf "%`tput cols`s"|tr ' ' '-';
 echo
