@@ -43,11 +43,17 @@ elbname=$(cat grabtime.txt | grep -A1 'dnsName' | grep -v 'dnsName' | sed 's/\"/
 taskid=$(cat grabtime.txt | grep -A1 'taskId' | grep -v 'taskId' | sed 's/\"//g; s/,*$//g;')
 taskstart=$(cat grabtime.txt | grep -A1 'taskStartTime' | grep -v 'taskStartTime' | sed 's/\"//g; s/,*$//g;')
 taskend=$(cat grabtime.txt | grep -A1 'taskCompletionTime' | grep -v 'taskCompletionTime' | sed 's/\"//g; s/,*$//g;')
+publicIP=$(cat grabtime.txt | grep -A1 'publicIp' | grep -v 'publicIp' | sed 's/\"//g; s/,*$//g;')
+privateIP=$(cat grabtime.txt | grep -A1 'privateIp' | grep -v 'privateIp' | sed 's/\"//g; s/,*$//g;')
+vpcid=$(cat grabtime.txt | grep -A1 'vpcId' | grep -v 'vpcId' | sed 's/\"//g; s/,*$//g;')
+subnet=$(cat grabtime.txt | grep -A1 'subnetId' | grep -v 'subnetId' | sed 's/\"//g; s/,*$//g;')
+gatewayid=$(cat grabtime.txt | grep -A1 'natGatewayId' | grep -v 'natGatewayId' | sed 's/\"//g; s/,*$//g;')
+interface=$(cat grabtime.txt | grep -A1 'interfaceId' | grep -v 'interfaceId' | sed 's/\"//g; s/,*$//g;')
 taskstartconv=$(echo "@"$taskstart)
 taskendconv=$(echo "@"$taskend)
 newdate=$(echo "@"$time)
-tasks=$(date -d $taskstartconv)
-taske=$(date -d $taskendconv)
+tasks=$(date -d $taskstartconv 2>&1)
+taske=$(date -d $taskendconv 2>&1)
 date2=$(date -d $newdate)
 
 #decide blocks
@@ -62,6 +68,19 @@ then
         echo "Region:" $region
         echo "Domain State:" $domainstate
         echo "Start - Stops:" $stopstart
+        echo "Time Stamp:" $date2
+
+elif [[ $type == "NatGateway" ]];
+then
+        echo "Resource Type: Nat Gateway"
+        echo "AWS Account ID:" $account
+        echo "Public IP:" $publicIP
+        echo "Private IP:" $privateIP
+        echo "VPC ID:" $vpcid
+        echo "Subnet ID:" $subnet
+        echo "Nat Gateway ID:" $gatewayid
+        echo "Interface:" $interface
+        echo "Region:" $region
         echo "Time Stamp:" $date2
 
 elif [[ $type == "FargateTask" ]];
