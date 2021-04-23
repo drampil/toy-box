@@ -40,7 +40,14 @@ domainstate=$(cat grabtime.txt | grep -A1 'currentDomainState' | grep -v 'curren
 accesspoint=$(cat grabtime.txt | grep -A1 'accessPointId' | grep -v 'accessPointId' | sed 's/\"//g; s/,*$//g;')
 accesspointname=$(cat grabtime.txt | grep -A1 'accessPointName' | grep -v 'accessPointName' | sed 's/\"//g; s/,*$//g;')
 elbname=$(cat grabtime.txt | grep -A1 'dnsName' | grep -v 'dnsName' | sed 's/\"//g; s/,*$//g;')
+taskid=$(cat grabtime.txt | grep -A1 'taskId' | grep -v 'taskId' | sed 's/\"//g; s/,*$//g;')
+taskstart=$(cat grabtime.txt | grep -A1 'taskStartTime' | grep -v 'taskStartTime' | sed 's/\"//g; s/,*$//g;')
+taskend=$(cat grabtime.txt | grep -A1 'taskCompletionTime' | grep -v 'taskCompletionTime' | sed 's/\"//g; s/,*$//g;')
+taskstartconv=$(echo "@"$taskstart)
+taskendconv=$(echo "@"$taskend)
 newdate=$(echo "@"$time)
+tasks=$(date -d $taskstartconv)
+taske=$(date -d $taskendconv)
 date2=$(date -d $newdate)
 
 #decide blocks
@@ -57,6 +64,17 @@ then
         echo "Start - Stops:" $stopstart
         echo "Time Stamp:" $date2
 
+elif [[ $type == "FargateTask" ]];
+then
+        echo "Resource Type: Fargate/ECS"
+        echo "Task ID:" $taskid
+        echo "AWS Account ID:" $account
+        echo "Region:" $region
+        echo "Task Start Time:" $tasks
+        echo "Task End Time:" $taske
+        echo "Time Stamp:" $date2
+
+
 elif [[ $type == "LightsailInstance" ]];
 then
         echo "Resource Type: LightSail"
@@ -72,6 +90,7 @@ then
         echo "AWS Account ID:" $account
         echo "Region:" $region
         echo "Time Stamp:" $date2
+        
 elif [[ $type == "ElasticLoadBalancer" ]];
 then
         echo "Resource Type: Elastic Load Balancer"
