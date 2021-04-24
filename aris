@@ -9,7 +9,7 @@ echo
 echo "Enter The JSON block below"
 echo
 
-#make an array to recieve multiline block
+#make an array to receive multiline block
 array=()
 while IFS= read -r -p "" url; do
     [[ $url ]] || break
@@ -21,10 +21,10 @@ printf "%`tput cols`s"|tr ' ' '-';
 echo
 echo
 
-#parse array into text
+#write array into plain text
 for i in $(echo $grab); do echo "$i" >> grabtime.txt; done
 
-#get the values out
+#parse the text into vars
 time=$(cat grabtime.txt | grep -A1 'timestamp' | grep -v 'timestamp' | sed 's/\"//g;')
 region=$(cat grabtime.txt | grep -A1 'region' | grep -v 'region' | sed 's/\"//g; s/,*$//g;')
 account=$(cat grabtime.txt | grep -A1 'ownerAccountId' | grep -v 'ownerAccountId' | sed 's/\"//g; s/,*$//g;')
