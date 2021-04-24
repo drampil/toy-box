@@ -6,7 +6,7 @@ echo -e  ' \t' "  / _ \ | |_) || |\___ \  | |   | |   |  _|   / _ \ |  \| |  _| 
 echo -e  ' \t' " / ___ \|  _ < | | ___) | | |___| |___| |___ / ___ \| |\  | |___|  _ <  "
 echo -e  ' \t' "/_/   \_\_| \_\___|____/   \____|_____|_____/_/   \_\_| \_|_____|_| \_\ "
 echo
-echo "Enter The JSON block below"
+echo "Enter The JSON block below and hit enter twice."
 echo
 
 #make an array to receive multiline block
