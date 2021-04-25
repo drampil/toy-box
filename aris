@@ -63,7 +63,7 @@ then
         echo "AWS Account ID:" $account
         echo "Instance Type:" $instancetype
         echo "Instance Name:" $instanceid
-        echo "Legacy ID:" $legacyid
+        echo "Legacy ID: dom-"$legacyid
         echo "State:" $state
         echo "Region:" $region
         echo "Domain State:" $domainstate
