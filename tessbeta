@@ -50,7 +50,7 @@ else
 fi
 
 curl -s -X POST 'https://www.virustotal.com/vtapi/v2/url/report' --form apikey="77bf2c05f05e318259df7ef3c1a557b802c41a8bb66b30f01eb2fd395099cb0c" --form resource="$clean_url" > vtresults.txt
-
+echo
 echo "Virus Total Results"
 cat vtresults.txt | awk -F 'positives\":' '{print "VT Hits" $2}' | awk -F ' ' '{print $1" "$2" "$3}' | sed 's|["}]||g; s/,//g;'
 cat vtresults.txt | awk -F 'permalink\":' '{print "VT URL:"$2}' | awk -F ' ' '{print $1" "$2" "$3}' | sed 's|["}]||g; s/,//g;'
