@@ -49,6 +49,8 @@ vpcid=$(cat grabtime.txt | grep -A1 'vpcId' | grep -v 'vpcId' | sed 's/\"//g; s/
 subnet=$(cat grabtime.txt | grep -A1 'subnetId' | grep -v 'subnetId' | sed 's/\"//g; s/,*$//g;')
 gatewayid=$(cat grabtime.txt | grep -A1 'natGatewayId' | grep -v 'natGatewayId' | sed 's/\"//g; s/,*$//g;')
 interface=$(cat grabtime.txt | grep -A1 'interfaceId' | grep -v 'interfaceId' | sed 's/\"//g; s/,*$//g;')
+requester=$(cat grabtime.txt | grep -A1 'requesterAccountId' | grep -v 'requesterAccountId' | sed 's/\"//g; s/,*$//g;')
+ipv4=$(cat grabtime.txt | grep -A1 'ipv4PrivatePublicIpMap' | grep -v 'ipv4PrivatePublicIpMap5' | sed 's/\"//g; s/,*$//g;')
 taskstartconv=$(echo "@"$taskstart)
 taskendconv=$(echo "@"$taskend)
 newdate=$(echo "@"$time)
@@ -68,6 +70,16 @@ then
         echo "Region:" $region
         echo "Domain State:" $domainstate
         echo "Start - Stops:" $stopstart
+        echo "Time Stamp:" $date2
+
+elif [[ $type == "ElasticNetworkInterface" ]];
+then
+        echo "Resource Type: Elastic Network Interface"
+        echo "AWS Account ID:" $account
+        echo "Requestor ID:" $requestor
+        echo "Interface ID:" $interface
+        echo "Region:" $region
+        echo "ipv4:" $ipv4
         echo "Time Stamp:" $date2
 
 elif [[ $type == "NatGateway" ]];
@@ -109,7 +121,7 @@ then
         echo "AWS Account ID:" $account
         echo "Region:" $region
         echo "Time Stamp:" $date2
-        
+
 elif [[ $type == "ElasticLoadBalancer" ]];
 then
         echo "Resource Type: Elastic Load Balancer"
