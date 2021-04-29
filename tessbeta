@@ -39,7 +39,7 @@ echo
 echo "Root Registrar Check"
 regi=$(echo $clean_url | awk -F/ '{n=split($3, a, "."); printf("%s.%s", a[n-1], a[n])}')
 whois $regi | grep 'Registrar:' | awk '{print $2}'
-whois $regi | grep 'Registrar:' | awk '{print $2}' > registrar.txt
+whois $regi | grep -m 1 'Registrar:' | awk '{print $2}' > registrar.txt
 registrar=$(cat registrar.txt)
 
 if [[ $registrar == Amazon ]];
