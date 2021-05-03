@@ -1,0 +1,32 @@
+#!/bin/bash
+
+echo -e  ' \t' " _               _       _               _    "
+echo -e  ' \t' "| |__   ___  ___| |_ ___| |__   ___  ___| | __"
+echo -e  ' \t' "|  _ \ / _ \/ __| __/ __|  _ \ / _ \/ __| |/ /"
+echo -e  ' \t' "| | | | (_) \__ \ || (__| | | |  __/ (__|   < "
+echo -e  ' \t' "| | | |                 | | | |         |    "
+echo
+echo "Enter a block of urls to check for IP"
+echo
+
+array=()
+while IFS= read -r -p "" url; do
+    [[ $url ]] || break
+    array+=("$url")
+done
+
+grab=$(printf ' %s\n' "${array[@]}")
+printf "%`tput cols`s"|tr ' ' '-';
+echo
+echo
+for i in $(echo $grab); do echo "$i";
+echo $i | grep -oE -m1 '[-+[:alnum:]]+[.][[:alnum:]+_.-]+' | sed 's/www.//' | head -1 > urledit.txt
+domain=$(<urledit.txt)
+echo $i
+echo "$(dig $domain +short)"
+rm urledit.txt
+echo; done
+
+printf "%`tput cols`s"|tr ' ' '-';
+echo
+echo "Done!"
