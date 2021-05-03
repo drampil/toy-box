@@ -9,7 +9,7 @@ echo -e  ' \t' " |___/                     "
 
 echo
 echo "Check the hosts of an IP address list."
-echo "one entry per line"
+echo "One entry per line, Ubuntu Machines do not render summary."
 echo "> To initiate press enter twice."
 echo "---"
 
