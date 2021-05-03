@@ -53,6 +53,17 @@ rm registrar.txt
 
 curl -s -X POST 'https://www.virustotal.com/vtapi/v2/url/report' --form apikey="77bf2c05f05e318259df7ef3c1a557b802c41a8bb66b30f01eb2fd395099cb0c" --form resource="$clean_url" > vtresults.txt
 echo
+echo "urlscan.io API request"
+curl -s -X POST "https://urlscan.io/api/v1/scan/" \
+      -H "Content-Type: application/json" \
+      -H "API-Key: 90cb4aac-e7cf-4ce6-a646-8fd01074f9c5" \
+      -d "{ \
+        \"url\": \"$clean_url\", \"visibility\": \"public\", \
+        \"tags\": [\"demotag1\", \"demotag2\"] \
+      }" > urlscan.txt
+cat urlscan.txt | grep 'result' | grep -v 'api' | awk '{print $2}' | sed 's/"//g' | sed 's/,//g'
+rm urlscan.txt
+echo
 echo "Virus Total Results"
 cat vtresults.txt | awk -F 'positives\":' '{print "VT Hits" $2}' | awk -F ' ' '{print $1" "$2" "$3}' | sed 's|["}]||g; s/,//g;'
 cat vtresults.txt | awk -F 'permalink\":' '{print "VT URL:"$2}' | awk -F ' ' '{print $1" "$2" "$3}' | sed 's|["}]||g; s/,//g;'
