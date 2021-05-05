@@ -58,6 +58,15 @@ tasks=$(date -d $taskstartconv 2>&1)
 taske=$(date -d $taskendconv 2>&1)
 date2=$(date -d $newdate)
 
+#internal account check
+if [[ $account == "996873903847" ]];
+then
+        echo "Sagemaker Resource"
+        echo
+else
+        echo
+fi
+
 #decide blocks
 if [[ $type == "Ec2Instance" ]];
 then
