@@ -7,6 +7,7 @@ echo -e  ' \t' " / ___ \|  _ < | | ___) | | |___ "
 echo -e  ' \t' "/_/   \_\_| \_\___|____/   \____|"
 echo
 echo "Enter The JSON block below and hit enter twice."
+echo "If you would like to report an error ping drampil on slack."
 echo
 
 #make an array to receive multiline block
