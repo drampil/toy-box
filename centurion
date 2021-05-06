@@ -5,15 +5,14 @@ echo -e  ' \t' "  ___ ___ _ __ | |_ _   _ _ __(_) ___  _ __  "
 echo -e  ' \t' " / __/ _ \ '_ \| __| | | | '__| |/ _ \| '_ \ "
 echo -e  ' \t' "| (_|  __/ | | | |_| |_| | |  | | (_) | | | |"
 echo -e  ' \t' " \___\___|_| |_|\__|\__,_|_|  |_|\___/|_| |_|"
-echo 
+echo
 echo "DO NOT USE WITHOUT EXPRESSED PERMISSION"
 echo "If you would like to report an error ping drampil on slack."
 echo
 echo "If the xmlrpc.php is avaliable this will send an API request for all avaliable functions."
-echo "If any functions return then the file is unrestricted." 
-echo                                           
+echo "If any functions return then the file is unrestricted."
+echo
 echo -n "Enter xmlrpc address: " ; read url
-curl -s -d "<?xml version 1.0'?>\
+curl -A "AWS Trust and Safety" -s -d "<?xml version 1.0'?>\
 <methodCall><methodName>system.listMethods</methodName><params></params></methodCall>" \
 $url | sed -e 's/<[^>]*>//g; s/^[[:space:]]*//g'
-
