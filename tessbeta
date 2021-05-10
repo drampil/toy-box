@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Beta Release Version 1.3
+# Beta Release Version 1.4
 # Testing keys
 
 echo -e  ' \t' "  _____                                 _   "
@@ -11,23 +11,25 @@ echo -e  ' \t' "   |_|\___||___/___/\___|_|  \__ _|\___|\__|"
 echo -e  ' \t' "                    BETA      YOLO VERSION  "
 echo
 # Standard Report
-echo "Please keep in mind that the information generated within this report is for utility purposes."
-echo "Pick and choose the notes you need, don't copy the entire output of this report as most of it"
-echo "may not be needed for your situation."
-echo "If Virus Total is blank then it is still scanning, run again in 30 seconds."
-echo "Do not use URLscan images in internal notes as a point of hosting. Also take 10+ seconds to generate."
-echo "If you would like to report an error ping drampil on slack."
+echo " - Please keep in mind that the information generated within this report is for utility purposes."
+echo " - Pick and choose the notes you need, don't copy the entire output of this report as most of it may not be needed for your situation."
+echo " - If Virus Total is blank then it is still scanning, run again in 30 seconds."
+echo " - Do not use URLscan images in internal notes as a point of hosting. Also take 10+ seconds to generate."
+echo " - If you would like to report an error ping drampil on slack."
 echo
-echo -n "Enter reported URL or File Location: "; read url
+echo -ne ' \t' "Enter reported URL or File Location - No IP Addresses: "; read url
 echo $url > cleaner.txt
 clean_url=$(cat cleaner.txt | sed 's/[h]xx[p]/http/gi;' | awk '{gsub(/\[.\]/,".");}1' | awk '{gsub(/\[dot\]/,".");}1';)
 echo $clean_url | grep -oE -m1 '[-+[:alnum:]]+[.][[:alnum:]+_.-]+' | sed 's/www.//' | head -1 > urledit.txt
 domain=$(<urledit.txt)
 echo $clean_url > fang.txt
 fang=$(cat fang.txt | sed 's/[h]tt[p]/hxxp/gi; s/[.]/\[.]/g;')
+
+printf "%`tput cols`s"|tr ' ' '-';
+
 echo
 echo "Checking infastructure for Word Press"
-curl -Ls $clean_url | grep -o 'wp-content' | head -1 > wpcheck.txt
+curl -Ls -m 5 $clean_url | grep -o 'wp-content' | head -1 > wpcheck.txt
 wp=$(< wpcheck.txt)
 check="wp-content"
 
@@ -66,13 +68,13 @@ curl -s -X POST "https://urlscan.io/api/v1/scan/" \
 cat urlscan.txt | grep 'result' | grep -v 'api' | awk '{print $2}' | sed 's/"//g' | sed 's/,//g'
 cat urlscan.txt | grep 'result' | grep -v 'api' | awk '{print $2}' | sed 's/"//g' | sed 's/,//g' > scan.txt
 echo
-echo "Screenshot"
+echo "Screenshot - Drag to Workdocs"
 cat scan.txt | sed 's/result/screenshots/g; s/.$/\.png/g;'
 
 rm scan.txt
 rm urlscan.txt
 echo
-echo "Virus Total Results"
+echo "Virus Total Results - if blank an official test must be triggered manually."
 cat vtresults.txt | awk -F 'positives\":' '{print "VT Hits" $2}' | awk -F ' ' '{print $1" "$2" "$3}' | sed 's|["}]||g; s/,//g;'
 cat vtresults.txt | awk -F 'permalink\":' '{print "VT URL:"$2}' | awk -F ' ' '{print $1" "$2" "$3}' | sed 's|["}]||g; s/,//g;'
 echo
@@ -247,7 +249,7 @@ then
         echo
 elif [[ $status == 401 ]]
 then
-        echo "Although the HTTP standard specifies "unauthorized", semantically this response means "unauthenticated". That is, the client must authenticate itself to get the requested response."
+        echo "Although the HTTP standard specifies unauthorized, semantically this response means unauthenticated. That is, the client must authenticate itself to get the requested response."
         echo
 elif [[ $status == 402 ]]
 then
@@ -347,7 +349,7 @@ then
         echo
 elif [[ $status == 429 ]]
 then
-        echo "The user has sent too many requests in a given amount of time ("rate limiting")."
+        echo "The user has sent too many requests in a given amount of time (rate limiting)."
         echo
 elif [[ $status == 431 ]]
 then
@@ -405,6 +407,8 @@ then
 else
         echo "HTTP CODE NOT UNDERSTOOD"
 fi
+
+printf "%`tput cols`s"|tr ' ' '-';
 
 echo
 rm logs.txt
