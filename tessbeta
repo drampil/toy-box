@@ -153,6 +153,10 @@ for ((i=1;i<=5;i++)); do host $domain > ipsave1.txt
         cat ipcounter1.txt | sort -u
         echo
         cat logs.txt
+        rm stage1.txt
+        rm stage21.txt
+        rm hosts1.txt
+        rm ipcounter1.txt
 }
 
 timer_function () {
