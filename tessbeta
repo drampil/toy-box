@@ -91,7 +91,8 @@ hostfinder_function () {
 host $domain > location.txt
 cat location.txt | head -n 1 | awk '{print $4}' > ipsave.txt
 ip=$(<ipsave.txt)
-echo $ip
+whois $ip > whois.txt
+cat whois.txt | grep -m 1 -e 'OrgName' | awk '{print $2}'
 }
 
 virustotal () {
