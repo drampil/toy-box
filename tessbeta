@@ -113,8 +113,8 @@ virustotal_failure () {
                          --data 'url='"$url"''
                 echo
                 echo "Please wait 30 seconds..."
-
-                sleep 30
+                echo
+                timer_function
                 echo
                 echo
                 virustotal
@@ -152,6 +152,15 @@ for ((i=1;i<=5;i++)); do host $domain > ipsave1.txt
         cat ipcounter1.txt | sort -u
         echo
         cat logs.txt
+}
+
+timer_function () {
+secs=$((30))
+while [ $secs -gt 0 ]; do
+        echo -ne "$secs\033[OK\r"
+        sleep 1
+        : $((secs--))
+done
 }
 
 #Run the Series
