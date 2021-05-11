@@ -218,6 +218,12 @@ rm scan.txt
 rm urledit.txt
 rm vtresults.txt
 rm logs.txt
+rm location.txt
+rm ipsave1.txt
+rm ipsave.txt
+rm fang.txt
+rm whois1.txt
+rm whois.txt
 
 # HTTP Dictionary
 status=$(curl -Is $url | grep 'HTTP' | grep -v 'Set-Cookie' | awk '{print $2}' | tail -1)
