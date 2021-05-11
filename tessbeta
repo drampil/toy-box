@@ -53,6 +53,7 @@ registrar_function () {
         if [[ $registrar == Amazon ]];
         then
         echo "RISOPS: https://risops.amazon.com/index.html#/details/domain/"$domain
+        echo
         else
         echo
         fi
@@ -119,7 +120,6 @@ virustotal_failure () {
                 echo
                 echo
                 virustotal
-                echo
         else
                 echo
         fi
@@ -192,7 +192,6 @@ echo
 echo "Registrar Scan"
 registrar_function
 
-echo
 echo "Hosting Provider"
 hostfinder_function
 
