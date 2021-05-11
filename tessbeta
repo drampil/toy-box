@@ -177,7 +177,7 @@ domainfinder_function
 
 echo
 echo "Associated IP(s)"
-echo $domain
+association_function
 
 echo
 echo "Word Press Infastructure Scan"
