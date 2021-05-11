@@ -107,19 +107,16 @@ virustotal_failure () {
         echo
         if [[ $failure == "Resource does not exist in the dataset" ]]
         then
-                echo "It appears Virus Total Requires a Manual Scan... Hang on!"
-                echo
-                curl --request POST \
+                echo "VT Dataset incomplete >>  Requires a Manual Scan... Hang on!"
+                curl -s --request POST \
                          --url 'https://www.virustotal.com/vtapi/v2/url/scan' \
                          --data 'apikey=77bf2c05f05e318259df7ef3c1a557b802c41a8bb66b30f01eb2fd395099cb0c' \
-                         --data 'url='"$url"''
-                echo
-                echo "Please wait 30 seconds..."
-                echo
+                         --data 'url='"$url"'' > /tmp/output
+                echo "Please wait..."
                 timer_function
                 echo
-                echo
                 virustotal
+                echo
         else
                 echo
         fi
@@ -208,7 +205,6 @@ echo "Virus Total Results"
 virustotal
 virustotal_failure
 
-echo
 echo "DNS Flipping Detection"
 jumphost_function
 
