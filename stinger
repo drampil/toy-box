@@ -1,15 +1,15 @@
 #!/bin/bash
-echo -e  ' \t' "      _   _                       "
-echo -e  ' \t' "  ___| |_(_)_ __   __ _  ___ _ __ "
-echo -e  ' \t' " / __| __| |  _ \ / _  |/ _ \  __|"
-echo -e  ' \t' " \__ \ |_| | | | | (_| |  __/ |   "
-echo -e  ' \t' " |___/\__|_|_| |_|\__, |\___|_|   "
-echo -e  ' \t' "                  |___/           "
+echo -e "      _   _                       "
+echo -e "  ___| |_(_)_ __   __ _  ___ _ __ "
+echo -e " / __| __| |  _ \ / _  |/ _ \  __|"
+echo -e " \__ \ |_| | | | | (_| |  __/ |   "
+echo -e " |___/\__|_|_| |_|\__, |\___|_|   "
+echo -e "                  |___/           "
 echo
 
-echo "beta: 1.1"
+echo "beta: revive"
 
-echo "Enter block of imgur URLs then hit enter twice:"
+echo "Will tell you if Imgur Object(s) is/are online"
 
 array=()
 while IFS= read -r -p "" url; do
@@ -37,7 +37,6 @@ else
         echo $i >> liveurls.txt
         echo "---"
 fi
-
 )"; done
 
 echo
