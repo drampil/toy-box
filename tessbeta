@@ -180,7 +180,7 @@ echo "curl -ILsk $url"
 curl_function
 
 echo
-echo "Fanged"
+echo "Defanged"
 fang_function
 
 echo
@@ -228,7 +228,6 @@ rm logs.txt
 rm location.txt
 rm ipsave1.txt
 rm ipsave.txt
-rm fang.txt
 rm whois1.txt
 rm whois.txt
 
