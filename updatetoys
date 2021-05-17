@@ -1,0 +1,12 @@
+!#bin/bash
+
+wget -N https://raw.githubusercontent.com/drampil/toy-box/main/megac && chmod +x megac;
+wget -N https://raw.githubusercontent.com/drampil/toy-box/main/hosthunter && chmod +x hosthunter;
+wget -N https://raw.githubusercontent.com/drampil/toy-box/main/javelin && chmod +x javelin;
+wget -N https://raw.githubusercontent.com/drampil/toy-box/main/tesseract && chmod +x tesseract;
+wget -N https://raw.githubusercontent.com/drampil/toy-box/main/ghost && chmod +x ghost;
+wget -N https://raw.githubusercontent.com/drampil/toy-box/main/warpath && chmod +x warpath;
+wget -N https://raw.githubusercontent.com/drampil/toy-box/main/aris && chmod +x aris;
+wget -N https://raw.githubusercontent.com/drampil/toy-box/main/hostcheck && chmod +x hostcheck;
+wget -N https://raw.githubusercontent.com/drampil/toy-box/main/intruder && chmod +x intruder;
+echo Done!
