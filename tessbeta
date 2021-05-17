@@ -5,7 +5,7 @@ echo -e  ' \t' " |_   _|__  ___ ___  ___ _ __ __ _  ___| |_ "
 echo -e  ' \t' "   | |/ _ \/ __/ __|/ _ \  __/ _  |/ __| __|"
 echo -e  ' \t' "   | |  __/\__ \__ \  __/ | | (_| | (__| |_ "
 echo -e  ' \t' "   |_|\___||___/___/\___|_|  \__ _|\___|\__|"
-echo -e  ' \t' "                 BETA         YEET VERSION 2"
+echo -e  ' \t' "                 BETA         YEET VERSION 3"
 echo
 
 echo " - Please keep in mind that the information generated within this report is for utility purposes."
@@ -68,10 +68,11 @@ registrar_function () {
 }
 
 urlscan_function () {
+        scankey=$(cat urlscankey.txt)
         echo "urlscan.io API request"
         curl -s -X POST "https://urlscan.io/api/v1/scan/" \
                 -H "Content-Type: application/json" \
-                -H "API-Key: 90cb4aac-e7cf-4ce6-a646-8fd01074f9c5" \
+                -H "API-Key: $scankey" \
                 -d "{ \
                  \"url\": \"$url\", \"visibility\": \"public\", \
                  \"tags\": [\"demotag1\", \"demotag2\"] \
