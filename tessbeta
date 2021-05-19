@@ -235,6 +235,7 @@ rm ipsave1.txt
 rm ipsave.txt
 rm whois1.txt
 rm whois.txt
+rm cleaner.txt
 
 # HTTP Dictionary
 status=$(curl -Is $url | grep 'HTTP' | grep -v 'Set-Cookie' | awk '{print $2}' | tail -1)
