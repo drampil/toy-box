@@ -1,5 +1,7 @@
 #!/bin/bash
-
+echo "Initiating Toy - Box update.."
+sleep 1
+echo
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/megac && chmod +x megac;
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/hosthunter && chmod +x hosthunter;
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/javelin && chmod +x javelin;
@@ -11,21 +13,21 @@ wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/stinger && ch
 echo
 echo "Installed or updated the following:"
 echo
-echo "└──╼ Mega cURL"
-echo -e ' \t ' "└──╼ ./megac"
-echo "└──╼ Host Hunter"
-echo -e ' \t ' "└──╼ ./hosthunter"
-echo "└──╼ Javelin"
-echo -e ' \t ' "└──╼ ./javelin"
-echo "└──╼ Ghost"
-echo -e ' \t ' "└──╼ ./ghost"
-echo "└──╼ Warpath"
-echo -e ' \t ' "└──╼ ./warpath"
-echo "└──╼ Aris-C"
-echo -e ' \t ' "└──╼ ./aris"
-echo "└──╼ Tracer"
-echo -e ' \t ' "└──╼ ./hostcheck"
-echo "└──╼ Imgr-C" 
-echo -e ' \t ' "└──╼ ./stinger"
+echo "1. Mega cURL"
+echo -e "└──╼ ./megac"
+echo "2. Host Hunter"
+echo -e "└──╼ ./hosthunter"
+echo "3. Javelin"
+echo -e "└──╼ ./javelin"
+echo "4. Ghost"
+echo -e "└──╼ ./ghost"
+echo "5. Warpath"
+echo -e "└──╼ ./warpath"
+echo "6. Aris-C"
+echo -e "└──╼ ./aris"
+echo "7. Tracer"
+echo -e "└──╼ ./hostcheck"
+echo "8. Imgr-C" 
+echo -e "└──╼ ./stinger"
 echo
 echo Done!
