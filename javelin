@@ -8,7 +8,9 @@ echo -e "╚█████╔╝██║  ██║ ╚████╔╝ █�
 echo -e " ╚════╝ ╚═╝  ╚═╝  ╚═══╝  ╚══════╝╚══════╝╚═╝╚═╝  ╚═══╝"
 
 echo
-
+echo "Javelin is an automation workflow that scrapes proxy" 
+echo "information from the internet to allow cURL to access geolocked hosts."
+echo
 echo "If you would like to report an error ping drampil on slack."
 echo "After you begin please wait until the script says Complete"
 # data collection
