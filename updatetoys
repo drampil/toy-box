@@ -8,4 +8,15 @@ wget -N https://raw.githubusercontent.com/drampil/toy-box/main/warpath && chmod 
 wget -N https://raw.githubusercontent.com/drampil/toy-box/main/aris && chmod +x aris;
 wget -N https://raw.githubusercontent.com/drampil/toy-box/main/hostcheck && chmod +x hostcheck;
 wget -N https://raw.githubusercontent.com/drampil/toy-box/main/stinger && chmod +x stinger;
+echo "Installed or updated the following."
+eco
+echo "└──╼ Mega Curl - ./megac"
+echo "└──╼ Host Hunter - ./hosthunter"
+echo "└──╼ Javelin - ./javelin"
+echo "└──╼ Ghost - ./ghost"
+echo "└──╼ Warpath - ./warpath"
+echo "└──╼ Aris-C - ./aris"
+echo "└──╼ Tracer ./hostcheck"
+echo "└──╼ Imgur ./stinger"
+eco
 echo Done!
