@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Initiating Toy - Box update.."
+echo "Initiating Toy - Box update..."
 sleep 1
 echo
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/megac && chmod +x megac;
