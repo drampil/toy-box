@@ -1,10 +1,12 @@
 #!/bin/bash
+echo
+echo -e "██╗    ██╗ █████╗ ██████╗ ██████╗  █████╗ ████████╗██╗  ██╗"
+echo -e "██║    ██║██╔══██╗██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██║  ██║"
+echo -e "██║ █╗ ██║███████║██████╔╝██████╔╝███████║   ██║   ███████║"
+echo -e "██║███╗██║██╔══██║██╔══██╗██╔═══╝ ██╔══██║   ██║   ██╔══██║"
+echo -e "╚███╔███╔╝██║  ██║██║  ██║██║     ██║  ██║   ██║   ██║  ██║"
+echo -e " ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝"
 
-echo -e  ' \t' "  __        ___    ____  ____   _  _____ _   _ "
-echo -e  ' \t' "  \ \      / / \  |  _ \|  _ \ / \|_   _| | | |"
-echo -e  ' \t' "   \ \ /\ / / _ \ | |_) | |_) / _ \ | | | |_| |"
-echo -e  ' \t' "    \ V  V / ___ \|  _ <|  __/ ___ \| | |  _  |"
-echo -e  ' \t' "     \_/\_/_/   \_\_| \_\_| /_/   \_\_| |_| |_|"
 echo
 echo "Sometimes domains will trigger 403 Forbidden errors with cURL"
 echo "Some reporters will specify if a website is locked to a web browser or mobile browser."
@@ -19,11 +21,14 @@ read url
 echo
 echo "Firefox via Windows"
 echo "curl -IL -A  \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101 Firefox/78.0\" $url"
+echo
 curl -ILs -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101 Firefox/78.0" $url | grep 'HTTP\|Location\|location'
 echo
 echo "---"
 echo
 echo "Safari via Mobile"
 echo "curl -IL -A \"Mozilla/5.0 (iPhone; CPU iPhone OS 14_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1 Mobile/15E148 Safari/604.1\" $url"
+echo
 curl -ILs -A "Mozilla/5.0 (iPhone; CPU iPhone OS 14_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1 Mobile/15E148 Safari/604.1" $url | grep 'HTTP\|Location\|location'
-
+echo "---"
+echo "Complete!"
