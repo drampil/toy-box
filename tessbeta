@@ -1,5 +1,13 @@
 #!/bin/bash
 
+echo -e"████████╗███████╗███████╗███████╗███████╗██████╗  █████╗  ██████╗████████╗"
+echo -e"╚══██╔══╝██╔════╝██╔════╝██╔════╝██╔════╝██╔══██╗██╔══██╗██╔════╝╚══██╔══╝"
+echo -e"   ██║   █████╗  ███████╗███████╗█████╗  ██████╔╝███████║██║        ██║   "
+echo -e"   ██║   ██╔══╝  ╚════██║╚════██║██╔══╝  ██╔══██╗██╔══██║██║        ██║   "
+echo -e"   ██║   ███████╗███████║███████║███████╗██║  ██║██║  ██║╚██████╗   ██║   "
+echo -e"   ╚═╝   ╚══════╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝   ╚═╝   "
+echo -e"===================================BETA==================================="                                                                          
+                                 
 echo -e  ' \t' "  _____                                 _   "
 echo -e  ' \t' " |_   _|__  ___ ___  ___ _ __ __ _  ___| |_ "
 echo -e  ' \t' "   | |/ _ \/ __/ __|/ _ \  __/ _  |/ __| __|"
@@ -10,6 +18,7 @@ echo
 
 echo " - Please keep in mind that the information generated within this report is for utility purposes."
 echo " - Pick and choose the notes you need, don't copy the entire output of this report as most of it may not be needed for your situation."
+echo " - API key stored in urlscankey.txt"
 echo " - If you would like to report an error ping drampil on slack."
 echo
 echo "Enter a Target URL - No IP Addresses: "; read dirty_url
