@@ -219,7 +219,7 @@ echo "Virus Total Results"
 virustotal
 virustotal_failure
 
-"DNS Flipping Detection"
+echo "DNS Flipping Detection"
 jumphost_function
 
 echo
