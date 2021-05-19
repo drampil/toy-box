@@ -18,6 +18,6 @@ echo "└──╼ Ghost - ./ghost"
 echo "└──╼ Warpath - ./warpath"
 echo "└──╼ Aris-C - ./aris"
 echo "└──╼ Tracer ./hostcheck"
-echo "└──╼ Imgur ./stinger"
+echo "└──╼ Imgr-C ./stinger"
 eco
 echo Done!
