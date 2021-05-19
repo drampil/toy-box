@@ -1,15 +1,14 @@
 #!/bin/bash
 
+echo
 echo -e "████████╗███████╗███████╗███████╗███████╗██████╗  █████╗  ██████╗████████╗"
 echo -e "╚══██╔══╝██╔════╝██╔════╝██╔════╝██╔════╝██╔══██╗██╔══██╗██╔════╝╚══██╔══╝"
 echo -e "   ██║   █████╗  ███████╗███████╗█████╗  ██████╔╝███████║██║        ██║   "
 echo -e "   ██║   ██╔══╝  ╚════██║╚════██║██╔══╝  ██╔══██╗██╔══██║██║        ██║   "
 echo -e "   ██║   ███████╗███████║███████║███████╗██║  ██║██║  ██║╚██████╗   ██║   "
 echo -e "   ╚═╝   ╚══════╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝   ╚═╝   "
-echo -e "===================================BETA==================================="                                                                          
-                               
+echo -e "===================================BETA==================================="                                                                                                    
 echo
-
 echo " - Please keep in mind that the information generated within this report is for utility purposes."
 echo " - Pick and choose the notes you need, don't copy the entire output of this report."
 echo " - API key stored in urlscankey.txt"
