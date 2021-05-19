@@ -1,11 +1,12 @@
 #!/bin/bash
 
-echo -e  ' \t' "    _                 _ _       "
-echo -e  ' \t' "   (_) __ ___   _____| (_)_ __  "
-echo -e  ' \t' "   | |/ _  \ \ / / _ \ | |  _ \ "
-echo -e  ' \t' "   | | (_| |\ V /  __/ | | | | |"
-echo -e  ' \t' "  _/ |\__ _| \_/ \___|_|_|_| |_|"
-echo -e  ' \t' " |__/                           "
+echo -e "     ██╗ █████╗ ██╗   ██╗███████╗██╗     ██╗███╗   ██╗"
+echo -e "     ██║██╔══██╗██║   ██║██╔════╝██║     ██║████╗  ██║"
+echo -e "     ██║███████║██║   ██║█████╗  ██║     ██║██╔██╗ ██║"
+echo -e "██   ██║██╔══██║╚██╗ ██╔╝██╔══╝  ██║     ██║██║╚██╗██║"
+echo -e "╚█████╔╝██║  ██║ ╚████╔╝ ███████╗███████╗██║██║ ╚████║"
+echo -e " ╚════╝ ╚═╝  ╚═╝  ╚═══╝  ╚══════╝╚══════╝╚═╝╚═╝  ╚═══╝"
+
 echo
 
 echo "If you would like to report an error ping drampil on slack."
@@ -15,6 +16,7 @@ echo "Enter a geolocked URL to cURL"
 read url
 
 # select node
+echo
 echo "Select Exit Node - No Brackets"
 echo
 echo "United Kingdom [UK]"
