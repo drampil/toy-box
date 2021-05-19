@@ -1,10 +1,11 @@
 #!/bin/bash
-
-echo -e  ' \t' "    _    ____  ___ ____     ____ "
-echo -e  ' \t' "   / \  |  _ \|_ _/ ___|   / ___|"
-echo -e  ' \t' "  / _ \ | |_) || |\___ \  | |    "
-echo -e  ' \t' " / ___ \|  _ < | | ___) | | |___ "
-echo -e  ' \t' "/_/   \_\_| \_\___|____/   \____|"
+echo 
+echo -e " █████╗ ██████╗ ██╗███████╗       ██████╗"
+echo -e "██╔══██╗██╔══██╗██║██╔════╝      ██╔════╝"
+echo -e "███████║██████╔╝██║███████╗█████╗██║     "
+echo -e "██╔══██║██╔══██╗██║╚════██║╚════╝██║     "
+echo -e "██║  ██║██║  ██║██║███████║      ╚██████╗"
+echo -e "╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚══════╝       ╚═════╝"
 echo
 echo "Enter The JSON block below and hit enter twice."
 echo "If you would like to report an error ping drampil on slack."
