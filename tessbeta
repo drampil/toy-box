@@ -6,14 +6,17 @@ echo -e "   ██║   █████╗  ███████╗████
 echo -e "   ██║   ██╔══╝  ╚════██║╚════██║██╔══╝  ██╔══██╗██╔══██║██║        ██║   "
 echo -e "   ██║   ███████╗███████║███████║███████╗██║  ██║██║  ██║╚██████╗   ██║   "
 echo -e "   ╚═╝   ╚══════╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝   ╚═╝   "
-echo -e "===================================BETA==================================="                                                                                                        
+echo -e "===================================BETA==================================="                                                                          
+                               
 echo
+
 echo " - Please keep in mind that the information generated within this report is for utility purposes."
-echo " - Pick and choose the notes you need, don't copy the entire output of this report as most of it may not be needed for your situation."
+echo " - Pick and choose the notes you need, don't copy the entire output of this report."
 echo " - API key stored in urlscankey.txt"
 echo " - If you would like to report an error ping drampil on slack."
 echo
-echo "Enter a Target URL - No IP Addresses: "; read dirty_url
+echo "Enter a Target URL - No IP Addresses: " 
+read -p "└──╼ " dirty_url
 
 
 #Functions List
@@ -217,7 +220,7 @@ echo "Virus Total Results"
 virustotal
 virustotal_failure
 
-echo "DNS Flipping Detection"
+"DNS Flipping Detection"
 jumphost_function
 
 echo
