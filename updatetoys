@@ -7,4 +7,5 @@ wget -N https://raw.githubusercontent.com/drampil/toy-box/main/ghost && chmod +x
 wget -N https://raw.githubusercontent.com/drampil/toy-box/main/warpath && chmod +x warpath;
 wget -N https://raw.githubusercontent.com/drampil/toy-box/main/aris && chmod +x aris;
 wget -N https://raw.githubusercontent.com/drampil/toy-box/main/hostcheck && chmod +x hostcheck;
+wget -N https://raw.githubusercontent.com/drampil/toy-box/main/stinger && chmod +x stinger;
 echo Done!
