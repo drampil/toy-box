@@ -197,7 +197,7 @@ echo "Associated IP(s)"
 association_function
 
 echo
-echo "Word Press Infastructure Scan"
+echo "Word Press Infrastructure Scan"
 wp_function
 
 echo
