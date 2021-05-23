@@ -56,6 +56,8 @@ wp_function () {
 
 registrar_function () {
         regi=$(echo $url | awk -F/ '{n=split($3, a, "."); printf("%s.%s", a[n-1], a[n])}')
+        echo "Top Level Domain"
+        echo $regi
         whois $regi | grep 'Registrar:' | awk '{print $2}'
         whois $regi | grep -m 1 'Registrar:' | awk '{print $2}' > registrar.txt
         registrar=$(cat registrar.txt)
