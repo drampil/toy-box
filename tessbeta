@@ -63,7 +63,7 @@ registrar_function () {
         if [[ $registrar == Amazon ]];
         then
         echo "RISOPS: https://risops.amazon.com/index.html#/details/domain/"$domain
-        echo "If the abve link fails then try RISOPS with the top level domain."
+        echo "RISOPS: https://risops.amazon.com/index.html#/details/domain/"$regi
         echo
         else
         echo
