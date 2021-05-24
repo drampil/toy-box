@@ -225,6 +225,7 @@ echo
 echo "Robots.txt Detection"
 webcrawl_function
 
+echo
 echo "Hosting Provider"
 hostfinder_function
 
