@@ -10,6 +10,7 @@ wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/warpath && ch
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/aris && chmod +x aris;
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/hostcheck && chmod +x hostcheck;
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/stinger && chmod +x stinger;
+wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/tessbeta && chmod +x tessbeta;
 echo
 echo "Installed or updated the following:"
 echo
@@ -29,5 +30,7 @@ echo "7. Tracer"
 echo -e "└──╼ ./hostcheck"
 echo "8. Imgr-C" 
 echo -e "└──╼ ./stinger"
+echo "9. Tesseract"
+echo -e "└──╼ ./Tesseract"
 echo
 echo Done!
