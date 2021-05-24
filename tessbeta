@@ -21,6 +21,20 @@ read -p "└──╼ " dirty_url
 
 #Functions List
 
+webcrawl_function() {
+curl -Lsk $domain"/robots.txt" | grep 'User-agent' > robots.txt
+if [ -s robots.txt ];
+then
+	echo "Robots.txt found"
+	cat robots.txt | grep -v "*" | awk '{print $2}'
+	rm robots.txt
+else
+	echo "No robotos.txt found"
+	echo "prolly make this null"
+	rm robots.txt
+fi
+}
+
 defang_function() {
         echo $dirty_url > cleaner.txt
         url=$(cat cleaner.txt | sed 's/[h]xx[p]/http/gi;' | awk '{gsub(/\[.\]/,".");}1' | awk '{gsub(/\[dot\]/,".");}1';)
@@ -47,7 +61,7 @@ wp_function () {
         check="wp-content"
 
         if [[ $wp == $check ]]; then
-                echo "Word Press Detected"
+                echo "Word Press Engine Detected"
         else
                 echo "This is not a Word Press Infastructure"
         fi
@@ -64,11 +78,11 @@ registrar_function () {
 
         if [[ $registrar == Amazon ]];
         then
-        echo "RISOPS: https://risops.amazon.com/index.html#/details/domain/"$domain
-        echo "RISOPS: https://risops.amazon.com/index.html#/details/domain/"$regi
-        echo
+        	echo "RISOPS: https://risops.amazon.com/index.html#/details/domain/"$domain
+        	echo "RISOPS: https://risops.amazon.com/index.html#/details/domain/"$regi
+        	echo
         else
-        echo
+        	echo
         fi
 
         rm registrar.txt
@@ -207,6 +221,10 @@ echo
 echo "Registrar Scan"
 registrar_function
 
+echo
+echo "Robots.txt Detection"
+webcrawl_function
+
 echo "Hosting Provider"
 hostfinder_function
 
@@ -223,20 +241,21 @@ echo "Virus Total Results"
 virustotal
 virustotal_failure
 
-echo "DNS Flipping Detection"
-jumphost_function
+# Commenting out DNS Flip for now
+#echo "DNS Flipping Detection"
+#jumphost_function
 
-echo
+#echo
 #Delete used docs
 rm urlscan.txt
 rm scan.txt
 rm urledit.txt
 rm vtresults.txt
-rm logs.txt
+#rm logs.txt
 rm location.txt
-rm ipsave1.txt
+#rm ipsave1.txt
 rm ipsave.txt
-rm whois1.txt
+#rm whois1.txt
 rm whois.txt
 rm cleaner.txt
 
