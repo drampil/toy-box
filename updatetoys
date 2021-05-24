@@ -31,6 +31,6 @@ echo -e "└──╼ ./hostcheck"
 echo "8. Imgr-C" 
 echo -e "└──╼ ./stinger"
 echo "9. Tesseract"
-echo -e "└──╼ ./Tesseract"
+echo -e "└──╼ ./tesseract (when beta ends)"
 echo
 echo Done!
