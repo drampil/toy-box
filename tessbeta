@@ -7,13 +7,13 @@ echo -e "   ██║   █████╗  ███████╗████
 echo -e "   ██║   ██╔══╝  ╚════██║╚════██║██╔══╝  ██╔══██╗██╔══██║██║        ██║   "
 echo -e "   ██║   ███████╗███████║███████║███████╗██║  ██║██║  ██║╚██████╗   ██║   "
 echo -e "   ╚═╝   ╚══════╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝   ╚═╝   "
-echo -e "===================================BETA==================================="                                                                                                    
+echo -e "=========================================================================="                                                                                                    
+echo "Version 2 Pre-release"
 echo
-echo " - Optimized for Amazon Linux 2."
-echo " - This report is for utility purposes."
-echo " - Don't copy the entire output of this report."
-echo " - API key stored in urlscankey.txt"
-echo " - If you would like to report an error ping drampil on slack."
+echo " [~] Client URL Scanning Service"
+echo " [~] Optimized for Amazon Linux 2."
+echo " [~] API key stored in urlscankey.txt"
+echo " [~] Error Reporting: drampil@"
 echo
 echo "Enter a Target URL - No IP Addresses: " 
 read -p "└──╼ " dirty_url
@@ -25,12 +25,11 @@ webcrawl_function() {
 curl -Lsk $domain"/robots.txt" | grep 'User-agent' > robots.txt
 if [ -s robots.txt ];
 then
-	echo "Robots.txt found"
+	echo "Robots Rules Found"
 	cat robots.txt | grep -v "*" | awk '{print $2}'
 	rm robots.txt
 else
-	echo "No robotos.txt found"
-	echo "prolly make this null"
+	echo "No Robot.txt found"
 	rm robots.txt
 fi
 }
@@ -70,11 +69,10 @@ wp_function () {
 
 registrar_function () {
         regi=$(echo $url | awk -F/ '{n=split($3, a, "."); printf("%s.%s", a[n-1], a[n])}')
-        echo "Top Level Domain"
-        echo $regi
-        whois $regi | grep 'Registrar:' | awk '{print $2}'
+        whois $regi | grep -m 1 'Registrar:' | sed s'/Registrar://g' | xargs
         whois $regi | grep -m 1 'Registrar:' | awk '{print $2}' > registrar.txt
         registrar=$(cat registrar.txt)
+	whois $regi | grep -m 1 "Creation Date" | xargs | sed s'/Creation Date/Domain Age/g'
 
         if [[ $registrar == Amazon ]];
         then
@@ -84,7 +82,8 @@ registrar_function () {
         else
         	echo
         fi
-
+	echo "Top Level Domain"
+	echo $regi
         rm registrar.txt
 }
 
@@ -198,6 +197,7 @@ done
 defang_function
 
 echo
+echo "Client URL Status"
 echo "curl -ILsk $url"
 curl_function
 
@@ -222,7 +222,7 @@ echo "Registrar Scan"
 registrar_function
 
 echo
-echo "Robots.txt Detection"
+#echo "Robots.txt Detection"
 webcrawl_function
 
 echo
