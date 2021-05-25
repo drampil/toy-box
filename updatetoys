@@ -41,8 +41,8 @@ echo "8. Imgr-C"
 echo -e "└──╼ ./stinger or bash stinger"
 echo "9. Tesseract"
 echo -e "└──╼ ./tesseract (when beta ends) or bash tessbeta"
-echo "10. Tesseract Command Line"
-echo -e "└──╼ bash tess WEBSITE"
+echo "10. Tesseract as a Command Line Tool"
+echo -e "└──╼ bash tess http://website.cpm"
 
 echo
 echo Done!
