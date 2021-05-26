@@ -20,6 +20,7 @@ wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/hostcheck && 
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/stinger && chmod +x stinger;
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/tessbeta && chmod +x tessbeta;
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/tess && chmod +x tess;
+wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/hostc && chmod +x hostc;
 echo
 echo "Installed or updated the following:"
 echo
@@ -42,7 +43,8 @@ echo -e "└──╼ ./stinger or bash stinger"
 echo "9. Tesseract"
 echo -e "└──╼ ./tesseract (when beta ends) or bash tessbeta"
 echo "10. Tesseract as a Command Line Tool"
-echo -e "└──╼ bash tess http://website.cpm"
-
+echo -e "└──╼ bash tess http://website.cm"
+echo "10. Hosthunter as a Command Line Tool"
+echo -e "└──╼ bash hostc http://website.com"
 echo
 echo Done!
