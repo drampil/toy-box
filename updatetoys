@@ -44,7 +44,7 @@ echo "9. Tesseract"
 echo -e "└──╼ ./tesseract (when beta ends) or bash tessbeta"
 echo "10. Tesseract as a Command Line Tool"
 echo -e "└──╼ bash tess http://website.cm"
-echo "10. Hosthunter as a Command Line Tool"
+echo "11. Hosthunter as a Command Line Tool"
 echo -e "└──╼ bash hostc http://website.com"
 echo
 echo Done!
