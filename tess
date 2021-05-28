@@ -51,15 +51,20 @@ curl_function () {
         | grep 'HTTP\|Location\|location\|x-amz-apigw-id\|CloudFront\|x-amz-cf-id:\|AmazonS3'\
         | grep -v 'onion-location\|via\|Set-Cookie'
 
-	curl -I -s -L -k -m 5 --show-error '{'"$url"'}' > clienturl.txt 2>&1
-	invalid=$(cat clienturl.txt | grep -o 'Could not resolve host')
-	if [[ $invalid == "Could not resolve host" ]];
-	then
-		echo "The target URL is invalid and threw error #6. Tess will shut down."
-		exit
-	else
-		echo "Evaluating"
-	fi
+        curl -I -s -L -k -m 5 --show-error '{'"$url"'}' > clienturl.txt 2>&1
+        invalid=$(cat clienturl.txt | grep -o 'Could not resolve host')
+        invalid2=$(cat clienturl.txt | grep -o 'bad/illegal')
+        if [[ $invalid == "Could not resolve host" ]];
+        then
+                echo "The target URL is invalid and threw error #6. Tess will shut down."
+                exit
+        elif [[ $invalid2 == "bad/illegal" ]];
+        then
+                echo "The target URL is invalid and threw error #3. Tess will shut down."
+                exit
+        else
+                echo "Evaluating"
+        fi
 rm clienturl.txt
 }
 
