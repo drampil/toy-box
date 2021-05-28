@@ -50,6 +50,17 @@ curl_function () {
         curl -I -s -L -k -m 5 --show-error '{'"$url"'}' \
         | grep 'HTTP\|Location\|location\|x-amz-apigw-id\|CloudFront\|x-amz-cf-id:\|AmazonS3'\
         | grep -v 'onion-location\|via\|Set-Cookie'
+
+	curl -I -s -L -k -m 5 --show-error '{'"$url"'}' > clienturl.txt 2>&1
+	invalid=$(cat clienturl.txt | grep -o 'Could not resolve host')
+	if [[ $invalid == "Could not resolve host" ]];
+	then
+		echo "The target URL is invalid and threw error #6. Tess will shut down."
+		exit
+	else
+		echo "Evaluating"
+	fi
+rm clienturl.txt
 }
 
 wp_function () {
@@ -68,10 +79,16 @@ wp_function () {
 registrar_function () {
         regi=$(echo $url | awk -F/ '{n=split($3, a, "."); printf("%s.%s", a[n-1], a[n])}')
         whois $regi | grep -m 1 'Registrar:' | sed s'/Registrar://g' | xargs
-	whois $domain | grep -m 1 'owner' | sed s'/owner://g' | xargs
         whois $regi | grep -m 1 'Registrar:' | awk '{print $2}' > registrar.txt
+        
+	if [ -s registrar.txt ]
+	then
+		echo "Registrar Information Found"
+	else
+		echo "No Registrar Information Avaliable"
+	fi
         registrar=$(cat registrar.txt)
-	whois $regi | grep -m 1 "Creation Date" | xargs | sed s'/Creation Date/Domain Age/g'
+        whois $regi | grep -m 1 "Creation Date" | xargs | sed s'/Creation Date/Domain Age/g'
 
         if [[ $registrar == Amazon ]];
         then
@@ -512,5 +529,5 @@ then
         echo
 
 else
-        echo "The HTTP Code was not understood. Likely because the URL is broken or does not exist."
+        echo "The HTTP code wasn't valid. There is likely an issue with the domain or the url is not valid."
 fi
