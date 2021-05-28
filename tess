@@ -53,12 +53,12 @@ curl_function () {
 
         curl -I -s -L -k -m 5 --show-error '{'"$url"'}' > clienturl.txt 2>&1
         invalid=$(cat clienturl.txt | grep -o 'Could not resolve host')
-        invalid2=$(cat clienturl.txt | grep -o 'bad/illegal')
+        invalid2=$(cat clienturl.txt | grep -o 'Bad')
         if [[ $invalid == "Could not resolve host" ]];
         then
                 echo "The target URL is invalid and threw error #6. Tess will shut down."
                 exit
-        elif [[ $invalid2 == "bad/illegal" ]];
+        elif [[ $invalid2 == "Bad" ]];
         then
                 echo "The target URL is invalid and threw error #3. Tess will shut down."
                 exit
