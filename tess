@@ -68,6 +68,7 @@ wp_function () {
 registrar_function () {
         regi=$(echo $url | awk -F/ '{n=split($3, a, "."); printf("%s.%s", a[n-1], a[n])}')
         whois $regi | grep -m 1 'Registrar:' | sed s'/Registrar://g' | xargs
+	whois $domain | grep -m 1 'owner' | sed s'/owner://g' | xargs
         whois $regi | grep -m 1 'Registrar:' | awk '{print $2}' > registrar.txt
         registrar=$(cat registrar.txt)
 	whois $regi | grep -m 1 "Creation Date" | xargs | sed s'/Creation Date/Domain Age/g'
