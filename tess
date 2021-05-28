@@ -512,5 +512,5 @@ then
         echo
 
 else
-        echo "HTTP CODE NOT UNDERSTOOD"
+        echo "The HTTP Code was not understood. Likely because the URL is broken or does not exist."
 fi
