@@ -37,6 +37,10 @@ $i \
 | grep -v 'onion-location\|via')"
 echo; done
 
+echo "Array Contents"
+echo
+printf '%s\n' "${array[@]}"
+echo
 printf "%`tput cols`s"|tr ' ' '-';
 echo
 echo "Done!"
