@@ -1,0 +1,45 @@
+#!/bin/bash
+
+help_function(){
+day=$(date +%A)
+
+if [[ $day == "Sunday" ]]
+then
+        echo "Jose & Omar"
+elif [[ $day == "Monday" ]]
+then
+        echo "Omar, David R, Rafael, Shams & AJ"
+elif [[ $day == "Tuesday" ]]
+then
+        echo "Garett, Will F, K, Hamza & Rajat"
+elif [[ $day == "Wednesday" ]]
+then
+        echo "Corey, Jim, Rabia, Christopher & Devon"
+elif [[ $day == "Thursday" ]]
+then
+        echo "Ajeet, Ose, Marc, Ellie & Karim"
+elif [[ $day == "Friday" ]]
+then
+        echo "Nadia, Shawntel, Christabel & Jacob"
+elif [[ $day == "Saturday" ]]
+then
+        echo "Kenneth, Rene & David P"
+else
+        echo "error"
+fi
+}
+
+weather_function(){
+curl -s https://darksky.net/forecast/38.9379,-77.3624/us12/en | grep -w "summary swap\|low\|high" | sed 's/&nbsp;//g' | sed s'/<[^>]*>//g' | sed 's/^ *//g';
+}
+
+echo "Morning Report"
+date +%A
+date +"%dth %B, %Y"
+echo
+echo "Weather"
+weather_function
+echo
+echo "Assigned to Help room"
+help_function
+echo
