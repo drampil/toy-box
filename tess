@@ -103,8 +103,21 @@ registrar_function () {
         else
         	echo
         fi
-	echo "Top Level Domain"
-	echo $regi
+	
+        echo "Top Level Domain"
+        echo $regi
+                if [[ $regi == "co.uk" ]];
+                then
+                        echo "Misidentified"
+                        echo $domain
+                elif [[ $regi == ".com.br" ]];
+                then
+                        echo "Misidentified"
+                        echo $domain
+                else
+                        echo
+                fi
+		
         rm registrar.txt
 }
 
