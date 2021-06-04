@@ -7,13 +7,14 @@ echo -e "   ██║   █████╗  ███████╗████
 echo -e "   ██║   ██╔══╝  ╚════██║╚════██║██╔══╝  ██╔══██╗██╔══██║██║        ██║   "
 echo -e "   ██║   ███████╗███████║███████║███████╗██║  ██║██║  ██║╚██████╗   ██║   "
 echo -e "   ╚═╝   ╚══════╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝   ╚═╝   "
-echo -e "=========================================================================="                                                                                                    
-echo "Command Line Call Ediiton - Toy Box Team Testing"
+echo -e "=========================================================================="
+echo "Command Line Call Ediiton"
 echo
 echo " [~] Client URL Scanning Service"
 echo " [~] Optimized for Amazon Linux 2."
-echo " [~] API key stored in urlscankey.txt"
-echo " [~] Error Reporting: drampil@"
+echo " [~] urlscan API key stored in urlscankey.txt"
+echo " [~] VirusTotal key stored in vtkey.txt"
+echo " [~] Error Reporting: Toy Box Team"
 
 dirty_url=$(echo $1)
 
@@ -23,12 +24,12 @@ webcrawl_function() {
 curl -Lsk $domain"/robots.txt" | grep 'User-agent' > robots.txt
 if [ -s robots.txt ];
 then
-	echo "Robots Rules Found"
-	cat robots.txt | grep -v "*" | awk '{print $2}'
-	rm robots.txt
+        echo "Robots Rules Found"
+        cat robots.txt | grep -v "*" | awk '{print $2}'
+        rm robots.txt
 else
-	echo "No Robot.txt found"
-	rm robots.txt
+        echo "No Robot.txt found"
+        rm robots.txt
 fi
 }
 
@@ -85,28 +86,27 @@ registrar_function () {
         regi=$(echo $url | awk -F/ '{n=split($3, a, "."); printf("%s.%s", a[n-1], a[n])}')
         whois $regi | grep -m 1 'Registrar:' | sed s'/Registrar://g' | xargs
         whois $regi | grep -m 1 'Registrar:' | awk '{print $2}' > registrar.txt
-        
-	if [ -s registrar.txt ]
-	then
-		echo "Registrar Information Found"
-	else
-		echo "No Registrar Information Avaliable"
-	fi
+
+        if [ -s registrar.txt ]
+        then
+                echo "Registrar Information Found"
+        else
+                echo "No Registrar Information Avaliable"
+        fi
         registrar=$(cat registrar.txt)
         whois $regi | grep -m 1 "Creation Date" | xargs | sed s'/Creation Date/Domain Age/g'
 
         if [[ $registrar == Amazon ]];
         then
-        	echo "RISOPS: https://risops.amazon.com/index.html#/details/domain/"$domain
-        	echo "RISOPS: https://risops.amazon.com/index.html#/details/domain/"$regi
-        	echo
+                echo "RISOPS: https://risops.amazon.com/index.html#/details/domain/"$domain
+                echo "RISOPS: https://risops.amazon.com/index.html#/details/domain/"$regi
+                echo
         else
-        	echo
+                echo
         fi
-	
         echo "Top Level Domain"
         echo $regi
-                if [[ $regi == "co.uk" ]];
+         if [[ $regi == "co.uk" ]];
                 then
                         echo "Misidentified"
                         echo $domain
@@ -117,7 +117,6 @@ registrar_function () {
                 else
                         echo
                 fi
-		
         rm registrar.txt
 }
 
@@ -158,7 +157,8 @@ cat whois.txt | grep -m 1 -e 'OrgName' | awk '{print $2}'
 }
 
 virustotal () {
-curl -s -X POST 'https://www.virustotal.com/vtapi/v2/url/report' --form apikey="77bf2c05f05e318259df7ef3c1a557b802c41a8bb66b30f01eb2fd395099cb0c" --form resource="$url" > vtresults.txt
+vtkey=$(cat vtkey.txt)
+curl -s -X POST 'https://www.virustotal.com/vtapi/v2/url/report' --form apikey="$vtkey" --form resource="$url" > vtresults.txt
 cat vtresults.txt | awk -F 'positives\":' '{print "VT Hits" $2}' | awk -F ' ' '{print $1" "$2" "$3}' | sed 's|["}]||g; s/,//g;'
 cat vtresults.txt | awk -F 'permalink\":' '{print "VT URL:"$2}' | awk -F ' ' '{print $1" "$2" "$3}' | sed 's|["}]||g; s/,//g;'
 }
