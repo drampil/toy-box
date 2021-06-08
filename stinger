@@ -9,6 +9,7 @@ echo -e "╚═╝╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚�
 echo "===================beta: revive================="
 
 echo "Will tell you if Imgur Object(s) is/are online"
+echo "Submit as gallery links."
 
 array=()
 while IFS= read -r -p "" url; do
