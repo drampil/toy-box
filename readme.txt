@@ -5,3 +5,6 @@ stinger
 updatetoys
 megac
 arisc
+hostcheck
+javelin
+warpath
