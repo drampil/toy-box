@@ -50,4 +50,4 @@ echo "9. Tesseract as a Command Line Tool"
 echo "General Utility"
 echo -e "└──╼ bash tess http://website.cm"
 echo
-echo Done!
+echo "Done!"
