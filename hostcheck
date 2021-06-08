@@ -23,7 +23,6 @@ echo
 for i in $(echo $grab); do echo "$i";
 echo $i | grep -oE -m1 '[-+[:alnum:]]+[.][[:alnum:]+_.-]+' | sed 's/www.//' | head -1 > urledit.txt
 domain=$(<urledit.txt)
-echo $i
 echo "$(dig $domain +short)"
 rm urledit.txt
 echo; done
