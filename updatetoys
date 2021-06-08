@@ -15,7 +15,7 @@ wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/javelin && ch
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/ghost && chmod +x ghost;
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/warpath && chmod +x warpath;
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/aris && chmod +x aris;
-wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/hostcheck && chmod +x hostcheck;
+wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/tracer && chmod +x tracer;
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/imgur && chmod +x imgur;
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/tess && chmod +x tess;
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/hostc && chmod +x hostc;
@@ -48,7 +48,7 @@ echo -e "└──╼ ./aris or bash aris"
 echo
 echo "7. Tracer"
 echo "Mass domain to IP Conversion"
-echo -e "└──╼ ./hostcheck or bash hostcheck"
+echo -e "└──╼ ./tracer or bash tracer"
 echo
 echo "8. Imgr-C" 
 echo "Imgur Scanning"
