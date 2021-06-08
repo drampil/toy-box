@@ -11,40 +11,43 @@ echo -e "   ╚═╝    ╚═════╝    ╚═╝       ╚═══�
                                                         
 echo
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/megac && chmod +x megac;
-wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/hosthunter && chmod +x hosthunter;
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/javelin && chmod +x javelin;
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/ghost && chmod +x ghost;
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/warpath && chmod +x warpath;
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/aris && chmod +x aris;
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/hostcheck && chmod +x hostcheck;
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/stinger && chmod +x stinger;
-wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/tessbeta && chmod +x tessbeta;
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/tess && chmod +x tess;
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/hostc && chmod +x hostc;
 echo
 echo "Installed or updated the following:"
 echo
 echo "1. Mega cURL"
+echo "Multi-cURL Protocol"
 echo -e "└──╼ ./megac or bash megac"
-echo "2. Host Hunter"
-echo -e "└──╼ ./hosthunter or bash hosthunter"
+echo "2. Host Hunter as a Command Line Tool"
+echo "DNS/IP flip Recon"
+echo -e "└──╼ bash hostc websitename"
 echo "3. Javelin"
+echo "cURL Geolock Domains"
 echo -e "└──╼ ./javelin or bash javelin"
 echo "4. Ghost"
+echo "Mass IP to Provider"
 echo -e "└──╼ ./ghost or bash ghost"
 echo "5. Warpath"
+echo "Emulate cURL as Firefox or an iPhone"
 echo -e "└──╼ ./warpath or bash warpath"
 echo "6. Aris-C"
+echo "Quick Format Aris JSON"
 echo -e "└──╼ ./aris or bash aris"
 echo "7. Tracer"
+echo "Mass domain to IP Conversion"
 echo -e "└──╼ ./hostcheck or bash hostcheck"
 echo "8. Imgr-C" 
+echo "Imgur Scanning"
 echo -e "└──╼ ./stinger or bash stinger"
-echo "9. Tesseract"
-echo -e "└──╼ ./tesseract (when beta ends) or bash tessbeta"
-echo "10. Tesseract as a Command Line Tool"
+echo "9. Tesseract as a Command Line Tool"
+echo "General Utility"
 echo -e "└──╼ bash tess http://website.cm"
-echo "11. Hosthunter as a Command Line Tool"
-echo -e "└──╼ bash hostc http://website.com"
 echo
 echo Done!
