@@ -16,7 +16,7 @@ wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/ghost && chmo
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/warpath && chmod +x warpath;
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/aris && chmod +x aris;
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/hostcheck && chmod +x hostcheck;
-wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/stinger && chmod +x stinger;
+wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/imgur && chmod +x imgur;
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/tess && chmod +x tess;
 wget -N -nv https://raw.githubusercontent.com/drampil/toy-box/main/hostc && chmod +x hostc;
 echo
@@ -45,7 +45,7 @@ echo "Mass domain to IP Conversion"
 echo -e "└──╼ ./hostcheck or bash hostcheck"
 echo "8. Imgr-C" 
 echo "Imgur Scanning"
-echo -e "└──╼ ./stinger or bash stinger"
+echo -e "└──╼ ./imgur or bash imgur"
 echo "9. Tesseract as a Command Line Tool"
 echo "General Utility"
 echo -e "└──╼ bash tess http://website.cm"
