@@ -25,29 +25,37 @@ echo
 echo "1. Mega cURL"
 echo "Multi-cURL Protocol"
 echo -e "└──╼ ./megac or bash megac"
+echo
 echo "2. Host Hunter as a Command Line Tool"
 echo "DNS/IP flip Recon"
 echo -e "└──╼ bash hostc websitename"
+echo
 echo "3. Javelin"
 echo "cURL Geolock Domains"
 echo -e "└──╼ ./javelin or bash javelin"
+echo
 echo "4. Ghost"
 echo "Mass IP to Provider"
 echo -e "└──╼ ./ghost or bash ghost"
+echo
 echo "5. Warpath"
 echo "Emulate cURL as Firefox or an iPhone"
 echo -e "└──╼ ./warpath or bash warpath"
+echo
 echo "6. Aris-C"
 echo "Quick Format Aris JSON"
 echo -e "└──╼ ./aris or bash aris"
+echo
 echo "7. Tracer"
 echo "Mass domain to IP Conversion"
 echo -e "└──╼ ./hostcheck or bash hostcheck"
+echo
 echo "8. Imgr-C" 
 echo "Imgur Scanning"
 echo -e "└──╼ ./imgur or bash imgur"
+echo
 echo "9. Tesseract as a Command Line Tool"
 echo "General Utility"
-echo -e "└──╼ bash tess http://website.cm"
+echo -e "└──╼ bash tess http://website.com"
 echo
 echo "Done!"
