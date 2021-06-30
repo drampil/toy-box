@@ -1,0 +1,59 @@
+#!/bin/bash
+echo
+echo -e "███╗   ███╗███████╗ ██████╗  █████╗     ███╗   ███╗ ██████╗ "
+echo -e "████╗ ████║██╔════╝██╔════╝ ██╔══██╗    ████╗ ████║██╔═══██╗"
+echo -e "██╔████╔██║█████╗  ██║  ███╗███████║    ██╔████╔██║██║   ██║"
+echo -e "██║╚██╔╝██║██╔══╝  ██║   ██║██╔══██║    ██║╚██╔╝██║██║   ██║"
+echo -e "██║ ╚═╝ ██║███████╗╚██████╔╝██║  ██║    ██║ ╚═╝ ██║╚██████╔╝"
+echo -e "╚═╝     ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝    ╚═╝     ╚═╝ ╚═════╝ "
+
+echo -e "============================= creator: drampil@ ========================="
+echo
+echo "x-amz-apigw-id is the Gateway ID"
+echo "x-amz-cf-id is CloudFront"
+echo "If you would like to report an error ping drampil on slack."
+echo
+echo "Instructions"
+echo "> Please enter a single URL, enter one URL per line,"
+echo "> or paste all URLs at the same time as a code block."
+echo "> Mega cURL will accept obfuscated URLs containing hxxp or [.] / [dot]"
+echo "> To initiate press enter twice."
+echo "---"
+
+
+array=()
+while IFS= read -r -p "" url; do
+    [[ $url ]] || break
+    array+=("$url")
+done
+
+grab=$(printf ' %s\n' "${array[@]}")
+printf "%`tput cols`s"|tr ' ' '-';
+echo
+echo
+for i in $(echo $grab | sed 's/[h]xx[p]/http/gi;' | awk '{gsub(/\[.\]/,".");}1' | awk '{gsub(/\[dot\]/,".");}1'); do echo ">" "$i";
+echo "$(curl -I -s -L -k -m 15 \
+--show-error \
+$i \
+| grep 'HTTP\|Location\|location\|x-amz-apigw-id\|CloudFront\|x-amz-cf-id:\|AmazonS3' \
+| grep -v 'onion-location\|via\|geolocation'
+
+        scankey=$(cat urlscankey.txt)
+        curl -s -X POST "https://urlscan.io/api/v1/scan/" \
+                -H "Content-Type: application/json" \
+                -H "API-Key: $scankey" \
+                -d "{ \
+                 \"url\": \"$i\", \"visibility\": \"public\", \
+                 \"tags\": [\"demotag1\", \"demotag2\"] \
+                 }" > urlscan.txt
+        cat urlscan.txt | grep 'result' | grep -v 'api' | awk '{print $2}' | sed 's/"//g' | sed 's/,//g' > scan.txt
+rm urlscan.txt
+
+cat scan.txt | sed 's/result/screenshots/g; s/.$/\.png/g;'
+rm scan.txt
+)"
+echo; done
+
+printf "%`tput cols`s"|tr ' ' '-';
+echo
+echo "Done!"
