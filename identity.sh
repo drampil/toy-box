@@ -32,7 +32,7 @@ fi
 }
 
 get_logo(){
-	curl https://github.com/drampil/toy-box/blob/main/skull.txt
+	curl https://raw.githubusercontent.com/drampil/toy-box/main/skull.txt
 }
 
 get_user(){
