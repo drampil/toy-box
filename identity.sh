@@ -15,7 +15,6 @@ memavail=$(cat /proc/meminfo | grep "MemAvailable" | sed 's/[^*,:]*://g' | sed '
 memfree=$(cat /proc/meminfo | grep "MemFree" | sed 's/[^*,:]*://g' | sed 's/^ *//g')
 devices=$(lsblk | awk '(NR>1)' > devices.txt; cat devices.txt | sed 's/└─/\t└─/g')
 packages=$(yum list installed | wc -l)
-skull=$(cat skull.txt)
 user=$(whoami)
 check=$(cat /etc/group | grep wheel | cut -d ":" -f 4)
 
