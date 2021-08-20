@@ -16,8 +16,22 @@ memfree=$(cat /proc/meminfo | grep "MemFree" | sed 's/[^*,:]*://g' | sed 's/^ */
 devices=$(lsblk | awk '(NR>1)' > devices.txt; cat devices.txt | sed 's/└─/\t └─/g')
 packages=$(yum list installed | wc -l)
 skull=$(cat skull.txt)
+user=$(whoami)
+check=$(cat /etc/group | grep wheel | cut -d ":" -f 4)
+
+
 
 # Functions list
+
+get_priviege(){
+if [[ $user = $check ]];
+then
+        echo "You have root power"
+else
+        echo "You don't have root power"
+fi
+}
+
 get_logo(){
 	echo "$skull"
 }
@@ -67,10 +81,11 @@ get_kernel
 get_uptime
 get_cpu
 get_memory
-get_devices
 get_packages
+get_devices
 echo
 echo "Welcome back," $user
+get_priviege
 
 # Cleanup
 rm devices.txt
