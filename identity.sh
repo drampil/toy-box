@@ -33,7 +33,7 @@ fi
 }
 
 get_logo(){
-	echo "$skull"
+	curl https://raw.githubusercontent.com/drampil/toy-box/main/28.txt
 }
 
 get_user(){
