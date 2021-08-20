@@ -15,11 +15,11 @@ memavail=$(cat /proc/meminfo | grep "MemAvailable" | sed 's/[^*,:]*://g' | sed '
 memfree=$(cat /proc/meminfo | grep "MemFree" | sed 's/[^*,:]*://g' | sed 's/^ *//g')
 devices=$(lsblk | awk '(NR>1)' > devices.txt; cat devices.txt | sed 's/└─/\t └─/g')
 packages=$(yum list installed | wc -l)
-
+skull=$(cat skull.txt)
 
 # Functions list
 get_logo(){
-	curl -L rum.sh/ricebowl
+	echo "$skull"
 }
 
 get_user(){
