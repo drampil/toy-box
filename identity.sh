@@ -15,9 +15,10 @@ memavail=$(cat /proc/meminfo | grep "MemAvailable" | sed 's/[^*,:]*://g' | sed '
 memfree=$(cat /proc/meminfo | grep "MemFree" | sed 's/[^*,:]*://g' | sed 's/^ *//g')
 devices=$(lsblk | awk '(NR>1)' > devices.txt; cat devices.txt | sed 's/└─/\t└─/g')
 packages=$(yum list installed | wc -l)
+skull=$(cat skull.txt)
 user=$(whoami)
 check=$(cat /etc/group | grep wheel | cut -d ":" -f 4)
-
+dmesg=$(dmesg | tail --lines=5 | sed 's/\[[^][]*\]//g; s/\: /_/g; s/^/:|/g; s/$/:|/g; ' )
 
 
 # Functions list
@@ -32,35 +33,44 @@ fi
 }
 
 get_logo(){
-	curl https://raw.githubusercontent.com/drampil/toy-box/main/skull.txt
+	echo "$skull"
+	echo
+}
+
+get_dmesg(){
+	echo "dmesg""$dmesg" >> trash.txt
+}
+
+get_header(){
+	echo ":  SYSTEM SCAN IN PROGRESS..." >> trash.txt
 }
 
 get_user(){
-	echo "User:" $user"@"$system >> trash.txt
+	echo "User:|" $user"@"$system":|" >> trash.txt
 }
 
 get_hostname(){
-	echo "Host:" $host  >> trash.txt
+	echo "Host:|" $host":|"  >> trash.txt
 }
 
 get_shell(){
-	echo "Shell:" $SHELL  >> trash.txt
+	echo "Shell:|" $SHELL":|"  >> trash.txt
 }
 
 get_kernel(){
-	echo "Kernel:" $kernel  >> trash.txt
+	echo "Kernel:|" $kernel":|"  >> trash.txt
 }
 
 get_uptime(){
-	echo "Uptime:" $uptime  >> trash.txt
+	echo "Uptime:|" $uptime":|"  >> trash.txt
 }
 
 get_cpu(){
-	echo "CPU:" $cpu  >> trash.txt
+	echo "CPU:|" $cpu":|"  >> trash.txt
 }
 
 get_memory(){
-	echo "Memory:" $memfree"/"$memavail  >> trash.txt
+	echo "Memory:|" $memfree"/"$memavail":|"  >> trash.txt
 }
 
 get_devices(){
@@ -68,10 +78,12 @@ get_devices(){
 }
 
 get_packages(){
-	echo "Packages:" $packages  >> trash.txt
+	echo "Packages:| "$packages":|"  >> trash.txt
 }
 
 # Run all the functions in this order
+
+get_header
 get_logo
 get_user
 get_hostname
@@ -81,15 +93,16 @@ get_uptime
 get_cpu 
 get_memory
 get_packages
-
+get_dmesg
 
 # Display it
 cat trash.txt | column -s":" -t
 echo
 get_devices
+echo
 get_priviege
 echo
-echo "Welcome back," $user
+echo "Show me what you've got," $user"."
 
 
 # Cleanup
