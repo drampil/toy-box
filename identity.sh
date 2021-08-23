@@ -19,7 +19,8 @@ skull=$(cat skull.txt)
 user=$(whoami)
 check=$(cat /etc/group | grep wheel | cut -d ":" -f 4)
 dmesg=$(dmesg | tail --lines=5 | sed 's/\[[^][]*\]//g; s/\: /_/g; s/^/:|/g; s/$/:|/g; ' )
-
+selinux=$(sestatus | awk 'NR==1 {print $3}')
+selinuxmode=$(getenforce)
 
 # Functions list
 
@@ -29,6 +30,19 @@ then
         echo "You have root powers."
 else
         echo "You don't have any power here!"
+fi
+}
+
+get_selinux(){
+if [[ $selinux = "disabled" ]];
+then
+	echo "SELINUX:|"" $selinux" >> trash.txt
+elif [[ $selinux = "enabled" ]];
+then
+	echo "SELINUX:|"" $selinux" >> trash.txt
+	echo "MODE:|"" $selinuxmode" >> trash.txt
+else
+	echo "SELinux encountered an issue" >> trash.txt
 fi
 }
 
@@ -94,6 +108,7 @@ get_cpu
 get_memory
 get_packages
 get_dmesg
+get_selinux
 
 # Display it
 cat trash.txt | column -s":" -t
