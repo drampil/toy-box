@@ -21,6 +21,7 @@ check=$(cat /etc/group | grep wheel | cut -d ":" -f 4)
 dmesg=$(dmesg | tail --lines=5 | sed 's/\[[^][]*\]//g; s/\: /_/g; s/^/:|/g; s/$/:|/g; ' )
 selinux=$(sestatus | awk 'NR==1 {print $3}')
 selinuxmode=$(getenforce)
+firewall=$(systemctl status firewalld | grep Active | awk '{print $2}')
 
 # Functions list
 
@@ -53,6 +54,10 @@ get_logo(){
 
 get_dmesg(){
 	echo "dmesg""$dmesg" >> trash.txt
+}
+
+get_firewall(){
+	echo "Firewalld:| ""$firewall" >> trash.txt
 }
 
 get_header(){
@@ -109,6 +114,7 @@ get_memory
 get_packages
 get_dmesg
 get_selinux
+get_firewall
 
 # Display it
 cat trash.txt | column -s":" -t
