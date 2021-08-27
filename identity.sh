@@ -4,6 +4,8 @@
 # This is just a cool bootscript to show system stats
 # By: drampil@
 
+echo "System scan in progress... please wait."
+
 # Adding some variables
 user=$(whoami)
 system=$(uname)
@@ -36,17 +38,17 @@ fi
 }
 
 get_yumv(){
-	echo "Yum Version:| ""$yumv" >> trash.txt
+	echo "Yum Version:| ""$yumv"":|" >> trash.txt
 }
 
 get_selinux(){
 if [[ $selinux = "disabled" ]];
 then
-	echo "SELINUX:|"" $selinux" >> trash.txt
+	echo "SELINUX:|"" $selinux"":|" >> trash.txt
 elif [[ $selinux = "enabled" ]];
 then
-	echo "SELINUX:|"" $selinux" >> trash.txt
-	echo "MODE:|"" $selinuxmode" >> trash.txt
+	echo "SELINUX:|"" $selinux"":|" >> trash.txt
+	echo "MODE:|"" $selinuxmode"":|" >> trash.txt
 else
 	echo "SELinux encountered an issue" >> trash.txt
 fi
@@ -58,11 +60,11 @@ get_logo(){
 }
 
 get_dmesg(){
-	echo "dmesg""$dmesg" >> trash.txt
+	echo "dmesg (-5)""$dmesg" >> trash.txt
 }
 
 get_firewall(){
-	echo "Firewalld:| ""$firewall" >> trash.txt
+	echo "Firewalld:| ""$firewall"":|" >> trash.txt
 }
 
 get_header(){
@@ -107,7 +109,6 @@ get_packages(){
 
 # Run all the functions in this order
 
-get_header
 get_logo
 get_user
 get_hostname
@@ -117,10 +118,10 @@ get_uptime
 get_cpu 
 get_memory
 get_packages
-get_dmesg
 get_selinux
 get_yumv
 get_firewall
+get_dmesg
 
 # Display it
 cat trash.txt | column -s":" -t
