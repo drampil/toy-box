@@ -17,7 +17,7 @@ memavail=$(cat /proc/meminfo | grep "MemAvailable" | sed 's/[^*,:]*://g' | sed '
 memfree=$(cat /proc/meminfo | grep "MemFree" | sed 's/[^*,:]*://g' | sed 's/^ *//g')
 devices=$(lsblk | awk '(NR>1)' > devices.txt; cat devices.txt | sed 's/└─/\t└─/g')
 packages=$(yum list installed | wc -l)
-skull=$(cat skull.txt)
+skull=$(curl -s https://raw.githubusercontent.com/drampil/toy-box/main/skull.txt)
 user=$(whoami)
 check=$(cat /etc/group | grep wheel | cut -d ":" -f 4)
 dmesg=$(dmesg | tail --lines=5 | sed 's/\[[^][]*\]//g; s/\: /_/g; s/^/:|/g; s/$/:|/g; ' )
