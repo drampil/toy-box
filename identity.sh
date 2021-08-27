@@ -22,6 +22,7 @@ dmesg=$(dmesg | tail --lines=5 | sed 's/\[[^][]*\]//g; s/\: /_/g; s/^/:|/g; s/$/
 selinux=$(sestatus | awk 'NR==1 {print $3}')
 selinuxmode=$(getenforce)
 firewall=$(systemctl status firewalld | grep Active | awk '{print $2}')
+yumv=$(yum info yum | grep -i version | awk '{print $3}')
 
 # Functions list
 
@@ -32,6 +33,10 @@ then
 else
         echo "You don't have any power here!"
 fi
+}
+
+get_yumv(){
+	echo "Yum Version:| ""$yumv" >> trash.txt
 }
 
 get_selinux(){
@@ -114,6 +119,7 @@ get_memory
 get_packages
 get_dmesg
 get_selinux
+get_yumv
 get_firewall
 
 # Display it
@@ -124,7 +130,7 @@ echo
 get_priviege
 echo
 echo "Show me what you've got," $user"."
-
+echo
 
 # Cleanup
 rm devices.txt
