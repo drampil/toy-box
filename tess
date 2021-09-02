@@ -13,7 +13,6 @@ echo "Command Line Call Ediiton"
 echo
 echo " [~] Client URL Scanning Service"
 echo " [~] Optimized for Amazon Linux 2."
-#echo " [~] urlscan API key stored in urlscankey.txt"
 echo " [~] VirusTotal key stored in vtkey.txt"
 echo " [~] Error Reporting: Toy Box Team"
 
