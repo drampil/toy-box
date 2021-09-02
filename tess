@@ -1,4 +1,5 @@
 #!/bin/bash
+#Removed urlscan function
 
 echo
 echo -e "████████╗███████╗███████╗███████╗███████╗██████╗  █████╗  ██████╗████████╗"
@@ -12,7 +13,7 @@ echo "Command Line Call Ediiton"
 echo
 echo " [~] Client URL Scanning Service"
 echo " [~] Optimized for Amazon Linux 2."
-echo " [~] urlscan API key stored in urlscankey.txt"
+#echo " [~] urlscan API key stored in urlscankey.txt"
 echo " [~] VirusTotal key stored in vtkey.txt"
 echo " [~] Error Reporting: Toy Box Team"
 
@@ -118,24 +119,6 @@ registrar_function () {
                         echo
                 fi
         rm registrar.txt
-}
-
-urlscan_function () {
-        scankey=$(cat urlscankey.txt)
-        echo "urlscan.io API request"
-        curl -s -X POST "https://urlscan.io/api/v1/scan/" \
-                -H "Content-Type: application/json" \
-                -H "API-Key: $scankey" \
-                -d "{ \
-                 \"url\": \"$url\", \"visibility\": \"public\", \
-                 \"tags\": [\"demotag1\", \"demotag2\"] \
-                 }" > urlscan.txt
-        cat urlscan.txt | grep 'result' | grep -v 'api' | awk '{print $2}' | sed 's/"//g' | sed 's/,//g'
-        cat urlscan.txt | grep 'result' | grep -v 'api' | awk '{print $2}' | sed 's/"//g' | sed 's/,//g' > scan.txt
-}
-
-screenshot_function () {
-cat scan.txt | sed 's/result/screenshots/g; s/.$/\.png/g;'
 }
 
 domainfinder_function () {
@@ -264,14 +247,6 @@ echo "Hosting Provider"
 hostfinder_function
 
 echo
-echo "URLSCAN API"
-urlscan_function
-
-echo
-echo "Screenshot"
-screenshot_function
-
-echo
 echo "Virus Total Results"
 virustotal
 virustotal_failure
@@ -282,8 +257,6 @@ virustotal_failure
 
 #echo
 #Delete used docs
-rm urlscan.txt
-rm scan.txt
 rm urledit.txt
 rm vtresults.txt
 #rm logs.txt
