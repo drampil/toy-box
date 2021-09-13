@@ -5,25 +5,25 @@ day=$(date +%A)
 
 if [[ $day == "Sunday" ]]
 then
-        echo "Jose"
+        echo "Will, Jose and Karim"
 elif [[ $day == "Monday" ]]
 then
-        echo "Rafael, Shams & AJ"
+        echo "K, Shams"
 elif [[ $day == "Tuesday" ]]
 then
-        echo "Garett, Will F, K, Hamza"
+        echo "Garett, Hamza, Christopher"
 elif [[ $day == "Wednesday" ]]
 then
-        echo "Corey, Jim, Rabia, Christopher"
+        echo "Corey, Jim, Rabia"
 elif [[ $day == "Thursday" ]]
 then
-        echo "Ajeet, Marc, Ellie & Karim"
+        echo "Ajeet, Marc, Ellie"
 elif [[ $day == "Friday" ]]
 then
-        echo "Shawntel, Christabel & Jacob"
+        echo "Shawntel, Rene, Jacob"
 elif [[ $day == "Saturday" ]]
 then
-        echo "Kenneth, Rene & David P"
+        echo "Kenneth, Christabel, David P"
 else
         echo "error"
 fi
