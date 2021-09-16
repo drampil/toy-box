@@ -7,17 +7,16 @@ echo -e "   ██║   █████╗  ███████╗████
 echo -e "   ██║   ██╔══╝  ╚════██║╚════██║██╔══╝  ██╔══██╗██╔══██║██║        ██║   "
 echo -e "   ██║   ███████╗███████║███████║███████╗██║  ██║██║  ██║╚██████╗   ██║   "
 echo -e "   ╚═╝   ╚══════╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝   ╚═╝   "
-echo -e "=========================================================================="                                                                                                    
-echo "Version 2 Pre-release"
+echo -e "=========================================================================="
+echo "Command Line Call Ediiton"
 echo
 echo " [~] Client URL Scanning Service"
 echo " [~] Optimized for Amazon Linux 2."
-echo " [~] API key stored in urlscankey.txt"
-echo " [~] Error Reporting: drampil@"
-echo
-echo "Enter a Target URL - No IP Addresses: " 
-read -p "└──╼ " dirty_url
+echo " [~] urlscan API key stored in urlscankey.txt"
+echo " [~] VirusTotal key stored in vtkey.txt"
+echo " [~] Error Reporting: Toy Box Team"
 
+dirty_url=$(echo $1)
 
 #Functions List
 
@@ -25,12 +24,12 @@ webcrawl_function() {
 curl -Lsk $domain"/robots.txt" | grep 'User-agent' > robots.txt
 if [ -s robots.txt ];
 then
-	echo "Robots Rules Found"
-	cat robots.txt | grep -v "*" | awk '{print $2}'
-	rm robots.txt
+        echo "Robots Rules Found"
+        cat robots.txt | grep -v "*" | awk '{print $2}'
+        rm robots.txt
 else
-	echo "No Robot.txt found"
-	rm robots.txt
+        echo "No Robot.txt found"
+        rm robots.txt
 fi
 }
 
@@ -52,6 +51,22 @@ curl_function () {
         curl -I -s -L -k -m 5 --show-error '{'"$url"'}' \
         | grep 'HTTP\|Location\|location\|x-amz-apigw-id\|CloudFront\|x-amz-cf-id:\|AmazonS3'\
         | grep -v 'onion-location\|via\|Set-Cookie'
+
+        curl -I -s -L -k -m 5 --show-error '{'"$url"'}' > clienturl.txt 2>&1
+        invalid=$(cat clienturl.txt | grep -o 'Could not resolve host')
+        invalid2=$(cat clienturl.txt | grep -o 'Bad')
+        if [[ $invalid == "Could not resolve host" ]];
+        then
+                echo "The target URL is invalid and threw error #6. Tess will shut down."
+                exit
+        elif [[ $invalid2 == "Bad" ]];
+        then
+                echo "The target URL is invalid and threw error #3. Tess will shut down."
+                exit
+        else
+                echo "Evaluating"
+        fi
+rm clienturl.txt
 }
 
 wp_function () {
@@ -71,19 +86,37 @@ registrar_function () {
         regi=$(echo $url | awk -F/ '{n=split($3, a, "."); printf("%s.%s", a[n-1], a[n])}')
         whois $regi | grep -m 1 'Registrar:' | sed s'/Registrar://g' | xargs
         whois $regi | grep -m 1 'Registrar:' | awk '{print $2}' > registrar.txt
+
+        if [ -s registrar.txt ]
+        then
+                echo "Registrar Information Found"
+        else
+                echo "No Registrar Information Avaliable"
+        fi
         registrar=$(cat registrar.txt)
-	whois $regi | grep -m 1 "Creation Date" | xargs | sed s'/Creation Date/Domain Age/g'
+        whois $regi | grep -m 1 "Creation Date" | xargs | sed s'/Creation Date/Domain Age/g'
 
         if [[ $registrar == Amazon ]];
         then
-        	echo "RISOPS: https://risops.amazon.com/index.html#/details/domain/"$domain
-        	echo "RISOPS: https://risops.amazon.com/index.html#/details/domain/"$regi
-        	echo
+                echo "RISOPS: https://risops.amazon.com/index.html#/details/domain/"$domain
+                echo "RISOPS: https://risops.amazon.com/index.html#/details/domain/"$regi
+                echo
         else
-        	echo
+                echo
         fi
-	echo "Top Level Domain"
-	echo $regi
+        echo "Top Level Domain"
+        echo $regi
+         if [[ $regi == "co.uk" ]];
+                then
+                        echo "Misidentified"
+                        echo $domain
+                elif [[ $regi == ".com.br" ]];
+                then
+                        echo "Misidentified"
+                        echo $domain
+                else
+                        echo
+                fi
         rm registrar.txt
 }
 
@@ -94,7 +127,7 @@ urlscan_function () {
                 -H "Content-Type: application/json" \
                 -H "API-Key: $scankey" \
                 -d "{ \
-                 \"url\": \"$url\", \"visibility\": \"public\", \
+                 \"url\": \"$url\", \"visibility\": \"private\", \
                  \"tags\": [\"demotag1\", \"demotag2\"] \
                  }" > urlscan.txt
         cat urlscan.txt | grep 'result' | grep -v 'api' | awk '{print $2}' | sed 's/"//g' | sed 's/,//g'
@@ -124,7 +157,8 @@ cat whois.txt | grep -m 1 -e 'OrgName' | awk '{print $2}'
 }
 
 virustotal () {
-curl -s -X POST 'https://www.virustotal.com/vtapi/v2/url/report' --form apikey="77bf2c05f05e318259df7ef3c1a557b802c41a8bb66b30f01eb2fd395099cb0c" --form resource="$url" > vtresults.txt
+vtkey=$(cat vtkey.txt)
+curl -s -X POST 'https://www.virustotal.com/vtapi/v2/url/report' --form apikey="$vtkey" --form resource="$url" > vtresults.txt
 cat vtresults.txt | awk -F 'positives\":' '{print "VT Hits" $2}' | awk -F ' ' '{print $1" "$2" "$3}' | sed 's|["}]||g; s/,//g;'
 cat vtresults.txt | awk -F 'permalink\":' '{print "VT URL:"$2}' | awk -F ' ' '{print $1" "$2" "$3}' | sed 's|["}]||g; s/,//g;'
 }
@@ -513,5 +547,5 @@ then
         echo
 
 else
-        echo "HTTP CODE NOT UNDERSTOOD"
+        echo "The HTTP code wasn't valid. There is likely an issue with the domain or the url is not valid."
 fi
