@@ -21,11 +21,11 @@ dirty_url=$(echo $1)
 #Functions List
 
 gateway_function() {
-design=$(host $domain | grep -oP '(?<=address )[^ ]*')
-id=$(aws apigateway get-rest-apis --region us-east-1 | grep my-api -B1 | awk '{print $2}' | grep -v 'my-api' | awk -F'"' '{print $2}')
-echo && curl -s -X POST -d '{"url": "'${design}'"}' \
-"https://$id.execute-api.us-east-1.amazonaws.com/call"
-echo "https://$id.execute-api.us-east-1.amazonaws.com/call"
+design=$(host $domain | grep -m 1 -oP '(?<=address )[^ ]*')
+ident=$(aws apigateway get-rest-apis --region us-east-1 | grep my-api -B1 | awk '{print $2}' | grep -v 'my-api' | awk -F'"' '{print $2}')
+echo && curl -s -X POST -d '{"url": "'${design}'"}' "https://$ident.execute-api.us-east-1.amazonaws.com/call" | jq
+sleep 3
+echo "https://$ident.execute-api.us-east-1.amazonaws.com/call"
 }
 
 webcrawl_function() {
@@ -561,3 +561,4 @@ then
 else
         echo "The HTTP code wasn't valid. There is likely an issue with the domain or the url is not valid."
 fi
+
