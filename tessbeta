@@ -85,9 +85,8 @@ wp_function () {
                 sleep 1
                 echo "Performing Shadow Analysis..."
                 sleep 1
-                echo "Initiating handshake with API Gateway: $ident"
-                sleep 1
                 gateway_function
+                API Gateway used: $ident
                 
         else
                 echo "This is not a Word Press Infastructure"
