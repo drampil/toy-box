@@ -20,6 +20,25 @@ dirty_url=$(echo $1)
 
 #Functions List
 
+help_function() {
+	if [[ $dirty_url ==  "--help" ]];
+	then
+		echo
+		echo "Welcome to the Tesseract Help Page!"
+		echo "[~] The syntax is bash tess https://www.URL.com"
+		echo "[~] Do not attempt to use IP addresses"
+		echo 
+		echo "API keys can be added manually from the CLI;"
+		echo "APIKEY > vtkey.txt"
+		echo "APIKEY > urlscankey.txt"
+		echo
+		echo "Thanks for reading."
+		exit
+	else
+		echo
+	fi
+}
+
 gateway_function() {
 region=$(cat region.txt)
 design=$(host $domain | grep -m 1 -oP '(?<=address )[^ ]*')
@@ -145,6 +164,11 @@ urlscan_function () {
                  }" > urlscan.txt
         cat urlscan.txt | grep 'result' | grep -v 'api' | awk '{print $2}' | sed 's/"//g' | sed 's/,//g'
         cat urlscan.txt | grep 'result' | grep -v 'api' | awk '{print $2}' | sed 's/"//g' | sed 's/,//g' > scan.txt
+        
+	if [ -s urlscankey.txt ]
+        then
+                echo "There's no API key found."
+        fi
 }
 
 screenshot_function () {
@@ -170,7 +194,11 @@ cat whois.txt | grep -m 1 -e 'OrgName' | awk '{print $2}'
 }
 
 virustotal () {
-vtkey=$(cat vtkey.txt)
+	if [ -s vtkey.txt ]
+	then
+		echo "There's no API key found."
+	fi
+		vtkey=$(cat vtkey.txt)
 curl -s -X POST 'https://www.virustotal.com/vtapi/v2/url/report' --form apikey="$vtkey" --form resource="$url" > vtresults.txt
 cat vtresults.txt | awk -F 'positives\":' '{print "VT Hits" $2}' | awk -F ' ' '{print $1" "$2" "$3}' | sed 's|["}]||g; s/,//g;'
 cat vtresults.txt | awk -F 'permalink\":' '{print "VT URL:"$2}' | awk -F ' ' '{print $1" "$2" "$3}' | sed 's|["}]||g; s/,//g;'
@@ -240,6 +268,8 @@ done
 }
 
 #Run the Series
+
+help_function
 
 defang_function
 
@@ -562,4 +592,3 @@ then
 else
         echo "The HTTP code wasn't valid. There is likely an issue with the domain or the url is not valid."
 fi
-
