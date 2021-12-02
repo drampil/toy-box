@@ -16,6 +16,8 @@ echo " [~] urlscan API key stored in urlscankey.txt"
 echo " [~] VirusTotal key stored in vtkey.txt"
 echo " [~] Error Reporting: Toy Box Team"
 
+random1=$(echo $RANDOM | md5sum | head -c 20; echo;)
+
 dirty_url=$(echo $1)
 
 #Functions List
@@ -121,22 +123,22 @@ registrar_function () {
 
         if [ -s registrar.txt ]
         then
-                echo "Registrar Information Found"
+                echo "<br>Registrar Information Found<br>"
         else
-                echo "No Registrar Information Avaliable"
+                echo "<br>No Registrar Information Avaliable<br>"
         fi
         registrar=$(cat registrar.txt)
         whois $regi | grep -m 1 "Creation Date" | xargs | sed s'/Creation Date/Domain Age/g'
 
         if [[ $registrar == Amazon ]];
         then
-                echo "RISOPS: https://risops.amazon.com/index.html#/details/domain/"$domain
-                echo "RISOPS: https://risops.amazon.com/index.html#/details/domain/"$regi
+                echo "<br>RISOPS: https://risops.amazon.com/index.html#/details/domain/"$domain
+                echo "<br>RISOPS: https://risops.amazon.com/index.html#/details/domain/"$regi
                 echo
         else
                 echo
         fi
-        echo "Top Level Domain"
+        echo "<br>Top Level Domain<br>"
         echo $regi
          if [[ $regi == "co.uk" ]];
                 then
@@ -154,7 +156,7 @@ registrar_function () {
 
 urlscan_function () {
         scankey=$(cat urlscankey.txt)
-        echo "urlscan.io API request"
+        echo "Urlscan.io API request <br>"
         curl -s -X POST "https://urlscan.io/api/v1/scan/" \
                 -H "Content-Type: application/json" \
                 -H "API-Key: $scankey" \
@@ -164,11 +166,7 @@ urlscan_function () {
                  }" > urlscan.txt
         cat urlscan.txt | grep 'result' | grep -v 'api' | awk '{print $2}' | sed 's/"//g' | sed 's/,//g'
         cat urlscan.txt | grep 'result' | grep -v 'api' | awk '{print $2}' | sed 's/"//g' | sed 's/,//g' > scan.txt
-        
-	if [ -s urlscankey.txt ]
-        then
-                echo "<br> There's no API key found."
-        fi
+       
 }
 
 screenshot_function () {
@@ -194,13 +192,10 @@ cat whois.txt | grep -m 1 -e 'OrgName' | awk '{print $2}'
 }
 
 virustotal () {
-	if [ -s vtkey.txt ]
-	then
-		echo "There's no API key found."
-	fi
 		vtkey=$(cat vtkey.txt)
 curl -s -X POST 'https://www.virustotal.com/vtapi/v2/url/report' --form apikey="$vtkey" --form resource="$url" > vtresults.txt
 cat vtresults.txt | awk -F 'positives\":' '{print "VT Hits" $2}' | awk -F ' ' '{print $1" "$2" "$3}' | sed 's|["}]||g; s/,//g;'
+echo "<br>"
 cat vtresults.txt | awk -F 'permalink\":' '{print "VT URL:"$2}' | awk -F ' ' '{print $1" "$2" "$3}' | sed 's|["}]||g; s/,//g;'
 }
 
@@ -321,46 +316,46 @@ virustotal_failure
 
 
 #write to files
-echo "<h2>Abuse Report</h2><br>" > /var/www/html/index.html
-echo "curl -ILsk $url <br><br>" >> /var/www/html/index.html
-curl_function  >> /var/www/html/index.html
+echo "<h2>Abuse Report: $random1</h2><br>" > /var/www/html/$random1.html
+echo "curl -ILsk $url <br><br>" >> /var/www/html/$random1.html
+curl_function  >> /var/www/html/$random1.html
 
-echo "<h4>Defanged</h4> <br>" >> /var/www/html/index.html
-fang_function >> /var/www/html/index.html
+echo "<h4>Defanged</h4> <br>" >> /var/www/html/$random1.html
+fang_function >> /var/www/html/$random1.html
 
-echo "<h4>Domain Requested</h4> <br>" >> /var/www/html/index.html
-domainfinder_function >> /var/www/html/index.html
+echo "<h4>Domain Requested</h4> <br>" >> /var/www/html/$random1.html
+domainfinder_function >> /var/www/html/$random1.html
 
-echo "<h4>Domain Debug Field:</h4> <br>" >> /var/www/html/index.html
-domainfinder_function >> /var/www/html/index.html
+echo "<h4>Domain Debug Field:</h4> <br>" >> /var/www/html/$random1.html
+domainfinder_function >> /var/www/html/$random1.html
 
-echo "<h4>Associated IP(s)</h4> <br>" >> /var/www/html/index.html
-association_function >> /var/www/html/index.html
+echo "<h4>Associated IP(s)</h4> <br>" >> /var/www/html/$random1.html
+association_function >> /var/www/html/$random1.html
 
-echo "<h4>Word Press Infrastructure Scan</h4> <br>"  >> /var/www/html/index.html
-wp_function >> /var/www/html/index.html
+echo "<h4>Word Press Infrastructure Scan</h4> <br>"  >> /var/www/html/$random1.html
+wp_function >> /var/www/html/$random1.html
 
-echo "<h4>Registrar Scan</h4>" >> /var/www/html/index.html
-echo "<br>" >> /var/www/html/index.html
-registrar_function >> /var/www/html/index.html
-echo "<br><br>" >> /var/www/html/index.html
+echo "<h4>Registrar Scan</h4>" >> /var/www/html/$random1.html
+echo "<br>" >> /var/www/html/$random1.html
+registrar_function >> /var/www/html/$random1.html
+echo "<br><br>" >> /var/www/html/$random1.html
 
-webcrawl_function >> /var/www/html/index.html
+webcrawl_function >> /var/www/html/$random1.html
 
-echo "<h4>Hosting Provider</h4> <br>" >> /var/www/html/index.html
-hostfinder_function >> /var/www/html/index.html
+echo "<h4>Hosting Provider</h4> <br>" >> /var/www/html/$random1.html
+hostfinder_function >> /var/www/html/$random1.html
 
-echo "<h4>URLSCAN API</h4> <br>" >> /var/www/html/index.html
-urlscan_function >> /var/www/html/index.html
+echo "<h4>URLSCAN API</h4> <br>" >> /var/www/html/$random1.html
+urlscan_function >> /var/www/html/$random1.html
 
 image=$(screenshot_function)
-echo "<h4>Screenshot </h4><br>" >> /var/www/html/index.html
-echo "<img src="$image" width="300" height="300">" >> /var/www/html/index.html
+echo "<h4>Screenshot </h4><br>" >> /var/www/html/$random1.html
+echo "<img src="$image" width="300" height="300">" >> /var/www/html/$random1.html
 
-echo "<h4>Virus Total Results</h4> <br>" >> /var/www/html/index.html
-virustotal >> /var/www/html/index.html
-echo "<br>" >> /var/www/html/index.html
-virustotal_failure >> /var/www/html/index.html
+echo "<h4>Virus Total Results</h4> <br>" >> /var/www/html/$random1.html
+virustotal >> /var/www/html/$random1.html
+echo "<br>" >> /var/www/html/$random1.html
+virustotal_failure >> /var/www/html/$random1.html
 
 # Commenting out DNS Flip for now
 #echo "DNS Flipping Detection"
@@ -638,5 +633,5 @@ fi
 
 echo "Report Avaliable via Internal Web Here: " 
 echo "http://" & curl http://169.254.169.254/latest/meta-data/public-ipv4
-echo
+echo "/""$random1"".html"
 echo
