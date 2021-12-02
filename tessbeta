@@ -316,7 +316,11 @@ virustotal_failure
 
 
 #write to files
-echo "<h2>Abuse Report: $random1</h2><br>" > /var/www/html/$random1.html
+
+cat template > /var/www/html/$random1.html
+echo "<br>" >> /var/www/html/$random1.html
+echo "<br>" >> /var/www/html/$random1.html
+echo "<h2>Abuse Report: $random1</h2><br>" >> /var/www/html/$random1.html
 echo "curl -ILsk $url <br><br>" >> /var/www/html/$random1.html
 curl_function  >> /var/www/html/$random1.html
 
@@ -350,7 +354,7 @@ urlscan_function >> /var/www/html/$random1.html
 
 image=$(screenshot_function)
 echo "<h4>Screenshot </h4><br>" >> /var/www/html/$random1.html
-echo "<img src="$image" width="300" height="300">" >> /var/www/html/$random1.html
+echo "<img src=$image width="300" height="300">" >> /var/www/html/$random1.html
 
 echo "<h4>Virus Total Results</h4> <br>" >> /var/www/html/$random1.html
 virustotal >> /var/www/html/$random1.html
