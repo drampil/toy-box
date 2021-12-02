@@ -161,7 +161,7 @@ urlscan_function () {
                 -H "Content-Type: application/json" \
                 -H "API-Key: $scankey" \
                 -d "{ \
-                 \"url\": \"$url\", \"visibility\": \"private\", \
+                 \"url\": \"$url\", \"visibility\": \"public\", \
                  \"tags\": [\"demotag1\", \"demotag2\"] \
                  }" > urlscan.txt
         cat urlscan.txt | grep 'result' | grep -v 'api' | awk '{print $2}' | sed 's/"//g' | sed 's/,//g'
@@ -360,6 +360,7 @@ echo "<h4>Virus Total Results</h4> <br>" >> /var/www/html/$random1.html
 virustotal >> /var/www/html/$random1.html
 echo "<br>" >> /var/www/html/$random1.html
 virustotal_failure >> /var/www/html/$random1.html
+echo "</body>" >> /var/www/html/$random1.html
 
 # Commenting out DNS Flip for now
 #echo "DNS Flipping Detection"
@@ -635,7 +636,7 @@ else
         echo "The HTTP code wasn't valid. There is likely an issue with the domain or the url is not valid."
 fi
 
+callingcard=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
 echo "Report Avaliable via Internal Web Here: " 
-echo "http://" & curl http://169.254.169.254/latest/meta-data/public-ipv4
-echo "/""$random1"".html"
+echo "http://"$callingcard"/"$random1".html"
 echo
