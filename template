@@ -34,8 +34,10 @@ h3 {
     font-weight: 2;
   font-family: arial;
     }    
-    
+
+
 </style>
+<body>
 <div class="abs1" style width="100%">
   <b><h1>Abuse Report</h1></b>
 <br>
