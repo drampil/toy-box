@@ -1,0 +1,44 @@
+<style>
+
+* { margin:0; padding:0 }
+
+h1 {
+  color: #ec7211;
+  font-family: arial;
+    }
+
+div.abs1 {
+  background-color: #232f3e;
+  padding-left:2%;
+  padding-top:1%;
+  width:100%;
+  position:absolute;
+  top:0px
+}
+
+div.abs2 {
+  background-color: #ffffff;
+  padding-left:2%;
+  padding-top:1%;
+  width:68%;
+}
+
+h4 {
+	color: #000000;
+    font-weight: 2;
+	  font-family: monaco;
+    }
+    
+h3 {
+	color: #000000;
+    font-weight: 2;
+  font-family: arial;
+    }    
+    
+</style>
+<div class="abs1" style width="100%">
+  <b><h1>Abuse Report</h1></b>
+<br>
+</div>
+<br>
+<br>
