@@ -320,7 +320,7 @@ virustotal_failure
 cat template > /var/www/html/$random1.html
 echo "<br>" >> /var/www/html/$random1.html
 echo "<br>" >> /var/www/html/$random1.html
-echo "<h2>Abuse Report: $random1</h2><br>" >> /var/www/html/$random1.html
+echo "<h2>Tesseract Report: $random1</h2><br>" >> /var/www/html/$random1.html
 echo "curl -ILsk $url <br><br>" >> /var/www/html/$random1.html
 curl_function  >> /var/www/html/$random1.html
 
