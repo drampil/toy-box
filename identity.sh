@@ -3,7 +3,7 @@
 # This is designed for Amazon EC2 Linux
 # This is just a cool bootscript to show system stats
 # By: drampil@
-
+curl https://raw.githubusercontent.com/drampil/toy-box-experimental/main/title.txt
 echo "System scan in progress... please wait."
 
 # Adding some variables
