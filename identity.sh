@@ -4,6 +4,7 @@
 # This is just a cool bootscript to show system stats
 # By: drampil@
 curl https://raw.githubusercontent.com/drampil/toy-box-experimental/main/title.txt
+sleep 1
 echo "System scan in progress... please wait."
 
 # Adding some variables
@@ -110,6 +111,7 @@ get_packages(){
 # Run all the functions in this order
 
 get_logo
+sleep 1
 get_user
 get_hostname
 get_shell
@@ -130,6 +132,7 @@ get_devices
 echo
 get_priviege
 echo
+sleep 1
 echo "Show me what you've got," $user"."
 echo
 
