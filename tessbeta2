@@ -1,21 +1,17 @@
 #!/bin/bash
 
-echo
-echo -e "████████╗███████╗███████╗███████╗███████╗██████╗  █████╗  ██████╗████████╗"
-echo -e "╚══██╔══╝██╔════╝██╔════╝██╔════╝██╔════╝██╔══██╗██╔══██╗██╔════╝╚══██╔══╝"
-echo -e "   ██║   █████╗  ███████╗███████╗█████╗  ██████╔╝███████║██║        ██║   "
-echo -e "   ██║   ██╔══╝  ╚════██║╚════██║██╔══╝  ██╔══██╗██╔══██║██║        ██║   "
-echo -e "   ██║   ███████╗███████║███████║███████╗██║  ██║██║  ██║╚██████╗   ██║   "
-echo -e "   ╚═╝   ╚══════╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝   ╚═╝   "
-echo -e "=========================================================================="
-
+echo -e " _   __ _____ "
+echo -e "| | / /|  _  |"
+echo -e "| |/ / | |_| |"
+echo -e "|    \ \____ |"
+echo -e "| |\  \.___/ /"
+echo -e "\_| \_/\____/ "
+              
 echo " [~] Error Reporting: Toy Box Team"
 
 dirty_url=$(echo $1)
 
 #Functions List
-
-
 
 help_function() {
 	if [[ $dirty_url ==  "--help" ]];
@@ -34,13 +30,6 @@ help_function() {
 	else
 		echo
 	fi
-}
-
-gateway_function() {
-region=$(cat region.txt)
-design=$(host $domain | grep -m 1 -oP '(?<=address )[^ ]*')
-ident=$(aws apigateway get-rest-apis --region $region | grep my-api -B1 | awk '{print $2}' | grep -v 'my-api' | awk -F'"' '{print $2}')
-echo && curl -s -X POST -d '{"url": "'${design}'"}' "https://$ident.execute-api.us-east-1.amazonaws.com/call" >> /var/www/html/index.html
 }
 
 webcrawl_function() {
@@ -255,15 +244,17 @@ done
 
 #Run the Series
 
+echo "HTML"
+
 help_function
 
 defang_function
 
 echo
 # echo "Client URL Status"
-echo "Query : $url"
-http_check_function
-curl_function
+echo -e "\t Query : $url"
+echo -e "\t" http_check_function
+echo -e" \t" curl_function
 
 # echo
 # echo "Defanged"
@@ -273,18 +264,15 @@ curl_function
 # echo "Domain"
 # domainfinder_function
 
+echo -e "\t" association_function
 
-echo "Associated IP(s)"
-association_function
-
-echo
-wp_function
+echo -e" \t" wp_function
 
 echo
-registrar_function
+echo -e "\t" registrar_function
 
 #echo "Robots.txt Detection"
-webcrawl_function
+echo -e "\t" webcrawl_function
 
 # echo
 # echo "Hosting Provider"
