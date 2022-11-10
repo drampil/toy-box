@@ -90,7 +90,7 @@ curl_function () {
                 echo "Evaluating"
         fi
 
-http_check() {
+http_check_function () {
        httpcode=$(curl -I -s -L -k -m 5 --show-error '{'"$url"'}' | grep 'HTTP')
        if [[ $httpcode == "HTTP/2 200" ]];
        then
@@ -277,7 +277,7 @@ defang_function
 echo
 echo "Client URL Status"
 echo "curl -ILsk $url"
-http_check
+http_check_function
 curl_function
 
 echo
