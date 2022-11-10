@@ -92,7 +92,7 @@ curl_function () {
 
 http_check() {
        httpcode=$(curl -I -s -L -k -m 5 --show-error '{'"$url"'}' | grep 'HTTP')
-       if [[ $httpcode == "HTTP/2 200 ]]
+       if [[ $httpcode == "HTTP/2 200" ]]
        then
             echo -e "HTTP 2 : \xE2\x9C\x94"
        else
@@ -596,7 +596,4 @@ else
         echo "The HTTP code wasn't valid. There is likely an issue with the domain or the url is not valid."
 fi
 
-callingcard=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
-echo "Report Avaliable via Internal Web Here: " 
-echo "http://"$callingcard"/"$random1".html"
 echo
