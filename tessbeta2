@@ -255,7 +255,7 @@ echo -e "\t" `registrar_function`
 
 #echo "Robots.txt Detection"
 echo -e "\t" `webcrawl_function`
-
+echo
 # echo
 # echo "Hosting Provider"
 # hostfinder_function
