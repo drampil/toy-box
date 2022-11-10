@@ -235,7 +235,7 @@ curl --silent ${url} | wc --bytes
 
 http_stat_function () {
 testcode=$(curl -s -o /dev/null -w "%{http_code}" $url)
-if [[ testcode == "200" ]];
+if [[ $testcode == "200" ]];
 then
       echo -e "\xE2\x9C\x94 : Connection Established"
 else
