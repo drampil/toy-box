@@ -112,15 +112,10 @@ wp_function () {
         check="wp-content"
 
         if [[ $wp == $check ]]; then
-                echo -e "\xE2\x9C\x94 : Word Press Engine Detected - Standby"
-                sleep 1
-                echo "Performing Shadow Analysis..."
-                sleep 1
-                gateway_function
-                echo "API Gateway used:" $ident
+                echo -e "\xE2\x9C\x94 : Word Press Engine"
                 
         else
-                echo -e "\xE2\x9D\x8C : This is not a Word Press"
+                echo -e "\xE2\x9D\x8C : Not Word Press"
         fi
         rm wpcheck.txt
 }
