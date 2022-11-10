@@ -36,6 +36,7 @@ curl -Lsk $domain"/robots.txt" | grep 'User-agent' > robots.txt
 if [ -s robots.txt ];
 then
         echo -e "\xE2\x9C\x94 : Robots Rules Found"
+	echo -e "\n"
         cat robots.txt | grep -v "*" | awk '{print $2}'
         rm robots.txt
 else
@@ -134,24 +135,7 @@ registrar_function () {
         rm registrar.txt
 }
 
-urlscan_function () {
-        scankey=$(cat urlscankey.txt)
-        echo "Urlscan.io API request"
-        curl -s -X POST "https://urlscan.io/api/v1/scan/" \
-                -H "Content-Type: application/json" \
-                -H "API-Key: $scankey" \
-                -d "{ \
-                 \"url\": \"$url\", \"visibility\": \"public\", \
-                 \"tags\": [\"demotag1\", \"demotag2\"] \
-                 }" > urlscan.txt
-        cat urlscan.txt | grep 'result' | grep -v 'api' | awk '{print $2}' | sed 's/"//g' | sed 's/,//g'
-        cat urlscan.txt | grep 'result' | grep -v 'api' | awk '{print $2}' | sed 's/"//g' | sed 's/,//g' > scan.txt
-       
-}
 
-screenshot_function () {
-cat scan.txt | sed 's/result/screenshots/g; s/.$/\.png/g;'
-}
 
 domainfinder_function () {
 echo $url | grep -oE -m1 '[-+[:alnum:]]+[.][[:alnum:]+_.-]+' | sed 's/www.//' | head -1 > urledit.txt
@@ -160,7 +144,7 @@ echo $domain
 }
 
 association_function() {
-host $domain | grep 'has address'
+host $domain | grep 'has address' | head -1
 }
 
 hostfinder_function () {
@@ -249,11 +233,10 @@ help_function
 
 defang_function
 
-echo
 # echo "Client URL Status"
 echo -e "\t Query : $url"
 echo -e "\t" `http_check_function`
-echo -e" \t" `curl_function`
+echo -e "\t" `curl_function`
 
 # echo
 # echo "Defanged"
@@ -265,7 +248,7 @@ echo -e" \t" `curl_function`
 
 echo -e "\t" `association_function`
 
-echo -e" \t" `wp_function`
+echo -e "\t" `wp_function`
 
 echo
 echo -e "\t" `registrar_function`
