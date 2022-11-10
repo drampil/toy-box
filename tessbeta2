@@ -128,7 +128,7 @@ registrar_function () {
         if [ -s registrar.txt ]
         then
                 echo -e "\xE2\x9C\x94 : Registrar Information Found"
-		whois $regi | grep -m 1 'Registrar:' | sed s'/Registrar://g' | xargs
+		echo -e "\xE2\x9C\x94 : " whois $regi | grep -m 1 'Registrar:' | sed s'/Registrar://g' | xargs
         else
                 echo -e "\xE2\x9D\x8C : No Registrar Information Avaliable"
         fi
@@ -261,7 +261,7 @@ defang_function
 
 echo
 # echo "Client URL Status"
-echo "curl -ILsk $url"
+echo "Query : $url"
 http_check_function
 curl_function
 
