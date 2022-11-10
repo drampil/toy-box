@@ -89,6 +89,7 @@ curl_function () {
         else
                 echo "Evaluating"
         fi
+}
 
 http_check_function () {
        httpcode=$(curl -I -s -L -k -m 5 --show-error '{'"$url"'}' | grep 'HTTP')
