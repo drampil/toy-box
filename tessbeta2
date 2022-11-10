@@ -233,6 +233,19 @@ bytes_function () {
 curl --silent ${url} | wc --bytes
 }
 
+http_stat_function () {
+testcode=$(curl -s -o /dev/null -w "%{http_code}" $url)
+if [[ testcode == 200 ]];
+then
+      echo -e "\xE2\x9C\x94 : Connection Established"
+else
+	echo -e "\xE2\x9D\x8C : Connection Invalid"
+fi
+}
+
+
+
+
 #Run the Series
 help_function
 defang_function
@@ -248,7 +261,7 @@ echo "HTML Scan"
 # echo "Client URL Status"
 echo -e "\t Query : $url"
 echo -e "\t" `http_check_function`
-echo -e "\t" `curl_function`
+echo -e "\t" `http_stat_function`
 
 # echo
 # echo "Defanged"
@@ -270,8 +283,8 @@ echo
 
 echo "Other"
 echo
-echo -e "\t seconds : " `response_function`
-echo -e "\t bytes : " `bytes_function`
+echo -e "\t Seconds : " `response_function`
+echo -e "\t Bytes : " `bytes_function`
 # echo
 # echo "Hosting Provider"
 # hostfinder_function
