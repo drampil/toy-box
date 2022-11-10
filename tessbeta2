@@ -285,30 +285,30 @@ registrar_function
 #echo "Robots.txt Detection"
 webcrawl_function
 
-echo
-echo "Hosting Provider"
-hostfinder_function
+# echo
+# echo "Hosting Provider"
+# hostfinder_function
 
-echo
-echo "URLSCAN API"
-urlscan_function
+# echo
+# echo "URLSCAN API"
+# urlscan_function
 
-echo
-echo "Screenshot"
-screenshot_function
+# echo
+# echo "Screenshot"
+# screenshot_function
 
-echo
-echo "Virus Total Results"
-virustotal
-virustotal_failure
+# echo
+# echo "Virus Total Results"
+# virustotal
+# virustotal_failure
 
 
 # Commenting out DNS Flip for now
 #echo "DNS Flipping Detection"
 #jumphost_function
 
-#echo
-#Delete used docs
+# echo
+# Delete used docs
 rm urlscan.txt
 rm scan.txt
 rm urledit.txt
