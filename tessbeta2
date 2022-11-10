@@ -98,9 +98,9 @@ http_check_function () {
        httpcode=$(curl -sI '{'"$url"'}' -o/dev/null -w '%{http_version}\n')
        if [[ $httpcode == "2" ]];
        then
-            echo -e "HTTP 2 : \xE2\x9C\x94"
+            echo -e "\xE2\x9C\x94 : HTTP2"
        else
-            echo -e "HTTP 2 : \xE2\x9D\x8C"
+            echo -e "\xE2\x9D\x8C : HTTP2"
        fi
 }
 
