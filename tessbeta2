@@ -234,6 +234,8 @@ curl --silent ${url} | wc --bytes
 }
 
 #Run the Series
+help_function
+defang_function
 echo "execution: ${url}"
 echo "script: tesseract"
 echo
@@ -241,9 +243,7 @@ curl -X GET "$url" > /dev/null
 echo
 echo "HTML Scan"
 
-help_function
 
-defang_function
 
 # echo "Client URL Status"
 echo -e "\t Query : $url"
@@ -262,7 +262,6 @@ echo -e "\t" `association_function`
 
 echo -e "\t" `wp_function`
 
-echo
 echo -e "\t" `registrar_function`
 
 #echo "Robots.txt Detection"
