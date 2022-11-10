@@ -95,8 +95,8 @@ rm clienturl.txt
 }
 
 http_check_function () {
-       httpcode=$(curl -I -s -L -k -m 5 --show-error '{'"$url"'}' | grep 'HTTP/2 200')
-       if [[ $httpcode == "HTTP/2 200" ]];
+       httpcode=$(curl -sI '{'"$url"'}' -o/dev/null -w '%{http_version}\n')
+       if [[ $httpcode == "2" ]];
        then
             echo -e "HTTP 2 : \xE2\x9C\x94"
        else
