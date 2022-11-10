@@ -127,9 +127,9 @@ registrar_function () {
 
         if [ -s registrar.txt ]
         then
-                echo "<br>Registrar Information Found<br>"
+                echo -e "\xE2\x9C\x94 : Registrar Information Found"
         else
-                echo "<br>No Registrar Information Avaliable<br>"
+                echo -e "\xE2\x9D\x8C : No Registrar Information Avaliable"
         fi
         registrar=$(cat registrar.txt)
         whois $regi | grep -m 1 "Creation Date" | xargs | sed s'/Creation Date/Domain Age/g'
