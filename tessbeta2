@@ -229,10 +229,6 @@ response_function () {
 curl -s -o /dev/null -w "%{time_total}\n" $url
 }
 
-ask_function () {
-curl -X GET $url > /dev/null
-}
-
 bytes_function () {
 curl --silent $url | wc --bytes
 }
@@ -241,7 +237,7 @@ curl --silent $url | wc --bytes
 echo "execution: $url"
 echo "script: tesseract"
 echo
-ask_function
+curl -X GET $url > /dev/null
 echo
 echo "HTML Scan"
 
@@ -275,8 +271,8 @@ echo
 
 echo "Other"
 echo
-echo -e "load time : " `response_time`
-echo -e "bytes : " `bytes_function`
+echo -e "\tl oad time : " `response_function`
+echo -e "\t bytes : " `bytes_function`
 # echo
 # echo "Hosting Provider"
 # hostfinder_function
