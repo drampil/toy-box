@@ -96,7 +96,7 @@ http_check() {
        then
             echo -e "HTTP 2 : \xE2\x9C\x94"
        else
-            echo -e "HTTP 2 " \xE2\x9D\x8C"
+            echo -e "HTTP 2 : \xE2\x9D\x8C"
        fi
 }
 
