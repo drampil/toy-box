@@ -95,7 +95,7 @@ rm clienturl.txt
 }
 
 http_check_function () {
-       httpcode=$(curl -I -s -L -k -m 5 --show-error '{'"$url"'}' | grep 'HTTP')
+       httpcode=$(curl -I -s -L -k -m 5 --show-error '{'"$url"'}' | grep 'HTTP/2 200')
        if [[ $httpcode == "HTTP/2 200" ]];
        then
             echo -e "HTTP 2 : \xE2\x9C\x94"
@@ -160,7 +160,7 @@ registrar_function () {
 
 urlscan_function () {
         scankey=$(cat urlscankey.txt)
-        echo "Urlscan.io API request <br>"
+        echo "Urlscan.io API request"
         curl -s -X POST "https://urlscan.io/api/v1/scan/" \
                 -H "Content-Type: application/json" \
                 -H "API-Key: $scankey" \
@@ -199,7 +199,6 @@ virustotal () {
 		vtkey=$(cat vtkey.txt)
 curl -s -X POST 'https://www.virustotal.com/vtapi/v2/url/report' --form apikey="$vtkey" --form resource="$url" > vtresults.txt
 cat vtresults.txt | awk -F 'positives\":' '{print "VT Hits" $2}' | awk -F ' ' '{print $1" "$2" "$3}' | sed 's|["}]||g; s/,//g;'
-echo "<br>"
 cat vtresults.txt | awk -F 'permalink\":' '{print "VT URL:"$2}' | awk -F ' ' '{print $1" "$2" "$3}' | sed 's|["}]||g; s/,//g;'
 }
 
