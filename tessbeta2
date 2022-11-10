@@ -87,7 +87,7 @@ curl_function () {
                 echo "The target URL is invalid and threw error #3. Tess will shut down."
                 exit
         else
-                echo "Evaluating"
+                echo
         fi
 
 rm clienturl.txt
@@ -142,19 +142,6 @@ registrar_function () {
         else
                 echo
         fi
-        echo "Top Level Domain"
-        echo $regi
-         if [[ $regi == "co.uk" ]];
-                then
-                        echo "Misidentified"
-                        echo $domain
-                elif [[ $regi == ".com.br" ]];
-                then
-                        echo "Misidentified"
-                        echo $domain
-                else
-                        echo
-                fi
         rm registrar.txt
 }
 
@@ -274,30 +261,27 @@ defang_function
 echo
 echo "Client URL Status"
 echo "curl -ILsk $url"
-http_check_function
+# http_check_function
 curl_function
 
-echo
-echo "Defanged"
-fang_function
+# echo
+# echo "Defanged"
+# fang_function
 
-echo
-echo "Domain"
-domainfinder_function
+# echo
+# echo "Domain"
+# domainfinder_function
 
 echo
 echo "Associated IP(s)"
 association_function
 
 echo
-echo "Word Press Infrastructure Scan"
 wp_function
 
 echo
-echo "Registrar Scan"
 registrar_function
 
-echo
 #echo "Robots.txt Detection"
 webcrawl_function
 
