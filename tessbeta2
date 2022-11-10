@@ -92,7 +92,7 @@ curl_function () {
 
 http_check() {
        httpcode=$(curl -I -s -L -k -m 5 --show-error '{'"$url"'}' | grep 'HTTP')
-       if [[ $httpcode == "HTTP/2 200" ]]
+       if [[ $httpcode == "HTTP/2 200" ]];
        then
             echo -e "HTTP 2 : \xE2\x9C\x94"
        else
