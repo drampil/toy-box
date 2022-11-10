@@ -230,7 +230,7 @@ curl -s -o /dev/null -w "%{time_total}\n" $url
 }
 
 bytes_function () {
-curl --silent $url | wc --bytes
+curl --silent '{'"$url"'}' | wc --bytes
 }
 
 #Run the Series
@@ -271,7 +271,7 @@ echo
 
 echo "Other"
 echo
-echo -e "\t load time : " `response_function`
+echo -e "\t seconds : " `response_function`
 echo -e "\t bytes : " `bytes_function`
 # echo
 # echo "Hosting Provider"
