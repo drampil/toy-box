@@ -122,12 +122,13 @@ wp_function () {
 
 registrar_function () {
         regi=$(echo $url | awk -F/ '{n=split($3, a, "."); printf("%s.%s", a[n-1], a[n])}')
-        whois $regi | grep -m 1 'Registrar:' | sed s'/Registrar://g' | xargs
+
         whois $regi | grep -m 1 'Registrar:' | awk '{print $2}' > registrar.txt
 
         if [ -s registrar.txt ]
         then
                 echo -e "\xE2\x9C\x94 : Registrar Information Found"
+		whois $regi | grep -m 1 'Registrar:' | sed s'/Registrar://g' | xargs
         else
                 echo -e "\xE2\x9D\x8C : No Registrar Information Avaliable"
         fi
@@ -259,9 +260,9 @@ help_function
 defang_function
 
 echo
-echo "Client URL Status"
+# echo "Client URL Status"
 echo "curl -ILsk $url"
-# http_check_function
+http_check_function
 curl_function
 
 # echo
@@ -272,7 +273,7 @@ curl_function
 # echo "Domain"
 # domainfinder_function
 
-echo
+
 echo "Associated IP(s)"
 association_function
 
@@ -309,16 +310,16 @@ webcrawl_function
 
 # echo
 # Delete used docs
-rm urlscan.txt
-rm scan.txt
+# rm urlscan.txt
+# rm scan.txt
 rm urledit.txt
-rm vtresults.txt
+# rm vtresults.txt
 #rm logs.txt
-rm location.txt
-#rm ipsave1.txt
-rm ipsave.txt
+# rm location.txt
+# rm ipsave1.txt
+# rm ipsave.txt
 #rm whois1.txt
-rm whois.txt
+# rm whois.txt
 rm cleaner.txt
 
 
