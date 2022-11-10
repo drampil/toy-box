@@ -234,7 +234,7 @@ curl --silent '{'"$url"'}' | wc --bytes
 }
 
 #Run the Series
-echo "execution: $url"
+echo "execution: '{'"$url"'}'"
 echo "script: tesseract"
 echo
 curl -X GET "$url" > /dev/null
