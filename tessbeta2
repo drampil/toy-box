@@ -225,9 +225,25 @@ while [ $secs -gt 0 ]; do
 done
 }
 
-#Run the Series
+response_function () {
+curl -s -o /dev/null -w "%{time_total}\n" $url
+}
 
-echo "HTML"
+ask_function () {
+curl -X GET $url > /dev/null
+}
+
+bytes_function () {
+curl --silent $url | wc --bytes
+}
+
+#Run the Series
+echo "execution: $url"
+echo "script: tesseract"
+echo
+ask_function
+echo
+echo "HTML Scan"
 
 help_function
 
@@ -256,6 +272,11 @@ echo -e "\t" `registrar_function`
 #echo "Robots.txt Detection"
 echo -e "\t" `webcrawl_function`
 echo
+
+echo "Other"
+echo
+echo -e "load time : " `response_time`
+echo -e "bytes : " `bytes_function`
 # echo
 # echo "Hosting Provider"
 # hostfinder_function
