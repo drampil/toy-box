@@ -7,7 +7,6 @@ echo -e "|    \ \____ |"
 echo -e "| |\  \.___/ /"
 echo -e "\_| \_/\____/ "
               
-echo " [~] Error Reporting: Toy Box Team"
 
 dirty_url=$(echo $1)
 
@@ -253,8 +252,8 @@ defang_function
 echo
 # echo "Client URL Status"
 echo -e "\t Query : $url"
-echo -e "\t" http_check_function
-echo -e" \t" curl_function
+echo -e "\t" `http_check_function`
+echo -e" \t" `curl_function`
 
 # echo
 # echo "Defanged"
@@ -264,15 +263,15 @@ echo -e" \t" curl_function
 # echo "Domain"
 # domainfinder_function
 
-echo -e "\t" association_function
+echo -e "\t" `association_function`
 
-echo -e" \t" wp_function
+echo -e" \t" `wp_function`
 
 echo
-echo -e "\t" registrar_function
+echo -e "\t" `registrar_function`
 
 #echo "Robots.txt Detection"
-echo -e "\t" webcrawl_function
+echo -e "\t" `webcrawl_function`
 
 # echo
 # echo "Hosting Provider"
