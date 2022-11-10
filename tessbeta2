@@ -89,6 +89,9 @@ curl_function () {
         else
                 echo "Evaluating"
         fi
+
+rm clienturl.txt
+	
 }
 
 http_check_function () {
@@ -101,8 +104,7 @@ http_check_function () {
        fi
 }
 
-rm clienturl.txt
-}
+
 
 wp_function () {
         curl -Ls -m 5 $url | grep -o 'wp-content' | head -1 > wpcheck.txt
