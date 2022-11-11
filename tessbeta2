@@ -235,7 +235,7 @@ then
       echo -e "${GREEN}\xE2\x9C\x94 : Cloudfront Detected ${NONE}"
       echo "Edge Location : $cflocation"
 else
-
+	echo
 fi
 }
 
