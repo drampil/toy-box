@@ -228,8 +228,8 @@ fi
 }
 
 cloudfront_detect_function () {
-cftest=$(curl -ILsk $url | grep 'x-amz-cf-id' | awk '{print $1}')
-cflocation=$(curl -ILsk amazon.com | grep 'x-amz-cf-pop' | awk '{print $2}')
+cftest=$(curl -ILsk ${url} | grep 'x-amz-cf-id' | awk '{print $1}')
+cflocation=$(curl -ILsk ${url} | grep 'x-amz-cf-pop' | awk '{print $2}')
 if [[ $cftest == "x-amz-cf-id:" ]];
 then
       echo -e "${GREEN}\xE2\x9C\x94 : Cloudfront Detected ${NONE}"
