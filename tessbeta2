@@ -245,8 +245,6 @@ defang_function
 echo "execution: ${url}"
 echo "script: tesseract"
 echo
-curl -X GET "$url" > /dev/null
-echo
 echo "HTML Scan"
 
 
