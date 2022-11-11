@@ -277,6 +277,7 @@ echo
 echo -e "\t Seconds : " `response_function`
 echo -e "\t Bytes : " `bytes_function`
 echo -e "\t" `association_function`
+echo -e "\t" `cloudfront_detect_function`
 echo
 # echo "Hosting Provider"
 # hostfinder_function
