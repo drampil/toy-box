@@ -1,46 +1,27 @@
 #!/bin/bash
 
-echo -e " _   __ _____ "
-echo -e "| | / /|  _  |"
-echo -e "| |/ / | |_| |"
-echo -e "|    \ \____ |"
-echo -e "| |\  \.___/ /"
-echo -e "\_| \_/\____/ "
+echo -e '\033[0;32m' _   __ _____ '\033[0m'
+echo -e '\033[0;32m'| | / /|  _  |'\033[0m'
+echo -e '\033[0;32m'| |/ / | |_| |'\033[0m'
+echo -e '\033[0;32m'|    \ \____ |'\033[0m'
+echo -e '\033[0;32m'| |\  \.___/ /'\033[0m'
+echo -e '\033[0;32m'\_| \_/\____/ '\033[0m'
               
 
 dirty_url=$(echo $1)
 
 #Functions List
 
-help_function() {
-	if [[ $dirty_url ==  "--help" ]];
-	then
-		echo
-		echo "Welcome to the Tesseract Help Page!"
-		echo "[~] The syntax is bash tess https://www.URL.com"
-		echo "[~] Do not attempt to use IP addresses"
-		echo 
-		echo "API keys can be added manually from the CLI;"
-		echo "APIKEY > vtkey.txt"
-		echo "APIKEY > urlscankey.txt"
-		echo
-		echo "Thanks for reading."
-		exit
-	else
-		echo
-	fi
-}
-
 webcrawl_function() {
 curl -Lsk $domain"/robots.txt" | grep 'User-agent' > robots.txt
 if [ -s robots.txt ];
 then
-        echo -e "\xE2\x9C\x94 : Robots Rules Found"
+        echo -e '\033[0;32m'\xE2\x9C\x94 : Robots Rules Found'\033[0m'
 	echo -e "\n"
         cat robots.txt | grep -v "*" | awk '{print $2}'
         rm robots.txt
 else
-        echo -e "\xE2\x9D\x8C : No Robot.txt found"
+        echo -e '\033[1;31m'\xE2\x9D\x8C : No Robot.txt found'\033[0m'
         rm robots.txt
 fi
 }
@@ -92,8 +73,6 @@ http_check_function () {
             echo -e "\xE2\x9D\x8C : HTTP2"
        fi
 }
-
-
 
 wp_function () {
         curl -Ls -m 5 $url | grep -o 'wp-content' | head -1 > wpcheck.txt
@@ -247,7 +226,6 @@ fi
 
 
 #Run the Series
-help_function
 defang_function
 echo "execution: ${url}"
 echo "script: tesseract"
