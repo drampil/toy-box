@@ -254,8 +254,6 @@ echo -e "\t" `http_stat_function`
 # echo "Domain"
 # domainfinder_function
 
-echo -e "\t" `association_function`
-
 echo -e "\t" `wp_function`
 
 echo -e "\t" `registrar_function`
@@ -268,7 +266,8 @@ echo "Other"
 echo
 echo -e "\t Seconds : " `response_function`
 echo -e "\t Bytes : " `bytes_function`
-# echo
+echo -e "\t" `association_function`
+echo
 # echo "Hosting Provider"
 # hostfinder_function
 
