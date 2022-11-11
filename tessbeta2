@@ -1,11 +1,16 @@
 #!/bin/bash
 
-echo -e '\033[0;32m' _   __ _____ '\033[0m'
-echo -e '\033[0;32m'| | / /|  _  |'\033[0m'
-echo -e '\033[0;32m'| |/ / | |_| |'\033[0m'
-echo -e '\033[0;32m'|    \ \____ |'\033[0m'
-echo -e '\033[0;32m'| |\  \.___/ /'\033[0m'
-echo -e '\033[0;32m'\_| \_/\____/ '\033[0m'
+#color codes
+RED='\033[0;31m'
+GREEN='\033[1;32m'
+NONE='\033[0m'
+
+echo -e "${GREEN} _   __ _____ "
+echo -e "| | / /|  _  |"
+echo -e "| |/ / | |_| |"
+echo -e "|    \ \____ |"
+echo -e "| |\  \.___/ /"
+echo -e "\_| \_/\____/ ${NONE}"
               
 
 dirty_url=$(echo $1)
@@ -16,12 +21,12 @@ webcrawl_function() {
 curl -Lsk $domain"/robots.txt" | grep 'User-agent' > robots.txt
 if [ -s robots.txt ];
 then
-        echo -e '\033[0;32m'\xE2\x9C\x94 : Robots Rules Found'\033[0m'
+        echo -e "${GREEN}\xE2\x9C\x94 : Robots Rules Found ${NONE}"
 	echo -e "\n"
         cat robots.txt | grep -v "*" | awk '{print $2}'
         rm robots.txt
 else
-        echo -e '\033[1;31m'\xE2\x9D\x8C : No Robot.txt found'\033[0m'
+        echo -e "${RED}\xE2\x9D\x8C : No Robot.txt found ${RED}"
         rm robots.txt
 fi
 }
@@ -68,9 +73,9 @@ http_check_function () {
        httpcode=$(curl -sI '{'"$url"'}' -o/dev/null -w '%{http_version}\n')
        if [[ $httpcode == "2" ]];
        then
-            echo -e "\xE2\x9C\x94 : HTTP2"
+            echo -e "${GREEN}\xE2\x9C\x94 : HTTP2 ${NONE}"
        else
-            echo -e "\xE2\x9D\x8C : HTTP2"
+            echo -e "${RED}\xE2\x9D\x8C : HTTP2 ${NONE}"
        fi
 }
 
@@ -80,10 +85,10 @@ wp_function () {
         check="wp-content"
 
         if [[ $wp == $check ]]; then
-                echo -e "\xE2\x9C\x94 : Word Press Engine"
+                echo -e "${GREEN}\xE2\x9C\x94 : Word Press Engine ${NONE}"
                 
         else
-                echo -e "\xE2\x9D\x8C : Not Word Press"
+                echo -e "${RED}\xE2\x9D\x8C : Not Word Press ${NONE}"
         fi
         rm wpcheck.txt
 }
@@ -95,10 +100,10 @@ registrar_function () {
 
         if [ -s registrar.txt ]
         then
-                echo -e "\xE2\x9C\x94 : Registrar Information Found"
+                echo -e "${GREEN}\xE2\x9C\x94 : Registrar Information Found ${NONE}"
 		echo -e "\xE2\x9C\x94 : " whois $regi | grep -m 1 'Registrar:' | sed s'/Registrar://g' | xargs
         else
-                echo -e "\xE2\x9D\x8C : No Registrar Information Avaliable"
+                echo -e "${RED}\xE2\x9D\x8C : No Registrar Information Avaliable ${NONE}"
         fi
         registrar=$(cat registrar.txt)
         whois $regi | grep -m 1 "Creation Date" | xargs | sed s'/Creation Date/Domain Age/g'
@@ -216,9 +221,9 @@ http_stat_function () {
 testcode=$(curl -s -o /dev/null -w "%{http_code}" $url)
 if [[ $testcode == "200" ]];
 then
-      echo -e "\xE2\x9C\x94 : Connection Established"
+      echo -e "${GREEN}\xE2\x9C\x94 : Connection Established ${NONE}"
 else
-	echo -e "\xE2\x9D\x8C : Connection Invalid"
+	echo -e "${RED}\xE2\x9D\x8C : Connection Invalid ${NONE}"
 fi
 }
 
